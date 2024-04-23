@@ -3,12 +3,12 @@
 	"style": "default",
 	"tailwind": {
 		"config": "tailwind.config.js",
-		"css": "src/app.pcss",
+		"css": "src/app-tw.pcss",
 		"baseColor": "slate"
 	},
 	"aliases": {
 		"components": "$lib/components",
-		"utils": "$lib/utils"
+		"utils": "$lib/utils/shadcn"
 	},
 	"typescript": true
 }

@@ -10,6 +10,8 @@
 	import '../app.css';
 	import '../tailwind.css';
 	import 'tippy.js/dist/tippy.css';
+	import '../app-tw.pcss';
+	
 	import { WEBUI_BASE_URL } from '$lib/constants';
 	import i18n, { initI18n } from '$lib/i18n';
 
