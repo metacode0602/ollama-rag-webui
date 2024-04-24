@@ -187,17 +187,17 @@ export type Account = {
 
 export const accounts: Account[] = [
 	{
-		label: "Alicia Koch",
+		label: "单个文本测试",
 		email: "alicia@example.com",
 		icon: Vercel,
 	},
 	{
-		label: "Alicia Koch",
+		label: "单个文本测试",
 		email: "alicia@gmail.com",
 		icon: Gmail,
 	},
 	{
-		label: "Alicia Koch",
+		label: "单个文本测试",
 		email: "alicia@me.com",
 		icon: ICloud,
 	},

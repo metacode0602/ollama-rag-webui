@@ -12,6 +12,9 @@
 	import * as Resizable from "$lib/components/ui/resizable";
 	import { Separator } from "$lib/components/ui/select";
 	import * as Tabs from "$lib/components/ui/tabs/index.js";
+	import { Textarea } from "$lib/components/ui/textarea/index.js";
+	import { Button } from "$lib/components/ui/button/index.js";
+	import * as Table from "$lib/components/ui/table/index.js";
 
 	export let accounts: Account[];
 	export let mails: Mail[];
@@ -34,6 +37,12 @@
 		isCollapsed = false;
 		document.cookie = `PaneForge:collapsed=${false}`;
 	}
+
+
+
+	
+	// HTML模板部分
+
 </script>
 <div class="hidden md:block">
 	<Resizable.PaneGroup
@@ -56,7 +65,9 @@
 					isCollapsed ? "h-[52px]" : "px-2"
 				)}
 			>
-				<AccountSwitcher {isCollapsed} {accounts} />
+					<!-- 标题 -->
+				<h1 class="text-xl font-bold">MarktingGPT</h1>
+				
 			</div>
 			<Separator />
 			<Nav {isCollapsed} routes={primaryRoutes} />
@@ -67,33 +78,60 @@
 		<Resizable.Pane defaultSize={defaultLayout[1]} minSize={30}>
 			<Tabs.Root value="all">
 				<div class="flex items-center px-4 py-2">
-					<h1 class="text-xl font-bold">Inbox</h1>
-					<Tabs.List class="ml-auto">
+					<!-- 下拉框 -->
+					<AccountSwitcher {isCollapsed} {accounts} />
+					<!-- 按钮 -->
+					<Button variant="outline">语言检索</Button>
+
+					<!-- <Tabs.List class="ml-auto">
 						<Tabs.Trigger value="all" class="text-zinc-600 dark:text-zinc-200">
 							All mail
 						</Tabs.Trigger>
 						<Tabs.Trigger value="unread" class="text-zinc-600 dark:text-zinc-200">
 							Unread
 						</Tabs.Trigger>
-					</Tabs.List>
+					</Tabs.List> -->
+					
 				</div>
 				<Separator />
 				<div
 					class="bg-background/95 p-4 backdrop-blur supports-[backdrop-filter]:bg-background/60"
 				>
+				<!-- 文本框 -->
 					<form>
 						<div class="relative">
-							<Search class="absolute left-2 top-3 h-4 w-4 text-muted-foreground" />
-							<Input placeholder="Search" class="pl-8" />
+							<!-- <Search class="absolute left-2 top-3 h-4 w-4 text-muted-foreground" /> -->
+							<!-- <Input placeholder="Search" class="pl-8" /> -->
+							<Textarea placeholder="多语言支持." />
 						</div>
 					</form>
 				</div>
-				<Tabs.Content value="all" class="m-0">
+				<!-- 表格 -->
+				<Table.Root>
+					<Table.Caption>A list of your recent invoices.</Table.Caption>
+					<Table.Header>
+					  <Table.Row>
+						<Table.Head class="w-[100px]">测试历史</Table.Head>
+						<Table.Head>Status</Table.Head>
+						<Table.Head>Method</Table.Head>
+						<Table.Head class="text-right">Amount</Table.Head>
+					  </Table.Row>
+					</Table.Header>
+					<Table.Body>
+					  <Table.Row>
+						<Table.Cell class="font-medium">INV001</Table.Cell>
+						<Table.Cell>Paid</Table.Cell>
+						<Table.Cell>Credit Card</Table.Cell>
+						<Table.Cell class="text-right">$250.00</Table.Cell>
+					  </Table.Row>
+					</Table.Body>
+				  </Table.Root>
+				<!-- <Tabs.Content value="all" class="m-0">
 					<MailList items={mails} />
 				</Tabs.Content>
 				<Tabs.Content value="unread" class="m-0">
 					<MailList items={mails.filter((item) => !item.read)} />
-				</Tabs.Content>
+				</Tabs.Content> -->
 			</Tabs.Root>
 		</Resizable.Pane>
 		<Resizable.Handle withHandle />
