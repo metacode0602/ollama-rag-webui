@@ -11,16 +11,16 @@ export default defineConfig({
 	},	
 	server: {
 		proxy: {
-		 '/api': {
-		   target: 'http://localhost:8080', // 目标后端服务地址
+		 '/dev-api': {
+		   target: 'http://172.30.1.130:8080', // 目标后端服务地址
 		   changeOrigin: true, // 是否改变请求源
-		   rewrite: (path) => path.replace(/^\/api/, ''), // 重写请求路径
-		},
-		 '/manifest.json': {
-		   target: 'http://localhost:8080',
-		   changeOrigin: true,
-		   rewrite: (path) => '/manifest.json'//path.replace(/^\/manifest\.json/, ''),
-		},
+		   rewrite: (path) => path.replace(/^\/dev-api/, ''), // 重写请求路径
+		},	
+		'/api': {
+			target: 'http://172.30.1.130:8080', // 目标后端服务地址
+			changeOrigin: true, // 是否改变请求源
+			rewrite: (path) => path.replace(/^\/api/, ''), // 重写请求路径
+		 },
 		 // ...其他代理规则
 		},
 		// 其他server配置
