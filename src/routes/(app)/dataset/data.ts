@@ -192,7 +192,7 @@ export const accounts: Account[] = [
 		icon: Vercel,
 	},
 	{
-		label: "单个文本测试",
+		label: "多个文本测试",
 		email: "alicia@gmail.com",
 		icon: Gmail,
 	},
@@ -203,87 +203,158 @@ export const accounts: Account[] = [
 	},
 ];
 
-export const contacts = [
-	{
-		name: "Emma Johnson",
-		email: "emma.johnson@example.com",
-	},
-	{
-		name: "Liam Wilson",
-		email: "liam.wilson@example.com",
-	},
-	{
-		name: "Olivia Davis",
-		email: "olivia.davis@example.com",
-	},
-	{
-		name: "Noah Martinez",
-		email: "noah.martinez@example.com",
-	},
-	{
-		name: "Ava Taylor",
-		email: "ava.taylor@example.com",
-	},
-	{
-		name: "Lucas Brown",
-		email: "lucas.brown@example.com",
-	},
-	{
-		name: "Sophia Smith",
-		email: "sophia.smith@example.com",
-	},
-	{
-		name: "Ethan Wilson",
-		email: "ethan.wilson@example.com",
-	},
-	{
-		name: "Isabella Jackson",
-		email: "isabella.jackson@example.com",
-	},
-	{
-		name: "Mia Clark",
-		email: "mia.clark@example.com",
-	},
-	{
-		name: "Mason Lee",
-		email: "mason.lee@example.com",
-	},
-	{
-		name: "Layla Harris",
-		email: "layla.harris@example.com",
-	},
-	{
-		name: "William Anderson",
-		email: "william.anderson@example.com",
-	},
-	{
-		name: "Ella White",
-		email: "ella.white@example.com",
-	},
-	{
-		name: "James Thomas",
-		email: "james.thomas@example.com",
-	},
-	{
-		name: "Harper Lewis",
-		email: "harper.lewis@example.com",
-	},
-	{
-		name: "Benjamin Moore",
-		email: "benjamin.moore@example.com",
-	},
-	{
-		name: "Aria Hall",
-		email: "aria.hall@example.com",
-	},
-	{
-		name: "Henry Turner",
-		email: "henry.turner@example.com",
-	},
-	{
-		name: "Scarlett Adams",
-		email: "scarlett.adams@example.com",
-	},
-];
+
+// export const contacts = [
+// 	{
+// 		name: "Emma Johnson",
+// 		email: "emma.johnson@example.com",
+// 	},
+// 	{
+// 		name: "Liam Wilson",
+// 		email: "liam.wilson@example.com",
+// 	},
+// 	{
+// 		name: "Olivia Davis",
+// 		email: "olivia.davis@example.com",
+// 	},
+// 	{
+// 		name: "Noah Martinez",
+// 		email: "noah.martinez@example.com",
+// 	},
+// 	{
+// 		name: "Ava Taylor",
+// 		email: "ava.taylor@example.com",
+// 	},
+// 	{
+// 		name: "Lucas Brown",
+// 		email: "lucas.brown@example.com",
+// 	},
+// 	{
+// 		name: "Sophia Smith",
+// 		email: "sophia.smith@example.com",
+// 	},
+// 	{
+// 		name: "Ethan Wilson",
+// 		email: "ethan.wilson@example.com",
+// 	},
+// 	{
+// 		name: "Isabella Jackson",
+// 		email: "isabella.jackson@example.com",
+// 	},
+// 	{
+// 		name: "Mia Clark",
+// 		email: "mia.clark@example.com",
+// 	},
+// 	{
+// 		name: "Mason Lee",
+// 		email: "mason.lee@example.com",
+// 	},
+// 	{
+// 		name: "Layla Harris",
+// 		email: "layla.harris@example.com",
+// 	},
+// 	{
+// 		name: "William Anderson",
+// 		email: "william.anderson@example.com",
+// 	},
+// 	{
+// 		name: "Ella White",
+// 		email: "ella.white@example.com",
+// 	},
+// 	{
+// 		name: "James Thomas",
+// 		email: "james.thomas@example.com",
+// 	},
+// 	{
+// 		name: "Harper Lewis",
+// 		email: "harper.lewis@example.com",
+// 	},
+// 	{
+// 		name: "Benjamin Moore",
+// 		email: "benjamin.moore@example.com",
+// 	},
+// 	{
+// 		name: "Aria Hall",
+// 		email: "aria.hall@example.com",
+// 	},
+// 	{
+// 		name: "Henry Turner",
+// 		email: "henry.turner@example.com",
+// 	},
+// 	{
+// 		name: "Scarlett Adams",
+// 		email: "scarlett.adams@example.com",
+// 	},
+// ];
+
+// 获取当前日期  
+const currentDate = new Date();  
+  
+// 获取年份  
+const year = currentDate.getFullYear();  
+  
+// 获取月份（注意：月份是从0开始的，所以需要+1）  
+const month = String(currentDate.getMonth() + 1).padStart(2, '0');  
+  
+// 获取日期  
+const day = String(currentDate.getDate()).padStart(2, '0');  
+  
+// 将年月日拼接成字符串  
+const currentDateString = `${year}-${month}-${day}`;  
+export const invoices = [
+    {
+	  invoice: "ICloud",
+      paymentStatus: "[语义检索]Racing car aprays burning fuel into crowed.",
+      totalAmount: "$250.00",
+      currentDateString // 这里设置为当前年月日 
+    },
+    {
+	  invoice: "ICloud",
+      paymentStatus: "[语义检索]Racing car aprays burning fuel into crowed.",
+      totalAmount: "$150.00",
+      currentDateString
+    },
+    {
+	  invoice: "ICloud",
+      paymentStatus: "[语义检索]Racing car aprays burning fuel into crowed.",
+      totalAmount: "$350.00",
+      currentDateString
+    },
+    {
+	  invoice: "ICloud",
+      paymentStatus: "[语义检索]Racing car aprays burning fuel into crowed.",
+      totalAmount: "$450.00",
+      currentDateString
+    },
+    {
+      invoice: "ICloud",
+      paymentStatus: "[语义检索]Racing car aprays burning fuel into crowed.",
+      totalAmount: "$550.00",
+      currentDateString
+    },
+    {
+      invoice: "ICloud",
+      paymentStatus: "[语义检索]Racing car aprays burning fuel into crowed.",
+      totalAmount: "$200.00",
+      currentDateString
+    },
+    {
+      invoice: "ICloud",
+      paymentStatus: "[语义检索]Racing car aprays burning fuel into crowed.",
+      totalAmount: "$300.00",
+      currentDateString
+    }
+  ];
+
+  export const intents = [
+    {
+      invoice: "[语义检索]",
+      paymentStatus: "500",
+      totalAmount: "0",
+	  resultStatus:"-",
+	  questionPlus:"-"
+     
+    }
+  ];
 
 export type Contact = (typeof contacts)[number];

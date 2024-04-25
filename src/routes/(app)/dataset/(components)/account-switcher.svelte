@@ -43,7 +43,8 @@
 							aria-hidden="true"
 							class="size-4 shrink-0 text-foreground"
 						/>
-						{account.email}
+						 <!-- 移除这里的 account.email  -->
+						{account.label}  
 					</div>
 				</Select.Item>
 			{/each}
