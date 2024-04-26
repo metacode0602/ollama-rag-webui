@@ -17,7 +17,10 @@
 	import * as Card from "$lib/components/ui/card/index.js";
 	import CardFooter from "$lib/components/ui/card/card-footer.svelte";
 	import * as Avatar from "$lib/components/ui/avatar/index.js";
-	import { primaryRoutes } from "../config.js";
+	import { primaryRoutes, secondaryRoutes, thirdRoutes, turnRoutes } from "../config.js";
+	import { Progress } from "$lib/components/ui/progress";
+	import { onMount } from "svelte";
+	import { goto } from '$app/navigation';  
 
 	export let accounts: Account[];
 	export let mails: Mail[];
@@ -26,6 +29,12 @@
 	export let navCollapsedSize: number;
 
 	let isCollapsed = defaultCollapsed;
+	// 进度条
+	let value = 13;
+  onMount(() => {
+    const timer = setTimeout(() => (value = 66), 500);
+    return () => clearTimeout(timer);
+  });
 
 	function onLayoutChange(sizes: number[]) {
 		document.cookie = `PaneForge:layout=${JSON.stringify(sizes)}`;
@@ -41,6 +50,7 @@
 		document.cookie = `PaneForge:collapsed=${false}`;
 	}
 
+	// 导航栏跳转
 
 
 	
@@ -91,12 +101,26 @@
 				  </div>
 			</div>
 			<Separator />
-			<Nav {isCollapsed} routes={primaryRoutes} />
+			<!-- 数据集导航栏 -->
+			<Nav {isCollapsed} routes={primaryRoutes} >
 			
-			<!-- <Nav {isCollapsed} routes={secondaryRoutes} /> -->
+			</Nav>
+			<div class="mt-40">
+			<!-- QA训练导航栏 -->
+			<Nav {isCollapsed} routes={secondaryRoutes} />
+			<!-- 进度条 -->
+			<Progress {value} max={100} class="w-[80%] mx-5" />
+			<!-- 索引排队导航栏 -->
+			<Nav {isCollapsed} routes={thirdRoutes} />
+			<!-- 进度条 -->
+			<Progress {value} max={100} class="w-[80%] mx-5 mb-5" />
+			<Separator />
+			<!-- 返回知识库导航栏 -->
+			<Nav {isCollapsed} routes={turnRoutes} />
+		</div>
 		</Resizable.Pane>
 		<Resizable.Handle withHandle />
-		<Resizable.Pane defaultSize={defaultLayout[1]} minSize={30}>
+		<Resizable.Pane defaultSize={defaultLayout[1]} minSize={30} >
 			<Tabs.Root value="all">
 				<div class="flex items-center justify-between px-4 py-2 max-w-56">
 					<!-- 下拉框 -->
@@ -161,6 +185,7 @@
 					<MailList items={mails.filter((item) => !item.read)} />
 				</Tabs.Content> -->
 			</Tabs.Root>
+		
 		</Resizable.Pane>
 	
 		<!-- 这是一个可调整大小的句柄（Handle）组件，它通常用于拖拽以改变其父级元素（Resizable.Pane）的大小。  

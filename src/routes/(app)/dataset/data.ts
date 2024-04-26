@@ -319,25 +319,7 @@ export const invoices = [
       paymentStatus: "[语义检索]Racing car aprays burning fuel into crowed.",
       totalAmount: "$350.00",
       currentDateString
-    },
-    {
-	  invoice: "ICloud",
-      paymentStatus: "[语义检索]Racing car aprays burning fuel into crowed.",
-      totalAmount: "$450.00",
-      currentDateString
-    },
-    {
-      invoice: "ICloud",
-      paymentStatus: "[语义检索]Racing car aprays burning fuel into crowed.",
-      totalAmount: "$550.00",
-      currentDateString
-    },
-    {
-      invoice: "ICloud",
-      paymentStatus: "[语义检索]Racing car aprays burning fuel into crowed.",
-      totalAmount: "$200.00",
-      currentDateString
-    },
+    }, 
     {
       invoice: "ICloud",
       paymentStatus: "[语义检索]Racing car aprays burning fuel into crowed.",
@@ -357,4 +339,4 @@ export const invoices = [
     }
   ];
 
-export type Contact = (typeof contacts)[number];
+//export type Contact = (typeof contacts)[number];
