@@ -13,12 +13,12 @@ export const primaryRoutes: Route[] = [
 	{
 		title: "数据集",
 		icon: Icons.Inbox,
-		variant: "default",
+		variant: "ghost",
 	},
 	{
 		title: "搜索测试",
 		icon: Icons.File,
-		variant: "ghost",
+		variant: "default",
 	},
 	{
 		title: "配置",
@@ -28,35 +28,30 @@ export const primaryRoutes: Route[] = [
 	
 ];
 
-// export const secondaryRoutes: Route[] = [
-// 	{
-// 		title: "Social",
-// 		label: "972",
-// 		icon: Icons.Users,
-// 		variant: "ghost",
-// 	},
-// 	{
-// 		title: "Updates",
-// 		label: "342",
-// 		icon: Icons.CircleAlert,
-// 		variant: "ghost",
-// 	},
-// 	{
-// 		title: "Forums",
-// 		label: "128",
-// 		icon: Icons.MessagesSquare,
-// 		variant: "ghost",
-// 	},
-// 	{
-// 		title: "Shopping",
-// 		label: "8",
-// 		icon: Icons.ShoppingCart,
-// 		variant: "ghost",
-// 	},
-// 	{
-// 		title: "Promotions",
-// 		label: "21",
-// 		icon: Icons.Archive,
-// 		variant: "ghost",
-// 	},
-// ];
+export const secondaryRoutes: Route[] = [
+	{
+		title: "QA训练排队(空闲)",
+		icon: Icons.Users,
+		variant: "ghost",
+	},	
+];
+
+export const thirdRoutes: Route[] = [
+	{
+		title: "索引排队(空闲)",
+		icon: Icons.CircleAlert,
+		variant: "ghost",
+	},
+
+
+	
+];
+
+export const turnRoutes: Route[] = [
+	{
+		title: "全部知识库",
+		icon: Icons.CircleAlert,
+		variant: "ghost",
+	},
+]
+

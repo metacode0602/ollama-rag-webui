@@ -164,12 +164,15 @@
 		: '-translate-x-[260px] w-[0px]'} bg-gray-50 text-gray-900 dark:bg-gray-950 dark:text-gray-200 text-sm transition fixed z-50 top-0 left-0
         "
 >
+	<!-- 最左侧导航栏 -->
 	<div
-		class="py-2.5 my-auto flex flex-col justify-between h-screen max-h-[100dvh] w-[260px] {show
+		class="py-2.5 my-auto flex flex-col justify-between h-screen max-h-[100dvh] w-[150px] {show
 			? ''
 			: 'invisible'}"
 	>
-		<div class="px-2 flex justify-center space-x-2">
+	<!-- 导航栏内部的按钮或链接容器 -->  
+		<div class="px-2 flex justify-center space-x-2 ">
+			<!-- 一个链接，点击时触发一系列动作 --> 
 			<a
 				id="sidebar-new-chat-button"
 				class="flex-grow flex justify-between rounded-xl px-4 py-2 hover:bg-gray-200 dark:hover:bg-gray-900 transition"
@@ -184,7 +187,9 @@
 					}, 0);
 				}}
 			>
+			<!-- 按钮的左侧部分，包含一个图标和文本 --> 
 				<div class="flex self-center">
+					<!-- 图标 --> 
 					<div class="self-center mr-1.5">
 						<img
 							src="{WEBUI_BASE_URL}/static/favicon.png"
@@ -193,9 +198,11 @@
 						/>
 					</div>
 
+					<!-- 文本 -->  
 					<div class=" self-center font-medium text-sm">{$i18n.t('New Chat')}</div>
 				</div>
 
+				<!-- 按钮的右侧部分，包含一个向右的箭头图标 -->  
 				<div class="self-center">
 					<svg
 						xmlns="http://www.w3.org/2000/svg"
@@ -214,11 +221,14 @@
 			</a>
 		</div>
 
+		<!-- 判断当前用户的角色是否为管理员 -->
 		{#if $user?.role === 'admin'}
+		<!-- 一个居中对齐的div，上边距为0.5单位，包含了一个链接 -->  
 			<div class="px-2 flex justify-center mt-0.5">
 				<a
 					class="flex-grow flex space-x-3 rounded-xl px-3.5 py-2 hover:bg-gray-200 dark:hover:bg-gray-900 transition"
 					href="/modelfiles"
+					
 					on:click={() => {
 						selectedChatId = null;
 						chatId.set('');
