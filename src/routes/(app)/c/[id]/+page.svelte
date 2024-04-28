@@ -51,12 +51,12 @@
 	let autoScroll = true;
 	let processing = '';
 	let messagesContainerElement: HTMLDivElement;
-	let currentRequestId = null;
+	let currentRequestId: any = null;
 
 	// let chatId = $page.params.id;
 	let showModelSelector = true;
 	let selectedModels = [''];
-	let selectedModelfile = null;
+	let selectedModelfile: any = null;
 
 	$: selectedModelfile =
 		selectedModels.length === 1 &&
@@ -75,14 +75,14 @@
 		};
 	}, {});
 
-	let chat = null;
+	let chat: any = null;
 	let tags = [];
 
 	let title = '';
 	let prompt = '';
-	let files = [];
+	let files: any[] = [];
 
-	let messages = [];
+	let messages: any[] = [];
 	let history = {
 		messages: {},
 		currentId: null
@@ -176,7 +176,7 @@
 	// Ollama functions
 	//////////////////////////
 
-	const submitPrompt = async (userPrompt, _user = null) => {
+	const submitPrompt = async (userPrompt: any, _user = null) => {
 		console.log('submitPrompt', $chatId);
 
 		if (selectedModels.includes('')) {
@@ -251,7 +251,7 @@
 			await sendPrompt(userPrompt, userMessageId);
 		}
 	};
-	const sendPrompt = async (prompt, parentId) => {
+	const sendPrompt = async (prompt: string, parentId: string) => {
 		const _chatId = JSON.parse(JSON.stringify($chatId));
 
 		await Promise.all(
@@ -282,7 +282,6 @@
 							responseMessageId
 						];
 					}
-
 					if (model?.external) {
 						await sendPromptOpenAI(model, prompt, responseMessageId, _chatId);
 					} else if (model) {
