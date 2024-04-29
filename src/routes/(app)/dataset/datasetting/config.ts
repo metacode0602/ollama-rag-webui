@@ -4,10 +4,10 @@ import * as Icons from "./icons.js";
 
 export type Route = {
 	title: string;
+	// label: string;
 	icon: ComponentType<Icon>;
 	variant: "default" | "ghost";
 	path:string;
-	
 };
 
 export const primaryRoutes: Route[] = [
@@ -15,23 +15,19 @@ export const primaryRoutes: Route[] = [
 		title: "数据集",
 		icon: Icons.Inbox,
 		variant: "ghost",
-		path:"/dataset/datatasks"
-		
+		path:"/dataset/datatasks",
 	},
 	{
 		title: "搜索测试",
 		icon: Icons.File,
-		variant: "default",
-		path:"/dataset"
-		
+		variant: "ghost",
+		path:"/dataset",
 	},
 	{
 		title: "配置",
 		icon: Icons.Send,
-		variant: "ghost",
-		path:"/dataset/datasetting"
-		
-		
+		variant: "default",
+		path:"/dataset/datasetting",
 	},
 	
 ];
@@ -41,8 +37,7 @@ export const secondaryRoutes: Route[] = [
 		title: "QA训练排队(空闲)",
 		icon: Icons.Users,
 		variant: "ghost",
-		path:"/"
-	
+		path:"/dataset",
 	},	
 ];
 
@@ -51,8 +46,7 @@ export const thirdRoutes: Route[] = [
 		title: "索引排队(空闲)",
 		icon: Icons.CircleAlert,
 		variant: "ghost",
-		path:"/"
-		
+		path:"/dataset",
 	},
 
 
@@ -64,8 +58,6 @@ export const turnRoutes: Route[] = [
 		title: "全部知识库",
 		icon: Icons.CircleAlert,
 		variant: "ghost",
-		path:"/"
-	
+		path:"/dataset",
 	},
 ]
-

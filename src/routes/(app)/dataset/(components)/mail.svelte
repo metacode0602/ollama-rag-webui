@@ -20,7 +20,10 @@
 	import { primaryRoutes, secondaryRoutes, thirdRoutes, turnRoutes } from "../config.js";
 	import { Progress } from "$lib/components/ui/progress";
 	import { onMount } from "svelte";
-	import { goto } from '$app/navigation';  
+	import { chatId } from "$lib/stores/index.js";
+
+	
+	
 
 	export let accounts: Account[];
 	export let mails: Mail[];
@@ -28,6 +31,7 @@
 	export let defaultCollapsed = false;
 	export let navCollapsedSize: number;
 
+	
 	let isCollapsed = defaultCollapsed;
 	// 进度条
 	let value = 13;
@@ -50,7 +54,7 @@
 		document.cookie = `PaneForge:collapsed=${false}`;
 	}
 
-	// 导航栏跳转
+	
 
 
 	
@@ -102,9 +106,11 @@
 			</div>
 			<Separator />
 			<!-- 数据集导航栏 -->
-			<Nav {isCollapsed} routes={primaryRoutes} >
 			
-			</Nav>
+			<Nav {isCollapsed} routes={primaryRoutes}/>
+				
+			
+				
 			<div class="mt-40">
 			<!-- QA训练导航栏 -->
 			<Nav {isCollapsed} routes={secondaryRoutes} />
@@ -192,7 +198,7 @@
 			withHandle属性是一个标志，用于确定是否显示该句柄。   -->
 		<Resizable.Handle withHandle />
 		<!-- 这是一个可调整大小的面板组件。defaultSize属性指定了面板的默认大小，其值来自defaultLayout数组的第三个元素（因为数组索引从0开始） -->
-		<Resizable.Pane defaultSize={defaultLayout[2]}>
+		<Resizable.Pane defaultSize={defaultLayout[2]} class="max-h-screen">
 			<!-- 这是一个邮件显示组件。它接收一个mail属性，该属性的值是通过在mails数组中查找id与$mailStore.selected相匹配的项来确定的。  
     如果找到了匹配的项，就将其赋值给mail属性；否则，将null赋值给mail属性。  
     $mailStore.selected可能是一个状态或变量，用于存储当前选中的邮件的id。   -->

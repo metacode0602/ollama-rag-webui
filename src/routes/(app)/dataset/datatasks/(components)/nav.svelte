@@ -17,7 +17,7 @@
 				<Tooltip.Root openDelay={0}>
 					<Tooltip.Trigger asChild let:builder>
 						<Button
-							href="/"
+							href="#"
 							builders={[builder]}
 							variant={route.variant}
 							size="icon"
@@ -27,22 +27,13 @@
 									"dark:bg-muted dark:text-muted-foreground dark:hover:bg-muted dark:hover:text-white"
 							)}
 						>
-						<!-- <a href={route.path} on:click={() => {
-							console.log(route.path)
-							}}>  
-							   {route.title}  
-							  </a>   -->
 							<svelte:component this={route.icon} class="size-4" aria-hidden="true" />
 							<span class="sr-only">{route.title}</span>
 						</Button>
 					</Tooltip.Trigger>
 					<Tooltip.Content side="right" class="flex items-center gap-4">
 						{route.title}
-						<!-- {#if route.label}
-							<span class="ml-auto text-muted-foreground">
-								{route.label}
-							</span>
-						{/if} -->
+						
 					</Tooltip.Content>
 				</Tooltip.Root>
 			{:else}
@@ -57,15 +48,7 @@
 				>
 					<svelte:component this={route.icon} class="mr-2 size-4" aria-hidden="true" />
 					{route.title}
-					<!-- {#if route.label}
-						<span
-							class={cn("ml-auto", {
-								"text-background dark:text-white": route.variant === "default",
-							})}
-						>
-							{route.label}
-						</span>
-					{/if} -->
+					
 				</Button>
 			{/if}
 		{/each}
