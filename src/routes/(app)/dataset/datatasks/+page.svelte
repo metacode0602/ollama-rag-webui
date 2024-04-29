@@ -1,15 +1,13 @@
 <script lang="ts">
 	import { accounts, mails } from "./data.js";
-	import DataTable from "./(components)/data-table.svelte";
-	import UserNav from "./(components)/user-nav.svelte";
-	import data from "./(data)/tasks.json";
+	import Mail from "./(components)/mail.svelte";
 	
 </script>
-<div class="container mx-auto py-10">
-<DataTable
+
+
+	<Mail
 	{accounts}
 	{mails}
-	navCollapsedSize={4}
-	{data}
-/>
-</div>
+	navCollapsedSize={4}/>
+
+

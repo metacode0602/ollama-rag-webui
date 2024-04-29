@@ -12,19 +12,19 @@ export default defineConfig({
 	server: {
 		proxy: {
 		 '/dev-api': {
-		   target: 'http://localhost:8080', // 目标后端服务地址
+		   target: 'http://172.30.1.130:8080', // 目标后端服务地址
 		   changeOrigin: true, // 是否改变请求源
 		   rewrite: (path) => path.replace(/^\/dev-api/, ''), // 重写请求路径
 		},
 		'/c/dev-api': {
-			target: 'http://localhost:8080', // 目标后端服务地址
+			target: 'http://172.30.1.130:8080', // 目标后端服务地址
 			changeOrigin: true, // 是否改变请求源
 			rewrite: (path) => {
 				return path.replace(/^\/c\/dev-api/, '')
 			} // 重写请求路径
 		 },			
 		'/api': {
-			target: 'http://localhost:8080', // 目标后端服务地址
+			target: 'http://172.30.1.130:8080', // 目标后端服务地址
 			changeOrigin: true, // 是否改变请求源
 			rewrite: (path) => path.replace(/^\/api/, ''), // 重写请求路径
 		 },
