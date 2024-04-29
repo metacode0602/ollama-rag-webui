@@ -42,7 +42,7 @@
 		"@internationalized/date": "^3.5.2",
 		"@sveltejs/adapter-node": "^5.0.1",
 		"async": "^3.2.5",
-		"bits-ui": "^0.21.4",
+		"bits-ui": "^0.21.5",
 		"clsx": "^2.1.1",
 		"cmdk-sv": "^0.0.17",
 		"dayjs": "^1.11.10",
