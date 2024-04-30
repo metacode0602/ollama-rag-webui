@@ -166,7 +166,7 @@
 >
 	<!-- 最左侧导航栏 -->
 	<div
-		class="py-2.5 my-auto flex flex-col justify-between h-screen max-h-[100dvh] w-[150px] {show
+		class="py-2.5 my-auto flex flex-col justify-between h-screen max-h-[100dvh] w-[220px] {show
 			? ''
 			: 'invisible'}"
 	>

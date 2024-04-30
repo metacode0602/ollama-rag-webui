@@ -58,6 +58,6 @@ export const turnRoutes: Route[] = [
 		title: "全部知识库",
 		icon: Icons.CircleAlert,
 		variant: "ghost",
-		path:"/dataset",
+		path:"/dataset/database",
 	},
 ]
