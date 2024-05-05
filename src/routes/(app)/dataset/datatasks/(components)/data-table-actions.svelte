@@ -20,13 +20,14 @@
     </DropdownMenu.Trigger>
     <DropdownMenu.Content>
       <DropdownMenu.Group>
-        <DropdownMenu.Label>Actions</DropdownMenu.Label>
+       
         <DropdownMenu.Item on:click={() => navigator.clipboard.writeText(id)}>
-          Copy payment ID
+          同步数据
         </DropdownMenu.Item>
+        <DropdownMenu.Item>重命名</DropdownMenu.Item>
+        <DropdownMenu.Item>移动</DropdownMenu.Item>
       </DropdownMenu.Group>
       <DropdownMenu.Separator />
-      <DropdownMenu.Item>View customer</DropdownMenu.Item>
-      <DropdownMenu.Item>View payment details</DropdownMenu.Item>
+      <DropdownMenu.Item>删除</DropdownMenu.Item>
     </DropdownMenu.Content>
   </DropdownMenu.Root>
