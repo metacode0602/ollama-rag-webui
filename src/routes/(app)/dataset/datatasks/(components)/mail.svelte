@@ -41,9 +41,9 @@
   import Plus from "lucide-svelte/icons/plus";
   import * as RadioGroup from "$lib/components/ui/radio-group";
   import * as Dialog from "$lib/components/ui/dialog";
-
+  import * as Popover from "$lib/components/ui/popover/index.js";
   import * as Drawer from "$lib/components/ui/drawer/index.js";
-	import { Trash2 } from "lucide-svelte";
+	import { ChevronDownIcon, FileIcon, PlusIcon, Trash2 } from "lucide-svelte";
 
 
 type Payment = {
@@ -489,6 +489,7 @@ const currentDate = new Date();
 								  </div>
 								</div>
 							  </div>
+							  <!-- ----------------------- -->
 							  <div class="flex justify-end">
 								<!-- <Button class="w-32 text-xs">共1个文件|下一步</Button> -->
 								<Drawer.Root>
@@ -500,19 +501,22 @@ const currentDate = new Date();
 										<!-- ---------------------------------------------- -->
 										<div class="flex flex-col items-center justify-center h-screen bg-gray-100 dark:bg-gray-900 w-full h-auto">
 											<div class="w-full max-w-2xl p-6 bg-white rounded-lg shadow-lg dark:bg-gray-800 ">
-												<Drawer.Close  class="mb-2"><Button variant="outline">退出</Button></Drawer.Close>
+												<Drawer.Close  class="mb-2"><Button variant="outline">上一步</Button></Drawer.Close>
 													<div class="flex">
-														<Card.Root class="w-9/12 mr-3">
+														<Card.Root class="w-[450px] mr-3">
 															<Card.Header>
 															  <Card.Title>数据处理参数</Card.Title>
 															</Card.Header>
-															<Card.Content class="flex">
-																<div class="mr-4 w-32">
-																	<p class="text-xs font-semibold">训练模式</p>
-																</div>
+															<div class="ml-4 w-32 mb-2">
+																<p class="text-sm font-semibold">训练模式</p>
+															</div>
+															 <Card.Content class="flex">
+																
+
+															
 																
 																<RadioGroup.Root value="comfortable" class="flex mb-6">
-																	<Card.Root class="flex  items-center justify-between h-10  mr-2 w-24">																	
+																	<Card.Root class="flex  items-center justify-between h-10  mr-2 w-32">																	
 																		<div class="flex items-center justify-between  gap-x-4 p-1">
 																		<div>
 																			<p class="text-xs font-semibold">直接分段</p>
@@ -523,7 +527,7 @@ const currentDate = new Date();
 																		</div>								
 																	  </Card.Root>
 											
-																	  <Card.Root class="flex  items-center justify-between h-10  mr-4 w-32">																	
+																	  <Card.Root class="flex  items-center justify-between h-10  mr-2 w-32">																	
 																		<div class="flex items-center justify-between gap-x-4 p-1">
 																		<div>
 																			<p class="text-xs font-semibold">增强处理实验</p>
@@ -534,7 +538,7 @@ const currentDate = new Date();
 																		</div>								
 																	  </Card.Root>
 
-																	  <Card.Root class="flex  items-center justify-between h-10  mr-4 w-24">																	
+																	  <Card.Root class="flex  items-center justify-between h-10  mr-2 w-32">																	
 																		<div class="flex items-center justify-between  gap-x-4 p-1">
 																		<div>
 																			<p class="text-xs font-semibold">问答拆分</p>
@@ -546,72 +550,167 @@ const currentDate = new Date();
 																	  </Card.Root>
 																	</RadioGroup.Root>	
 															</Card.Content>
+															
 															<Card.Footer>
-																<div class="mr-4">
-																	<p class=" text-xs font-semibold" >处理方式</p>
-																</div>
-															  
+																
+																	
+																
+																<div class="mr-1 w-32 mb-2">
+																	<p class="text-sm font-semibold">处理方式</p>
+																</div>	
 															  <RadioGroup.Root value="comfortable" class="mb-6">
-																<Card.Root class="flex  items-center justify-between h-14  mr-4 w-80">																	
+																<Card.Root class="flex  items-center justify-between h-14  mr-4 w-80">	
+																																
 																	<div class="flex items-center justify-between  gap-x-4 p-3">
 																		<div class="flex items-center space-x-2">							
 																			<RadioGroup.Item value="default" id="option-one" />
 																		</div>
 																	<div>
 																		<p class="text-xs font-semibold">自动</p>
-																		<p class="text-xs">自动设置分组和与处理规则</p>
+																		<p class="text-xs">自动设置分割和预处理规则</p>
 																	</div>		
 																																																		
 																	</div>								
 																  </Card.Root>
 										
-																  <Card.Root class="h-14 flex items-center w-80">
-																	<div class="flex items-center justify-between  gap-x-4 p-3">
-																		<div class="flex items-center space-x-2 ">															
-																			<RadioGroup.Item value="comfortable" id="option-two" />															
+																  
+
+																 
+																	  
+																	  <!-- <Card.Root class="h-14 flex items-center w-96">
+																		<div class="flex items-center justify-between  gap-x-4 p-3">
+																			<div class="flex items-center space-x-2 ">															
+																				<RadioGroup.Item value="comfortable" id="option-two" />															
+																			</div>	
+																		<div>
+																		<p class="text-xs font-semibold ">自定义规则</p>
+																		<p class="text-xs">自动设置分割和预处理规则</p>	
 																		</div>	
-																	<div>
-																	<p class="text-xs font-semibold ">自定义规则</p>
-																	<p class="text-xs">自动设置分组和与处理规则</p>	
-																	</div>	
+
+																		<Popover.Root portal={null}>
+																			<Popover.Trigger asChild let:builder>
+																			  <Button builders={[builder]} variant="ghost" class="ml-4">
+																				
+																				配置提示词</Button>
+																			</Popover.Trigger>
+																			<Popover.Content class="w-80">
+																			  <div class="grid gap-4 mb-4">
+																				<Label for="email-2 font-medium">自定义分隔符</Label>
+																				<Input type="icon" id="icon-2" placeholder="输入自定义分隔符" />
+																				
+																				</div>
+																				<div class="grid gap-2">
+																					<div class="grid w-full gap-1.5 mb-2">
+																						<Label for="message font-medium">QA拆分引导词</Label>
+																						<Textarea placeholder="请输入QA拆分引导词." id="message" />
+																					</div>
+
+																					<div class="grid w-full gap-1.5 ">
+																						<Label for="message font-medium">自定义提示词</Label>
+																						<Textarea placeholder="请输入自定义提示词." id="message" />
+																					</div>
+																					<div>
+																						<Button>
+																							确定
+																						</Button>
+																					</div>
+																				
+																				 
+																				
+																				</div>
+																			 
+																			</Popover.Content>
+																		  </Popover.Root>
+
+																		
+																	</div>
 																	
-																</div>				
-																  </Card.Root>
+																	
+																	  </Card.Root> -->
+
+																	
+
+
+
 																</RadioGroup.Root>	
+
+																
 															</Card.Footer>
+
+															<Drawer.Root>
+																<Drawer.Trigger asChild let:builder>
+																	<div class="flex justify-center mb-4 ">
+																		<Button builders={[builder]}  class="w-32 text-xs">下一步</Button>
+																	</div>
+																</Drawer.Trigger>
+																<Drawer.Content>
+																  <Drawer.Header>
+																	<Drawer.Title>Are you sure absolutely sure?</Drawer.Title>
+																	<Drawer.Description>This action cannot be undone.</Drawer.Description>
+																  </Drawer.Header>
+																  <Drawer.Footer>
+																	<Button>Submit</Button>
+																	<Drawer.Close>Cancel</Drawer.Close>
+																  </Drawer.Footer>
+																</Drawer.Content>
+															  </Drawer.Root>
+															
 														  </Card.Root>
 													
-													<!-- <Resizable.Handle /> -->
-													
-														<Card.Root class="w-64 ml-2">
-															<Card.Header>
-															  <Card.Title>来源列表</Card.Title>
-															  <Card.Description>Card Description</Card.Description>
-															</Card.Header>
-															<Card.Content>
-															  <p>Card Content</p>
-															</Card.Content>
-															<Card.Footer>
-															  <p>Card Footer</p>
-															</Card.Footer>
-														  </Card.Root>
-													</div>
-												
-												 
-											  
-											 
-											
-												
-												
+													<!-- <Resizable.Handle /> -->														
+																<div class="border rounded-lg overflow-hidden">
+																	<Table.Root class="w-52">
+																		<Table.Header>
+																			<Table.Row>
+																			  <Table.Head class="font-semibold">来源列表</Table.Head>
+																			  
+																			</Table.Row>
+																		  </Table.Header>
+																		  <Table.Body>
+																			<Table.Row>
+																			  <Table.Cell class="font-medium">
+																				<div class="flex items-center gap-3">
+																					<FileIcon class="w-5 h-5 text-gray-500" />
+																					<span>文件1.pdf</span>
+																				  </div>
+																			  </Table.Cell>
+																			  
+																			</Table.Row>
+																			<Table.Row>
+																				
+																				<Table.Cell class="font-medium">
+																				  <div class="flex items-center gap-3">
+																					  <FileIcon class="w-5 h-5 text-gray-500" />
+																					  <span>文件1.pdf</span>
+																					</div>
+																				</Table.Cell>
+																				
+																			  </Table.Row>
+																			  <Table.Row>
+																				
+																				<Table.Cell class="font-medium">
+																				  <div class="flex items-center gap-3">
+																					  <FileIcon class="w-5 h-5 text-gray-500" />
+																					  <span>文件1.pdf</span>
+																					</div>
+																				</Table.Cell>
+																				
+																				
+																			  </Table.Row>
+																			  
+																		  </Table.Body>
+																	</Table.Root>
+																	</div>
+															
+																</div>												
 										<!-- ---------------------------------------------- -->
+										
 									  </Drawer.Header>
-									  <Drawer.Footer>
-										<Button class="w-32 text-xs">下一步</Button>
-									
-									  </Drawer.Footer>
+									 
 									</Drawer.Content>
 								  </Drawer.Root>
 							  </div>
+							  <!-- over -->
 							  
 							</div>
 						</div>
