@@ -637,25 +637,44 @@ const currentDate = new Date();
 																
 															</Card.Footer>
 
-															<Drawer.Root>
-																<Drawer.Trigger asChild let:builder>
-																	<div class="flex justify-center mb-4 ">
-																		<Button builders={[builder]}  class="w-32 text-xs">下一步</Button>
-																	</div>
-																</Drawer.Trigger>
-																<Drawer.Content>
-																  <Drawer.Header>
-																	<Drawer.Title>Are you sure absolutely sure?</Drawer.Title>
-																	<Drawer.Description>This action cannot be undone.</Drawer.Description>
-																  </Drawer.Header>
-																  <Drawer.Footer>
-																	<Button>Submit</Button>
-																	<Drawer.Close>Cancel</Drawer.Close>
-																  </Drawer.Footer>
-																</Drawer.Content>
-															  </Drawer.Root>
+				<Drawer.Root>
+					<Drawer.Trigger asChild let:builder>
+						<div class="flex justify-center mb-4 ">
+							<Button builders={[builder]}  class="w-32 text-xs">下一步</Button>
+						</div>
+					</Drawer.Trigger>
+						<Drawer.Content>
+							<Drawer.Header class="flex justify-between ">
+				<!-- -------------------------------------------------------- -->
+								<div class="flex flex-col items-center justify-center h-screen bg-gray-100 dark:bg-gray-900 w-full h-auto">
+									<div class="w-full max-w-2xl p-6 bg-white rounded-lg shadow-lg dark:bg-gray-800 ">
+										<Drawer.Close  class="mb-2"><Button variant="outline">退出</Button></Drawer.Close>
+										<Table.Root>
+											<Table.Header>
+											  <Table.Row>
+												<Table.Head class="w-[400px]">来源名</Table.Head>
+												<Table.Head>状态</Table.Head>
+											  </Table.Row>
+											</Table.Header>
+											<Table.Body>
+											  {#each invoices as invoice, i (i)}
+												<Table.Row>
+												  <Table.Cell class="font-medium">{invoice.invoice}</Table.Cell>
+												  <Table.Cell>{invoice.paymentStatus}</Table.Cell>
+												</Table.Row>
+											  {/each}
+											</Table.Body>
+										  </Table.Root>
+										  <div class="flex justify-center mb-4 ">
+											<Button class="w-32 text-xs">共3个文件|下一步</Button>
+										</div>
+									</div>
+								</div>
+							</Drawer.Header>
+						</Drawer.Content>
+				</Drawer.Root>
 															
-														  </Card.Root>
+			</Card.Root>
 													
 													<!-- <Resizable.Handle /> -->														
 																<div class="border rounded-lg overflow-hidden">
