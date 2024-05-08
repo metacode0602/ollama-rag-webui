@@ -104,13 +104,14 @@ const currentDateString = `${year}-${month}-${day}`;
 </script>
 <!-- 当屏幕大小小于md时，此div是隐藏的；当屏幕大小达到或超过md时，此div是显示的 -->  
 <div class="hidden md:block" style="width:100%">
-	<!-- 这是一个可调整大小的面板组，其方向是水平的。  
+<div style="height: 100%">
+	<!-- 这是一个可调整大小的面板组，其方向是水平的。
          当面板组的大小或布局改变时，onLayoutChange函数将被调用。  
          这个面板组占据全部高度，最大高度为800像素，并且子元素在垂直方向上拉伸。 --> 
 	<Resizable.PaneGroup
 		direction="horizontal"
 		{onLayoutChange}
-		class="h-full max-h-[800px] items-stretch"
+		class="h-full items-stretch"
 	>
 	<!-- 这是一个可调整大小并可折叠的面板。  
            默认大小由defaultLayout数组的第一个元素决定。  
@@ -125,6 +126,7 @@ const currentDateString = `${year}-${month}-${day}`;
 			maxSize={12}
 			{onCollapse}
 			{onExpand}
+			style="position: relative"
 		>
 			<div
 				class={cn(
@@ -154,7 +156,7 @@ const currentDateString = `${year}-${month}-${day}`;
     			</div>  
   			{/each}   -->
 			</Nav>
-			<div class="mt-40">
+			<div style="position: absolute;bottom: 0;width: 100%">
 			<!-- QA训练导航栏 -->
 			<Nav {isCollapsed} routes={secondaryRoutes} />
 			<!-- 进度条 -->
@@ -658,10 +660,6 @@ const currentDateString = `${year}-${month}-${day}`;
 							  </DropdownMenu.Item>
 							</DropdownMenu.Sub>							
 						  </DropdownMenu.Group>
-						  
-						  
-						 
-						
 						  <DropdownMenu.Separator />
 						
 						</DropdownMenu.Content>
@@ -740,10 +738,6 @@ const currentDateString = `${year}-${month}-${day}`;
 							  </DropdownMenu.Item>
 							</DropdownMenu.Sub>							
 						  </DropdownMenu.Group>
-						  
-						  
-						 
-						
 						  <DropdownMenu.Separator />
 						
 						</DropdownMenu.Content>
@@ -765,16 +759,7 @@ const currentDateString = `${year}-${month}-${day}`;
 				  </Card.Root>
 
 			</div>
-		
-
-			
-			
-
-						
-			
 		</Resizable.Pane>
-
-	
-	
 	</Resizable.PaneGroup>
+</div>
 </div>
