@@ -62,7 +62,7 @@
 
 </script>
 <!-- 当屏幕大小小于md时，此div是隐藏的；当屏幕大小达到或超过md时，此div是显示的 -->  
-<div class="hidden md:block">
+<div class="hidden md:block" style="width: 100%">
 <div style="height: 100%">
 
 
@@ -132,17 +132,12 @@
 		<Resizable.Handle withHandle />
 		<Resizable.Pane defaultSize={defaultLayout[1]} minSize={30} >
 			<Tabs.Root value="all">
-				<div class="flex items-center justify-between px-4 py-2 max-w-56">
+				<div class="flex items-center justify-between px-4 py-2">
 					<!-- 下拉框 -->
-					<div>
-					<AccountSwitcher {isCollapsed} {accounts} />
-				</div>
+					<div><AccountSwitcher {isCollapsed} {accounts} /> </div>
 
 					<!-- 按钮 -->
-					<div  class = mx-20>
 					<Button variant="outline">语言检索</Button>
-					</div>
-
 					<!-- <Tabs.List class="ml-auto">
 						<Tabs.Trigger value="all" class="text-zinc-600 dark:text-zinc-200">
 							All mail
@@ -151,18 +146,18 @@
 							Unread
 						</Tabs.Trigger>
 					</Tabs.List> -->
-					
 				</div>
 				<Separator />
-				<div
-					class="bg-background/95 p-4 backdrop-blur supports-[backdrop-filter]:bg-background/60"
-				>
+				<div class="bg-background/95 p-4 backdrop-blur supports-[backdrop-filter]:bg-background/60"w>
 				<!-- 文本框 -->
 					<form>
 						<div class="relative">
 							<!-- <Search class="absolute left-2 top-3 h-4 w-4 text-muted-foreground" /> -->
 							<!-- <Input placeholder="Search" class="pl-8" /> -->
-							<Textarea placeholder="多语言支持." />
+							<Textarea placeholder="多语言支持." style="height: 200px"/>
+                            <div style="margin-top: 20px;display: flex;justify-content: flex-end;">
+    					        <Button>测试</Button>
+                            </div>
 						</div>
 					</form>
 				</div>
@@ -253,7 +248,7 @@
 					  <h2 class="text-base font-bold text-gray-900 dark:text-gray-100">测试结果</h2>
 					</div>
 				<div class="mt-4 grid grid-cols-1 gap-4">
-					<Card.Root>
+					<Card.Root style="border: none;background: #F0F2F5">
 					  <Card.Header class="flex justify-between">
 						<!-- 语义检索标签 -->
 						<div class="inline-block rounded-lg bg-gray-100 border border-neutral-900 px-3 py-1 text-xs dark:bg-gray-800 max-w-36">
@@ -267,13 +262,13 @@
 						  #2 eggs, 2 slices of whotoast, 1 banana, 1 cup of coffee<br>
 						  #2 eggs, 2 slices of whole wheat toast, 1 banana, 1 cup of coffee
 						</div>
-						<CardFooter class="py-3">
-						<!-- 知乎链接 -->
-						<a href="www.baidu.com" class="text-xs text-blue-500 hover:text-blue-600 dark:text-blue-400 dark:hover:text-blue-500">知乎-www.baidu.com</a>
+						<CardFooter class="py-3" style="padding-left: 0">
+                            <!-- 知乎链接 -->
+                            <a href="www.baidu.com" class="text-xs text-blue-500 hover:text-blue-600 dark:text-blue-400 dark:hover:text-blue-500">知乎-www.baidu.com</a>
 						</CardFooter>
 					  </Card.Content>
 					</Card.Root>
-					<Card.Root>
+					<Card.Root style="border: none;background: #F0F2F5">
 						<Card.Header class="flex justify-between">
 							<!-- 语义检索标签 -->
 							<div class="inline-block rounded-lg bg-gray-100 border border-neutral-900 px-3 py-1 text-xs dark:bg-gray-800 max-w-36">
@@ -287,13 +282,13 @@
 							#2 eggs, 2 slices of whole wheat toast, 1 banana, 1 cup of coffee<br>
 							#2 eggs,ast, 1 banana, 1 cup of coffee
 						</div>
-						<CardFooter class="py-3">
+						<CardFooter class="py-3" style="padding-left: 0">
 							<!-- 知乎链接 -->
 							<a href="www.baidu.com" class="text-xs text-blue-500 hover:text-blue-600 dark:text-blue-400 dark:hover:text-blue-500">知乎-www.baidu.com</a>
 							</CardFooter>
 					  </Card.Content>
 					</Card.Root>
-					<Card.Root>
+					<Card.Root style="border: none;background: #F0F2F5">
 						<Card.Header class="flex justify-between">
 							<!-- 语义检索标签 -->
 							<div class="inline-block rounded-lg bg-gray-100 border border-neutral-900 px-3 py-1 text-xs dark:bg-gray-800 max-w-36">
@@ -307,7 +302,7 @@
 							#2 eggs, 2 slices of whole wheat toast<br>
 							#2 eggs,1 banana, 1 cup of coffee
 						</div>
-						<CardFooter class="py-3">
+						<CardFooter class="py-3" style="padding-left: 0">
 							<!-- 知乎链接 -->
 							<a href="www.baidu.com" class="text-xs text-blue-500 hover:text-blue-600 dark:text-blue-400 dark:hover:text-blue-500">知乎-www.baidu.com</a>
 							</CardFooter>
