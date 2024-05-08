@@ -46,7 +46,7 @@
 	import { FileIcon, Trash2 } from "lucide-svelte";
 	import { onDestroy } from 'svelte';
   	import axios from 'axios';
-	
+	import FileText from "lucide-svelte/icons/file-text";
 
 
 
@@ -405,80 +405,16 @@ const currentDate = new Date();
 							</Table.Header>
 							<Table.Body>
 							  {#each tabs as tab, i (i)}
-								<Table.Row>
-								  <Table.Cell class="font-medium text-xs  mb-4 mr-8 dark:text-gray-200 w-28">{tab.name}</Table.Cell>
-								  <Table.Cell>{tab.status}</Table.Cell>
+								<Table.Row class="">
+									<Table.Cell class="text-left"><FileText /></Table.Cell>
+								  <Table.Cell class="font-medium text-xs  mb-4 mr-1 dark:text-gray-200 w-28">{tab.name}</Table.Cell>
+								  <Table.Cell class="w-28">{tab.status}</Table.Cell>
 								  <Table.Cell class="text-right"><Button variant="ghost"><Trash2 class="mr-2 h-4 w-4" /></Button></Table.Cell>
 								</Table.Row>
 							  {/each}
 							</Table.Body>
 						  </Table.Root>
-							  <!-- <div>
-								
-								<h2 class="text-lg font-bold mb-4 dark:text-gray-200">文件名</h2>
-								<div class="divide-y divide-gray-200 dark:divide-gray-600">
-								  <div class="py-4 flex items-center justify-between">
-									<div class="flex items-center">
-										<Settings class="mr-2 h-4 w-4" />
-									  <div>
-										<p class="font-medium dark:text-gray-200">example.pdf</p>
-										<p class="text-sm text-gray-500 dark:text-gray-400">2.5 MB</p>
-									  </div>
-									</div>
-									
-									<div class="flex items-center">
-										<div class="flex justify-between items-center mr-2">
-											<Progress value={33} class="w-32 h-2 "/>
-											<p class="text-xs text-gray-500 mt-2 dark:text-gray-400 ml-1">50%</p>
-										</div>
-									  <p class="text-sm text-green-500 mr-4 dark:text-green-400">Uploaded</p>
-									  <Button size="sm" variant="outline">
-										<Trash2 class="mr-2 h-4 w-4" />
-									  </Button>
-									</div>
-								  </div>
-								  <div class="py-4 flex items-center justify-between">
-									<div class="flex items-center">
-										<Settings class="mr-2 h-4 w-4" />
-									  <div>
-										<p class="font-medium dark:text-gray-200">image.jpg</p>
-										<p class="text-sm text-gray-500 dark:text-gray-400">1.2 MB</p>
-									  </div>
-									</div>
-									
-									<div class="flex items-center">
-										<div class="flex justify-between items-center mr-2">
-											<Progress value={33} class="w-32 h-2 "/>
-											<p class="text-xs text-gray-500 mt-2 dark:text-gray-400 ml-1">50%</p>
-										</div>
-									  <p class="text-sm text-yellow-500 mr-4 dark:text-yellow-400">Uploading</p>
-									  <Button size="sm" variant="outline">
-										<Trash2 class="mr-2 h-4 w-4" />
-									  </Button>
-									</div>
-								  </div>
-								  <div class="py-4 flex items-center justify-between">
-									<div class="flex items-center">
-										<Settings class="mr-2 h-4 w-4" />
-									  <div>
-										<p class="font-medium dark:text-gray-200">document.docx</p>
-										<p class="text-sm text-gray-500 dark:text-gray-400">3.8 MB</p>
-									  </div>
-									</div>
-									
-									<div class="flex items-center">
-										<div class="flex justify-between items-center mr-10">
-											<Progress value={33} class="w-32 h-2 "/>
-											<p class="text-xs text-gray-500 mt-2 dark:text-gray-400 ml-1">50%</p>
-										</div>
-									  <p class="text-sm text-red-500 mr-4 dark:text-red-400">Failed</p>
-									  <Button size="sm" variant="outline">
-										<Trash2 class="mr-2 h-4 w-4" />
-									  </Button>
-									</div>
-								  </div>
-								</div>
-							  </div> -->
+							 
 							  <!-- ----------------------- -->
 							  <div class="flex justify-end">
 								<!-- <Button class="w-32 text-xs">共1个文件|下一步</Button> -->
