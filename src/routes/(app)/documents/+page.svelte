@@ -34,28 +34,38 @@
 	let selectedTag = '';
 
 	let dragged = false;
-
+// 定义一个异步函数 deleteDoc，它接受一个文件名作为参数，并尝试删除该文件  
+// 它使用 localStorage.token 作为认证信息  
 	const deleteDoc = async (name) => {
+		// 调用 deleteDocByName 函数（假设是另一个异步函数）来删除文件 
 		await deleteDocByName(localStorage.token, name);
+		// 更新本地存储的文档列表
 		await documents.set(await getDocs(localStorage.token));
 	};
 
+	// 定义一个异步函数 deleteDocs，它接受一个文档数组作为参数，并尝试删除这些文档 
 	const deleteDocs = async (docs) => {
+		// 使用 Promise.all 来并行处理每个文档的删除  
+    	// docs.map 返回一个 Promise 数组，每个 Promise 调用 deleteDocByName 函数 
 		const res = await Promise.all(
 			docs.map(async (doc) => {
 				return await deleteDocByName(localStorage.token, doc.name);
 			})
 		);
 
+		// 所有文档删除后，更新本地存储的文档列表 
 		await documents.set(await getDocs(localStorage.token));
 	};
 
+	// 定义一个异步函数 uploadDoc，它接受一个文件对象作为参数，并尝试上传这个文件
 	const uploadDoc = async (file) => {
+		 // 调用 uploadDocToVectorDB 函数（假设是另一个异步函数）来上传文件，并捕获任何错误 
 		const res = await uploadDocToVectorDB(localStorage.token, '', file).catch((error) => {
 			toast.error(error);
 			return null;
 		});
 
+		// 如果上传成功，则创建一个新的文档记录
 		if (res) {
 			await createNewDoc(
 				localStorage.token,
@@ -67,46 +77,67 @@
 				toast.error(error);
 				return null;
 			});
+			// 更新本地存储的文档列表
 			await documents.set(await getDocs(localStorage.token));
 		}
 	};
 
+	// 在组件挂载时执行以下代码
 	onMount(() => {
+		// 订阅 documents（假设它是一个响应式存储或类似的东西）的更新  
+    	// 当文档列表更新时，它使用 reduce 方法来收集所有唯一的标签名 
 		documents.subscribe((docs) => {
 			tags = docs.reduce((a, e, i, arr) => {
+			// 遍历每个文档，并检查其 content 是否有 tags 属性  
+            // 如果有，则使用 map 方法提取标签名，并使用 Set 来去重  
+            // 然后将结果合并到累积器 a 中 
 				return [...new Set([...a, ...(e?.content?.tags ?? []).map((tag) => tag.name)])];
 			}, []);
 		});
+		// 选择 body 元素作为拖放区域
 		const dropZone = document.querySelector('body');
 
+		// 当有东西被拖动到 dropZone 上时，阻止默认行为，并设置 dragged 为 true
 		const onDragOver = (e) => {
 			e.preventDefault();
 			dragged = true;
 		};
 
+		// 当拖动离开 dropZone 时，将 dragged 设置为 false 
 		const onDragLeave = () => {
 			dragged = false;
 		};
 
+		// 当有东西被放下在 dropZone 上时，处理文件 
 		const onDrop = async (e) => {
 			e.preventDefault();
 			console.log(e);
 
+			// 检查是否有文件被拖动 
 			if (e.dataTransfer?.files) {
+				// 创建一个 FileReader 对象来读取文件内容
 				let reader = new FileReader();
 
+				// 当文件读取完成后，将文件对象添加到 files 数组中  
+            	// 注意：这里假设 files 是在函数外部定义的一个响应式变量或状态
 				reader.onload = (event) => {
 					files = [
 						...files,
 						{
 							type: 'image',
-							url: `${event.target.result}`
+							url: `${event.target.result}`// 这里获取的是文件的 base64 编码 
 						}
 					];
 				};
+				 // 这里缺少了读取文件的代码，通常应该像这样：  
+            // reader.readAsDataURL(e.dataTransfer.files[0]);  
+  
+            // 假设e是一个事件对象，通常来自drag-and-drop操作  
+			// 使用可选链操作符（?.）来安全地访问dataTransfer属性中的files属性 
 
 				const inputFiles = e.dataTransfer?.files;
 
+				// 检查是否获取到了文件列表，并且列表长度大于0  
 				if (inputFiles && inputFiles.length > 0) {
 					for (const file of inputFiles) {
 						console.log(file, file.name.split('.').at(-1));

@@ -37,7 +37,7 @@ export const secondaryRoutes: Route[] = [
 		title: "QA训练排队(空闲)",
 		icon: Icons.Users,
 		variant: "ghost",
-		path:"/dataset",
+		path:"/dataset/database",
 	},	
 ];
 
@@ -46,7 +46,7 @@ export const thirdRoutes: Route[] = [
 		title: "索引排队(空闲)",
 		icon: Icons.CircleAlert,
 		variant: "ghost",
-		path:"/dataset",
+		path:"/dataset/database",
 	},
 
 

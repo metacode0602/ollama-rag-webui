@@ -1,5 +1,5 @@
 import type { ComponentType } from "svelte";
-import type { Icon } from "lucide-svelte";
+import { Trash2, type Icon } from "lucide-svelte";
 import Vercel from "./(components)/icons/vercel.svelte";
 import ICloud from "./(components)/icons/icloud.svelte";
 import Gmail from "./(components)/icons/gmail.svelte";
@@ -204,88 +204,7 @@ export const accounts: Account[] = [
 ];
 
 
-// export const contacts = [
-// 	{
-// 		name: "Emma Johnson",
-// 		email: "emma.johnson@example.com",
-// 	},
-// 	{
-// 		name: "Liam Wilson",
-// 		email: "liam.wilson@example.com",
-// 	},
-// 	{
-// 		name: "Olivia Davis",
-// 		email: "olivia.davis@example.com",
-// 	},
-// 	{
-// 		name: "Noah Martinez",
-// 		email: "noah.martinez@example.com",
-// 	},
-// 	{
-// 		name: "Ava Taylor",
-// 		email: "ava.taylor@example.com",
-// 	},
-// 	{
-// 		name: "Lucas Brown",
-// 		email: "lucas.brown@example.com",
-// 	},
-// 	{
-// 		name: "Sophia Smith",
-// 		email: "sophia.smith@example.com",
-// 	},
-// 	{
-// 		name: "Ethan Wilson",
-// 		email: "ethan.wilson@example.com",
-// 	},
-// 	{
-// 		name: "Isabella Jackson",
-// 		email: "isabella.jackson@example.com",
-// 	},
-// 	{
-// 		name: "Mia Clark",
-// 		email: "mia.clark@example.com",
-// 	},
-// 	{
-// 		name: "Mason Lee",
-// 		email: "mason.lee@example.com",
-// 	},
-// 	{
-// 		name: "Layla Harris",
-// 		email: "layla.harris@example.com",
-// 	},
-// 	{
-// 		name: "William Anderson",
-// 		email: "william.anderson@example.com",
-// 	},
-// 	{
-// 		name: "Ella White",
-// 		email: "ella.white@example.com",
-// 	},
-// 	{
-// 		name: "James Thomas",
-// 		email: "james.thomas@example.com",
-// 	},
-// 	{
-// 		name: "Harper Lewis",
-// 		email: "harper.lewis@example.com",
-// 	},
-// 	{
-// 		name: "Benjamin Moore",
-// 		email: "benjamin.moore@example.com",
-// 	},
-// 	{
-// 		name: "Aria Hall",
-// 		email: "aria.hall@example.com",
-// 	},
-// 	{
-// 		name: "Henry Turner",
-// 		email: "henry.turner@example.com",
-// 	},
-// 	{
-// 		name: "Scarlett Adams",
-// 		email: "scarlett.adams@example.com",
-// 	},
-// ];
+
 
 // 获取当前日期  
 const currentDate = new Date();  
@@ -301,6 +220,11 @@ const day = String(currentDate.getDate()).padStart(2, '0');
   
 // 将年月日拼接成字符串  
 const currentDateString = `${year}-${month}-${day}`;  
+
+
+  	
+
+
 export const invoices = [
     {
 	  invoice: "ICloud",
@@ -338,5 +262,53 @@ export const invoices = [
      
     }
   ];
+  export const tables = [
+    {
+	  invoice: "手动导入",
+      paymentStatus: "等待中.",
+    
+    },
+	{
+		invoice: "通过释放原理和力量提供了广范模板",
+		paymentStatus: "等待中.",
+	  
+	  },
+	  {
+		invoice: "通过释放原理和力量提供了广范模板",
+		paymentStatus: "等待中.",
+	  
+	  },
+	]
 
-//export type Contact = (typeof contacts)[number];
+	  export const frameworks = [
+		{
+		  value: "sveltekit",
+		  label: "SvelteKit"
+		},
+		{
+		  value: "next",
+		  label: "Next.js"
+		},
+		{
+		  value: "astro",
+		  label: "Astro"
+		},
+		{
+		  value: "nuxt",
+		  label: "Nuxt.js"
+		}
+	  ];
+
+	  export const tabs = [
+		{
+		  name: "example.pdf",
+		  status: "上传完成",
+		  btn: Trash2,
+		   
+		},
+		{
+		  name: "example.pdf",
+		  status: "上传完成",
+		  btn: Trash2,
+		  
+		}]

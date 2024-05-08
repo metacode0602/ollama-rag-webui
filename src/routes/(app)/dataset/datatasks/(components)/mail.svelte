@@ -1,5 +1,5 @@
 <script lang="ts">
-	import { invoices, type Account, type Mail, intents} from "../data.js";
+	import { invoices, type Account, type Mail, intents, tables, tabs} from "../data.js";
 	import Nav from "./nav.svelte";
 	import { cn } from "$lib/utils";
 	// import { Input } from "$lib/components/ui/input";
@@ -33,17 +33,22 @@
   	import Github from "lucide-svelte/icons/github";
   	import Keyboard from "lucide-svelte/icons/keyboard";
   	import LifeBuoy from "lucide-svelte/icons/life-buoy";
-  import Settings from "lucide-svelte/icons/settings";
-  import User from "lucide-svelte/icons/user";
-  import UserPlus from "lucide-svelte/icons/user-plus";
-  import Users from "lucide-svelte/icons/users";
-  import Minus from "lucide-svelte/icons/minus";
-  import Plus from "lucide-svelte/icons/plus";
-  import * as RadioGroup from "$lib/components/ui/radio-group";
-  import * as Dialog from "$lib/components/ui/dialog";
-  import * as Popover from "$lib/components/ui/popover/index.js";
-  import * as Drawer from "$lib/components/ui/drawer/index.js";
-	import { ChevronDownIcon, FileIcon, PlusIcon, Trash2 } from "lucide-svelte";
+  	import Settings from "lucide-svelte/icons/settings";
+  	import User from "lucide-svelte/icons/user";
+  	import UserPlus from "lucide-svelte/icons/user-plus";
+  	import Users from "lucide-svelte/icons/users";
+  	import Minus from "lucide-svelte/icons/minus";
+  	import Plus from "lucide-svelte/icons/plus";
+  	import * as RadioGroup from "$lib/components/ui/radio-group";
+  	import * as Dialog from "$lib/components/ui/dialog";
+  	import * as Popover from "$lib/components/ui/popover/index.js";
+  	import * as Drawer from "$lib/components/ui/drawer/index.js";
+	import { FileIcon, Trash2 } from "lucide-svelte";
+	import { onDestroy } from 'svelte';
+  	import axios from 'axios';
+	
+
+
 
 
 type Payment = {
@@ -69,58 +74,58 @@ const currentDate = new Date();
   // 将年月日拼接成字符串  
   const updataTime = `${year}-${month}-${day}`;  
 
+  
   const data: Payment[] = [
-    {
-	  num:1,
-      id: "m5gr84i9",
-      amount: 316,
-      status: "已就绪",
-      email: "手动录入",
-	  updataTime
-    },
-	{
-	  num:2,
-      id: "m5gr84i9",
-      amount: 316,
-      status: "已就绪",
-      email: "通过lasmalndex 释放代理和quuerpieline的力量(含代表 Sider.Al包含创造性工具.",
-	  updataTime
-    },
-	{
-	  num:3,
-      id: "m5gr84i9",
-      amount: 316,
-      status: "出错了",
-      email: "通过lasmalndex 释放代理和quuerpieline的力量(含代表 Sider.Al包含创造性工具.",
-	  updataTime
-    },
-	{
-	  num:4,
-      id: "m5gr84i9",
-      amount: 316,
-      status: "进行中",
-      email: "通过lasmalndex 释放代理和quuerpieline的力量(含代表 Sider.Al包含创造性工具.",
-	  updataTime
-    },
-	{
-	  num:5,
-      id: "m5gr84i9",
-      amount: 316,
-      status: "进行中",
-      email: "通过lasmalndex 释放代理和quuerpieline的力量(含代表 Sider.Al包含创造性工具.",
-	  updataTime
-    },
-	{
-	  num:6,
-      id: "m5gr84i9",
-      amount: 316,
-      status: "进行中",
-      email: "通过lasmalndex 释放代理和quuerpieline的力量(含代表 Sider.Al包含创造性工具.",
-	  updataTime
-    },
-    // ...
-  ];
-
+		{
+		  num:1,
+		  id: "m5gr84i9",
+		  amount: 316,
+		  status: "已就绪",
+		  email: "手动录入",
+		  updataTime
+		},
+		{
+		  num:2,
+		  id: "m5gr84i9",
+		  amount: 316,
+		  status: "已就绪",
+		  email: "通过lasmalndex 释放代理和quuerpieline的力量(含代表 Sider.Al包含创造性工具.",
+		  updataTime
+		},
+		{
+		  num:3,
+		  id: "m5gr84i9",
+		  amount: 316,
+		  status: "出错了",
+		  email: "通过lasmalndex 释放代理和quuerpieline的力量(含代表 Sider.Al包含创造性工具.",
+		  updataTime
+		},
+		{
+		  num:4,
+		  id: "m5gr84i9",
+		  amount: 316,
+		  status: "进行中",
+		  email: "通过lasmalndex 释放代理和quuerpieline的力量(含代表 Sider.Al包含创造性工具.",
+		  updataTime
+		},
+		{
+		  num:5,
+		  id: "m5gr84i9",
+		  amount: 316,
+		  status: "进行中",
+		  email: "通过lasmalndex 释放代理和quuerpieline的力量(含代表 Sider.Al包含创造性工具.",
+		  updataTime
+		},
+		{
+		  num:6,
+		  id: "m5gr84i9",
+		  amount: 316,
+		  status: "进行中",
+		  email: "通过lasmalndex 释放代理和quuerpieline的力量(含代表 Sider.Al包含创造性工具.",
+		  updataTime
+		},
+		// ...
+	  ];
   const table = createTable(readable(data), {
     page: addPagination(),
 	sort: addSortBy(),
@@ -131,36 +136,11 @@ const currentDate = new Date();
 	hide: addHiddenColumns(),
 	select: addSelectedRows(),
   });
+//export type Contact = (typeof contacts)[number];
 
+	
   const columns = table.createColumns([
-	// -------------------复选框----------------------------------
-    // table.column({
-    //   accessor: "id",
-	//   header: (_, { pluginStates }) => {
-    //     const { allPageRowsSelected } = pluginStates.select;
-    //     return createRender(DataTableCheckbox, {
-    //       checked: allPageRowsSelected,
-    //     });
-    //   },
-    //   cell: ({ row }, { pluginStates }) => {
-    //     const { getRowState } = pluginStates.select;
-    //     const { isSelected } = getRowState(row);
- 
-    //     return createRender(DataTableCheckbox, {
-    //       checked: isSelected,
-    //     });
-    //   },
-	//   plugins: {
-    //     sort: {
-    //       disable: true,
-    //     },
-	// 	filter: {
-    //       exclude: true,
-    //     },
-    //   },
-    // }),
-   
-    //-------------复选框 over------------------
+
 	table.column({
       accessor: "num",
       header: "#",
@@ -245,24 +225,7 @@ const currentDate = new Date();
 	export let defaultCollapsed = false;
 	export let navCollapsedSize: number;
 
-	export const frameworks = [
-    {
-      value: "sveltekit",
-      label: "SvelteKit"
-    },
-    {
-      value: "next",
-      label: "Next.js"
-    },
-    {
-      value: "astro",
-      label: "Astro"
-    },
-    {
-      value: "nuxt",
-      label: "Nuxt.js"
-    }
-  ];
+	
 
 
 
@@ -381,50 +344,73 @@ const currentDate = new Date();
 				/>
 			
 			
-				<script lang="ts">
-					import CirclePlus from "lucide-svelte/icons/circle-plus";
-					import Cloud from "lucide-svelte/icons/cloud";
-					import CreditCard from "lucide-svelte/icons/credit-card";
-					import Github from "lucide-svelte/icons/github";
-					import Keyboard from "lucide-svelte/icons/keyboard";
-					import LifeBuoy from "lucide-svelte/icons/life-buoy";
-					import LogOut from "lucide-svelte/icons/log-out";
-					import Mail from "lucide-svelte/icons/mail";
-					import MessageSquare from "lucide-svelte/icons/message-square";
-					import Plus from "lucide-svelte/icons/plus";
-					import Settings from "lucide-svelte/icons/settings";
-					import User from "lucide-svelte/icons/user";
-					import UserPlus from "lucide-svelte/icons/user-plus";
-					import Users from "lucide-svelte/icons/users";
-				   
-					import { Button } from "$lib/components/ui/button/index.js";
-					import * as DropdownMenu from "$lib/components/ui/dropdown-menu/index.js";
-				  </script>
-				  <!-- ------------------------------------------------------------------------------- -->
+<script lang="ts">
+	import CirclePlus from "lucide-svelte/icons/circle-plus";
+	import Cloud from "lucide-svelte/icons/cloud";
+	import CreditCard from "lucide-svelte/icons/credit-card";
+	import Github from "lucide-svelte/icons/github";
+	import Keyboard from "lucide-svelte/icons/keyboard";
+	import LifeBuoy from "lucide-svelte/icons/life-buoy";
+	import LogOut from "lucide-svelte/icons/log-out";
+	import Mail from "lucide-svelte/icons/mail";
+	import MessageSquare from "lucide-svelte/icons/message-square";
+	import Plus from "lucide-svelte/icons/plus";
+	import Settings from "lucide-svelte/icons/settings";
+	import User from "lucide-svelte/icons/user";
+	import UserPlus from "lucide-svelte/icons/user-plus";
+	import Users from "lucide-svelte/icons/users";	   
+	import { Button } from "$lib/components/ui/button/index.js";
+	import * as DropdownMenu from "$lib/components/ui/dropdown-menu/index.js";
+</script>
+<!-- ------------------------------------------------------------------------------- -->
 				  
-				  <Drawer.Root>
-					<Drawer.Trigger asChild let:builder>
-						<Button builders={[builder]} variant="outline">+新建/导入</Button>
-					  </Drawer.Trigger>
-					<Drawer.Content>
-					  <Drawer.Header class="flex justify-between ">
-						<!-- -------------------------------------------------------- -->
-						<div class="flex flex-col items-center justify-center h-screen bg-gray-100 dark:bg-gray-900 w-full h-auto">
-							<div class="w-full max-w-2xl p-6 bg-white rounded-lg shadow-lg dark:bg-gray-800 ">
-								<Drawer.Close  class="mb-2"><Button variant="outline">退出</Button></Drawer.Close>
-							  <div class="mb-6">
-								<div class="h-2 bg-gray-300 rounded-full dark:bg-gray-700">
-								  <div class="h-2 bg-primary rounded-full w-1/2" />
-								  <!-- <Progress {value} max={100} class="w-[80%] mx-5 h-2" /> -->
+	<Drawer.Root>
+		<Drawer.Trigger asChild let:builder>
+			<Button builders={[builder]} variant="outline">+新建/导入</Button>
+		</Drawer.Trigger>
+			<Drawer.Content>
+				<Drawer.Header class="flex justify-between ">
+			<!-- -------------------------------------------------------- -->
+				<div class="flex flex-col items-center justify-center h-screen bg-gray-100 dark:bg-gray-900 w-full h-auto">
+				<div class="w-full max-w-2xl p-6 bg-white rounded-lg shadow-lg dark:bg-gray-800 ">
+					<Drawer.Close  class="mb-2"><Button variant="outline">退出</Button></Drawer.Close>
+						<div class="mb-6">
+							<div class="h-2 bg-gray-300 rounded-full dark:bg-gray-700">
 								</div>
-								<p class="text-sm text-gray-500 mt-2 dark:text-gray-400">50% uploaded</p>
+								
 							  </div>
-							  <div class="border-2 border-dashed border-gray-300 rounded-lg p-8 mb-6 flex flex-col items-center justify-center dark:border-gray-600">
-								<CirclePlus class="mr-2 h-4 w-4" />
-								<p class="text-gray-500 mb-4 dark:text-gray-400">支持分类标签xlsx,html,pptx类型文件最多支持15个，单个文件最大100MB</p>
-								<Button variant="outline">点击或拖动文件到此上传</Button>
-							  </div>
-							  <div>
+						<form action="http://172.30.1.130:8080/datatasks" method="POST" enctype="multipart/form-data" class="dropzone-box "> <!-- 创建一个表单，用于文件上传 -->
+								<div class="dropzone-area"> <!-- 文件上传区域 -->
+									
+							<Input  type= "file" id="upload-file "  class="border-2 border-dashed border-gray-300 rounded-lg  mb-6 h-52 flex flex-col items-center justify-center dark:border-gray-600">
+							<div class="file-upload-icon">
+									<!-- <CirclePlus class="mr-2 h-4 w-4" /> -->
+								<p class=" file-info text-gray-500 mb-4 dark:text-gray-400">支持分类标签xlsx,html,pptx类型文件最多支持15个，单个文件最大100MB</p>
+							</div>
+								
+							</Input>	
+							
+							</div>
+						</form>
+						<Table.Root>
+							<Table.Caption>A list of your recent invoices.</Table.Caption>
+							<Table.Header>
+							  <Table.Row>
+								
+							  </Table.Row>
+							</Table.Header>
+							<Table.Body>
+							  {#each tabs as tab, i (i)}
+								<Table.Row>
+								  <Table.Cell class="font-medium text-xs  mb-4 mr-8 dark:text-gray-200 w-28">{tab.name}</Table.Cell>
+								  <Table.Cell>{tab.status}</Table.Cell>
+								  <Table.Cell class="text-right"><Button variant="ghost"><Trash2 class="mr-2 h-4 w-4" /></Button></Table.Cell>
+								</Table.Row>
+							  {/each}
+							</Table.Body>
+						  </Table.Root>
+							  <!-- <div>
+								
 								<h2 class="text-lg font-bold mb-4 dark:text-gray-200">文件名</h2>
 								<div class="divide-y divide-gray-200 dark:divide-gray-600">
 								  <div class="py-4 flex items-center justify-between">
@@ -488,24 +474,24 @@ const currentDate = new Date();
 									</div>
 								  </div>
 								</div>
-							  </div>
+							  </div> -->
 							  <!-- ----------------------- -->
 							  <div class="flex justify-end">
 								<!-- <Button class="w-32 text-xs">共1个文件|下一步</Button> -->
-								<Drawer.Root>
-									<Drawer.Trigger  asChild let:builder>
-										<Button builders={[builder]} variant="outline">共1个文件|下一步</Button>
-									</Drawer.Trigger>
-									<Drawer.Content>
-										<Drawer.Header class="flex justify-between ">
-										<!-- ---------------------------------------------- -->
-										<div class="flex flex-col items-center justify-center h-screen bg-gray-100 dark:bg-gray-900 w-full h-auto">
-											<div class="w-full max-w-2xl p-6 bg-white rounded-lg shadow-lg dark:bg-gray-800 ">
-												<Drawer.Close  class="mb-2"><Button variant="outline">上一步</Button></Drawer.Close>
-													<div class="flex">
-														<Card.Root class="w-[450px] mr-3">
-															<Card.Header>
-															  <Card.Title>数据处理参数</Card.Title>
+				<Drawer.Root>
+					<Drawer.Trigger  asChild let:builder>
+						<Button builders={[builder]} variant="outline" type="submit">共1个文件|下一步</Button>
+					</Drawer.Trigger>
+						<Drawer.Content>
+							<Drawer.Header class="flex justify-between ">
+				<!-- ---------------------------------------------- -->
+								<div class="flex flex-col items-center justify-center h-screen bg-gray-100 dark:bg-gray-900 w-full h-auto">
+									<div class="w-full max-w-2xl p-6 bg-white rounded-lg shadow-lg dark:bg-gray-800 ">
+										<Drawer.Close  class="mb-2"><Button variant="outline">上一步</Button></Drawer.Close>
+											<div class="flex">
+												<Card.Root class="w-[450px] mr-3">
+													<Card.Header>
+														<Card.Title>数据处理参数</Card.Title>
 															</Card.Header>
 															<div class="ml-4 w-32 mb-2">
 																<p class="text-sm font-semibold">训练模式</p>
@@ -513,65 +499,63 @@ const currentDate = new Date();
 															 <Card.Content class="flex">
 																
 
-															
-																
-																<RadioGroup.Root value="comfortable" class="flex mb-6">
-																	<Card.Root class="flex  items-center justify-between h-10  mr-2 w-32">																	
-																		<div class="flex items-center justify-between  gap-x-4 p-1">
-																		<div>
-																			<p class="text-xs font-semibold">直接分段</p>
-																		</div>		
-																		<div class="flex items-center space-x-2">							
-																			<RadioGroup.Item value="default" id="option-one" />
-																		</div>																																	
-																		</div>								
-																	  </Card.Root>
+		<RadioGroup.Root value="comfortable" class="flex mb-6">
+			<Card.Root class="flex  items-center justify-between h-10  mr-2 w-32">																	
+				<div class="flex items-center justify-between  gap-x-4 p-1">
+					<div>
+						<p class="text-xs font-semibold">直接分段</p>
+					</div>		
+				<div class="flex items-center space-x-2">							
+					<RadioGroup.Item value="default" id="option-one" />
+				</div>																																	
+			</div>								
+			</Card.Root>
 											
-																	  <Card.Root class="flex  items-center justify-between h-10  mr-2 w-32">																	
-																		<div class="flex items-center justify-between gap-x-4 p-1">
-																		<div>
-																			<p class="text-xs font-semibold">增强处理实验</p>
-																		</div>		
-																		<div class="flex items-center space-x-2">							
-																			<RadioGroup.Item value="comfortable" id="option-one" />
-																		</div>																																	
-																		</div>								
-																	  </Card.Root>
+		<Card.Root class="flex  items-center justify-between h-10  mr-2 w-32">																	
+			<div class="flex items-center justify-between gap-x-4 p-1">
+				<div>
+					<p class="text-xs font-semibold">增强处理实验</p>
+				</div>		
+			<div class="flex items-center space-x-2">							
+				<RadioGroup.Item value="comfortable" id="option-one" />
+			</div>																																	
+		</div>								
+		</Card.Root>
 
-																	  <Card.Root class="flex  items-center justify-between h-10  mr-2 w-32">																	
-																		<div class="flex items-center justify-between  gap-x-4 p-1">
-																		<div>
-																			<p class="text-xs font-semibold">问答拆分</p>
-																		</div>		
-																		<div class="flex items-center space-x-2">							
-																			<RadioGroup.Item value="any" id="option-one" />
-																		</div>																																	
-																		</div>								
-																	  </Card.Root>
-																	</RadioGroup.Root>	
-															</Card.Content>
+		<Card.Root class="flex  items-center justify-between h-10  mr-2 w-32">																	
+			<div class="flex items-center justify-between  gap-x-4 p-1">
+				<div>
+					<p class="text-xs font-semibold">问答拆分</p>
+				</div>		
+			<div class="flex items-center space-x-2">							
+			<RadioGroup.Item value="any" id="option-one" />
+		</div>																																	
+	</div>								
+		</Card.Root>
+	</RadioGroup.Root>	
+</Card.Content>
 															
-															<Card.Footer>
+	<Card.Footer>
 																
 																	
 																
-																<div class="mr-1 w-32 mb-2">
-																	<p class="text-sm font-semibold">处理方式</p>
-																</div>	
-															  <RadioGroup.Root value="comfortable" class="mb-6">
-																<Card.Root class="flex  items-center justify-between h-14  mr-4 w-80">	
+		<div class="mr-1 w-32 mb-2">
+			<p class="text-sm font-semibold">处理方式</p>
+		</div>	
+		<RadioGroup.Root value="comfortable" class="mb-6">
+		<Card.Root class="flex  items-center justify-between h-14  mr-4 w-80">	
 																																
-																	<div class="flex items-center justify-between  gap-x-4 p-3">
-																		<div class="flex items-center space-x-2">							
-																			<RadioGroup.Item value="default" id="option-one" />
-																		</div>
-																	<div>
-																		<p class="text-xs font-semibold">自动</p>
-																		<p class="text-xs">自动设置分割和预处理规则</p>
-																	</div>		
+			<div class="flex items-center justify-between  gap-x-4 p-3">
+				<div class="flex items-center space-x-2">							
+					<RadioGroup.Item value="default" id="option-one" />
+				</div>
+			<div>
+				<p class="text-xs font-semibold">自动</p>
+				<p class="text-xs">自动设置分割和预处理规则</p>
+			</div>		
 																																																		
-																	</div>								
-																  </Card.Root>
+				</div>								
+		</Card.Root>
 										
 																  
 
@@ -632,10 +616,10 @@ const currentDate = new Date();
 
 
 
-																</RadioGroup.Root>	
+		</RadioGroup.Root>	
 
 																
-															</Card.Footer>
+			</Card.Footer>
 
 				<Drawer.Root>
 					<Drawer.Trigger asChild let:builder>
@@ -657,10 +641,10 @@ const currentDate = new Date();
 											  </Table.Row>
 											</Table.Header>
 											<Table.Body>
-											  {#each invoices as invoice, i (i)}
+											  {#each tables as table, i (i)}
 												<Table.Row>
-												  <Table.Cell class="font-medium">{invoice.invoice}</Table.Cell>
-												  <Table.Cell>{invoice.paymentStatus}</Table.Cell>
+												  <Table.Cell class="font-medium">{table.invoice}</Table.Cell>
+												  <Table.Cell>{table.paymentStatus}</Table.Cell>
 												</Table.Row>
 											  {/each}
 											</Table.Body>
@@ -676,53 +660,53 @@ const currentDate = new Date();
 															
 			</Card.Root>
 													
-													<!-- <Resizable.Handle /> -->														
-																<div class="border rounded-lg overflow-hidden">
-																	<Table.Root class="w-52">
-																		<Table.Header>
-																			<Table.Row>
-																			  <Table.Head class="font-semibold">来源列表</Table.Head>
+		<!-- <Resizable.Handle /> -->														
+			<div class="border rounded-lg overflow-hidden">
+				<Table.Root class="w-52">
+					<Table.Header>
+					<Table.Row>
+						<Table.Head class="font-semibold">来源列表</Table.Head>
 																			  
-																			</Table.Row>
-																		  </Table.Header>
-																		  <Table.Body>
-																			<Table.Row>
-																			  <Table.Cell class="font-medium">
-																				<div class="flex items-center gap-3">
-																					<FileIcon class="w-5 h-5 text-gray-500" />
-																					<span>文件1.pdf</span>
-																				  </div>
-																			  </Table.Cell>
+					</Table.Row>
+					</Table.Header>
+						<Table.Body>
+					<Table.Row>
+						<Table.Cell class="font-medium">
+						<div class="flex items-center gap-3">
+							<FileIcon class="w-5 h-5 text-gray-500" />
+								<span>文件1.pdf</span>
+						</div>
+						</Table.Cell>
 																			  
-																			</Table.Row>
-																			<Table.Row>
+					</Table.Row>
+					<Table.Row>
 																				
-																				<Table.Cell class="font-medium">
-																				  <div class="flex items-center gap-3">
-																					  <FileIcon class="w-5 h-5 text-gray-500" />
-																					  <span>文件1.pdf</span>
-																					</div>
-																				</Table.Cell>
+			<Table.Cell class="font-medium">
+				<div class="flex items-center gap-3">
+					<FileIcon class="w-5 h-5 text-gray-500" />
+						<span>文件1.pdf</span>
+				</div>
+			</Table.Cell>
 																				
-																			  </Table.Row>
-																			  <Table.Row>
+		</Table.Row>
+<Table.Row>
 																				
-																				<Table.Cell class="font-medium">
-																				  <div class="flex items-center gap-3">
-																					  <FileIcon class="w-5 h-5 text-gray-500" />
-																					  <span>文件1.pdf</span>
-																					</div>
-																				</Table.Cell>
+		<Table.Cell class="font-medium">
+				<div class="flex items-center gap-3">
+					<FileIcon class="w-5 h-5 text-gray-500" />
+							<span>文件1.pdf</span>
+				</div>
+		</Table.Cell>
 																				
 																				
-																			  </Table.Row>
+</Table.Row>
 																			  
-																		  </Table.Body>
-																	</Table.Root>
-																	</div>
+</Table.Body>
+					</Table.Root>
+				</div>
 															
-																</div>												
-										<!-- ---------------------------------------------- -->
+		</div>												
+		<!-- ---------------------------------------------- -->
 										
 									  </Drawer.Header>
 									 
