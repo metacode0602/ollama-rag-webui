@@ -62,7 +62,7 @@
 
 </script>
 <!-- 当屏幕大小小于md时，此div是隐藏的；当屏幕大小达到或超过md时，此div是显示的 -->  
-<div class="hidden md:block" style="width: 100%">
+<div class="hidden md:block"  style="width:100%">
 <div style="height: 100%">
 
 
