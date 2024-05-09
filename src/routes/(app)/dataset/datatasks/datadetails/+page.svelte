@@ -1,11 +1,13 @@
 <script lang="ts">
 	import { accounts, mails } from "./data.js";
 	import Mail from "./(components)/mail.svelte";
+	
 </script>
 
-<Mail
+
+	<Mail
 	{accounts}
 	{mails}
-	navCollapsedSize={4}
-/>
+	navCollapsedSize={4}/>
+
 

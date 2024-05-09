@@ -292,7 +292,7 @@
 			<div class="px-2 flex justify-center mb-1">
 				<a
 					class="flex-grow flex space-x-3 rounded-xl px-3.5 py-2 hover:bg-gray-200 dark:hover:bg-gray-900 transition"
-					href="/dataset"
+					href="/dataset/database"
 					on:click={() => {
 						selectedChatId = null;
 						chatId.set('');

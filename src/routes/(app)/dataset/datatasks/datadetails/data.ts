@@ -1,8 +1,9 @@
 import type { ComponentType } from "svelte";
-import type { Icon } from "lucide-svelte";
+import { Trash2, type Icon } from "lucide-svelte";
 import Vercel from "./(components)/icons/vercel.svelte";
 import ICloud from "./(components)/icons/icloud.svelte";
 import Gmail from "./(components)/icons/gmail.svelte";
+
 
 export const mails = [
 	{
@@ -205,6 +206,7 @@ export const accounts: Account[] = [
 
 
 
+
 // 获取当前日期  
 const currentDate = new Date();  
   
@@ -219,6 +221,11 @@ const day = String(currentDate.getDate()).padStart(2, '0');
   
 // 将年月日拼接成字符串  
 const currentDateString = `${year}-${month}-${day}`;  
+
+
+  	
+
+
 export const invoices = [
     {
 	  invoice: "ICloud",
@@ -256,33 +263,99 @@ export const invoices = [
      
     }
   ];
+  export const tables = [
+    {
+	  invoice: "手动导入",
+      paymentStatus: "等待中.",
+    
+    },
+	{
+		invoice: "通过释放原理和力量提供了广范模板",
+		paymentStatus: "等待中.",
+	  
+	  },
+	  {
+		invoice: "通过释放原理和力量提供了广范模板",
+		paymentStatus: "等待中.",
+	  
+	  },
+	]
 
-  export type items = {			
-	dataname: string;
-	directory:string;
-	datadescription:string;
-	datatitle: string;			   
-};
+	  export const frameworks = [
+		{
+		  value: "sveltekit",
+		  label: "SvelteKit"
+		},
+		{
+		  value: "next",
+		  label: "Next.js"
+		},
+		{
+		  value: "astro",
+		  label: "Astro"
+		},
+		{
+		  value: "nuxt",
+		  label: "Nuxt.js"
+		}
+	  ];
 
-export const items = [
-{
-	dataname: "运营知识库",
-	directory:"知识库目录",
-	datadescription:"这个文件夹还没有介绍",
-	datatitle: "通用知识库",
-},
-{
-	dataname: "运营知识库",
-	directory:"知识库目录",
-	datadescription:"这个文件夹还没有介绍",
-	datatitle: "通用知识库",
-},
-{
-	dataname: "运营知识库",
-	directory:"知识库目录",
-	datadescription:"这个文件夹还没有介绍",
-	datatitle: "通用知识库",
-},
+	  export const tabs = [
+		{
+		  name: "example.pdf",
+		  status: "上传完成",
+		  btn: Trash2,
+		   
+		},
+		{
+		  name: "example.pdf",
+		  status: "上传完成",
+		  btn: Trash2,
+		  
+		}]
 
+		export type items = {			
+				id: number;
+				num:number;
+				description:string;
+				content: string;			   
+			};
 
-]
+		export const items = [
+			{
+				id: 1234567890,
+				num:1,
+				description:"描述介绍",
+				content: "chjdskldkldskdfvgdf",
+			},
+			{
+				id: 1234567890,
+				num:1,
+				description:"描述介绍",
+				content: "chjdskldkldskdfvgdf",
+			},
+			{
+				id: 1234567890,
+				num:1,
+				description:"描述介绍",
+				content: "chjdskldkldskdfvgdf",
+			},
+			{
+				id: 1234567890,
+				num:1,
+				content: "chjdskldkldskdfvgdf",
+			},
+			{
+				id: 1234567890,
+				num:1,
+				description:"描述介绍",
+				content: "chjdskldkldskdfvgdf",
+			},
+			{
+				id: 1234567890,
+				num:1,
+				description:"描述介绍",
+				content: "chjdskldkldskdfvgdf",
+			},
+
+		]

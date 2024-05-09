@@ -22,9 +22,6 @@
 	import { onMount } from "svelte";
 	import { chatId } from "$lib/stores/index.js";
 
-	
-	
-
 	export let accounts: Account[];
 	export let mails: Mail[];
 	export let defaultLayout = [265, 440, 655];
@@ -148,7 +145,7 @@
 					</Tabs.List> -->
 				</div>
 				<Separator />
-				<div class="bg-background/95 p-4 backdrop-blur supports-[backdrop-filter]:bg-background/60"w>
+				<div class="bg-background/95 p-4 backdrop-blur supports-[backdrop-filter]:bg-background/60">
 				<!-- 文本框 -->
 					<form>
 						<div class="relative">

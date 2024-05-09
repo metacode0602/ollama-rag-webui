@@ -30,30 +30,12 @@
 	import DataTableActions from './data-table-actions.svelte';
 	import { Button } from '$lib/components/ui/button';
 	import { Input } from '$lib/components/ui/input';
-	// import * as DropdownMenu from '$lib/components/ui/dropdown-menu';
-	// import DataTableCheckbox from './data-table-checkbox.svelte';
-	// import MessageSquare from 'lucide-svelte/icons/message-square';
-	// import CirclePlus from 'lucide-svelte/icons/circle-plus';
-	// import Cloud from 'lucide-svelte/icons/cloud';
-	// import CreditCard from 'lucide-svelte/icons/credit-card';
-	// import Github from 'lucide-svelte/icons/github';
-	// import Keyboard from 'lucide-svelte/icons/keyboard';
-	// import LifeBuoy from 'lucide-svelte/icons/life-buoy';
-	// import Settings from 'lucide-svelte/icons/settings';
-	// import User from 'lucide-svelte/icons/user';
-	// import UserPlus from 'lucide-svelte/icons/user-plus';
-	// import Users from 'lucide-svelte/icons/users';
-	// import Minus from 'lucide-svelte/icons/minus';
-	// import Plus from 'lucide-svelte/icons/plus';
 	import * as RadioGroup from '$lib/components/ui/radio-group';
-	// import * as Dialog from '$lib/components/ui/dialog';
-	// import * as Popover from '$lib/components/ui/popover/index.js';
 	import * as Drawer from '$lib/components/ui/drawer/index.js';
 	import { FileIcon, Trash2 } from 'lucide-svelte';
-	// import { onDestroy } from 'svelte';
-	// import axios from 'axios';
 	import FileText from 'lucide-svelte/icons/file-text';
 
+	
 
 	type Payment = {
 		id: string;
@@ -351,20 +333,6 @@
 
 
 							<script lang="ts">
-								// import CirclePlus from 'lucide-svelte/icons/circle-plus';
-								// import Cloud from 'lucide-svelte/icons/cloud';
-								// import CreditCard from 'lucide-svelte/icons/credit-card';
-								// import Github from 'lucide-svelte/icons/github';
-								// import Keyboard from 'lucide-svelte/icons/keyboard';
-								// import LifeBuoy from 'lucide-svelte/icons/life-buoy';
-								// import LogOut from 'lucide-svelte/icons/log-out';
-								// import Mail from 'lucide-svelte/icons/mail';
-								// import MessageSquare from 'lucide-svelte/icons/message-square';
-								// import Plus from 'lucide-svelte/icons/plus';
-								// import Settings from 'lucide-svelte/icons/settings';
-								// import User from 'lucide-svelte/icons/user';
-								// import UserPlus from 'lucide-svelte/icons/user-plus';
-								// import Users from 'lucide-svelte/icons/users';
 								import { Button } from '$lib/components/ui/button/index.js';
 								import * as DropdownMenu from '$lib/components/ui/dropdown-menu/index.js';
 							</script>

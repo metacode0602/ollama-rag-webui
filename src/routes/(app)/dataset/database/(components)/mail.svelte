@@ -1,5 +1,5 @@
 <script lang="ts">
-	import { invoices, type Account, type Mail, intents} from "../data.js";
+	import { invoices, type Account, type Mail, intents, items} from "../data.js";
 	import Nav from "./nav.svelte";
 	import { cn } from "$lib/utils";
 	import { Input } from "$lib/components/ui/input";
@@ -29,8 +29,9 @@ import CirclePlus from "lucide-svelte/icons/circle-plus";
   import { Ellipsis, Trash2 } from 'lucide-svelte';
   import * as Sheet from "$lib/components/ui/sheet";
   import * as RadioGroup from "$lib/components/ui/radio-group";
- 
-
+  import SettingsForm from "./settings-form.svelte";
+	import type { PageData } from "../$types.js";
+  export let data: PageData;
 
 // 获取当前日期  
 const currentDate = new Date();  
@@ -234,10 +235,13 @@ const currentDateString = `${year}-${month}-${day}`;
 						</RadioGroup.Root>	
 						<!-- 取个名字 -->
 						<div>
+							
 							<label class="text-sm font-semibold">取个名字</label>
 							<div class="flex justify-between pr-3 mt-2">
-							<Cloud class="border-2 h-10 w-10 rounded-md"/> 							
+							<Cloud class="border-2 h-10 w-10 rounded-md"/> 	
+												
 							<Input id="name" placeholder="知识库名称" class="w-[277px]"/>
+							
 							</div>
 						</div>
 						<!-- 取个名字 over -->
@@ -287,13 +291,13 @@ const currentDateString = `${year}-${month}-${day}`;
 				
 			</header>
 			<div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 p-6">
-				<ul>
-				<Card.Root class="w-72">
+				{#each items as item, i (i)}
+				<Card.Root class="w-74">
 					
 					<Card.Header class="flex justify-between">
 					  
-						<Card.Title>运营知识库</Card.Title>
-					  <Card.Description>这个文件夹还没有介绍</Card.Description>
+						<Card.Title>{item.dataname}</Card.Title>
+					  <Card.Description>{item.datadescription}</Card.Description>
 					
 					
 					  <DropdownMenu.Root>
@@ -356,27 +360,16 @@ const currentDateString = `${year}-${month}-${day}`;
 					</Card.Header>
 				
 					<Card.Content class="flex justify-between">
-					  <p class="text-sm">知识库目录</p>
+					  <p class="text-sm">{item.datatitle}</p>
 					  <p class="text-xs">{currentDateString}</p>
 					</Card.Content>
 					<Card.Footer class="flex justify-end">
 						<div class="inline-block rounded-lg bg-gray-100 border border-slate-300 px-4 py-1 text-center text-xs text-slate-400 dark:bg-gray-800 w-24 mt-3">
-							<p>通用知识库</p>
+							<p>{item.directory}</p>
 						  </div>
 					</Card.Footer>
 				  </Card.Root>
-
-				 
-
-				 
-
-				  
-				 
-
-				 
-
-				
-
+				{/each}
 			</div>
 		</Resizable.Pane>
 	</Resizable.PaneGroup>

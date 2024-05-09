@@ -1,3 +1,4 @@
+
 <script lang="ts">
 	import { invoices, type Account, type Mail, intents} from "../data.js";
 	import Nav from "./nav.svelte";
@@ -14,6 +15,11 @@
 	import { onMount } from "svelte";
 	import * as Select from "$lib/components/ui/select/index.js";
   	import { Label } from "$lib/components/ui/label/index.js";
+	  import SuperDebug, {
+      type Infer,
+      type SuperValidated,
+      superForm
+    } from "sveltekit-superforms";
  
 
 	export let accounts: Account[];
@@ -145,6 +151,9 @@
 		<Resizable.Handle withHandle />
 		
 		<Resizable.Pane defaultSize={defaultLayout[0]} minSize={30} maxSize={50}>
+			<!-- form ------------->
+			
+			<!-- form  end------ -->
 			<!-- card -->
 			<Card.Root class="min-w-screen min-h-screen">
 				<Card.Header>
@@ -236,6 +245,7 @@
 				</Card.Footer>
 			  </Card.Root>
 
+			  <!----------- card--------over -->
 		</Resizable.Pane>
 
 
