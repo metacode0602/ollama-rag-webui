@@ -9,7 +9,7 @@
 	import { Button } from "$lib/components/ui/button/index.js";
 	
 	import * as Avatar from "$lib/components/ui/avatar/index.js";
-	import { primaryRoutes, secondaryRoutes, thirdRoutes, turnRoutes } from "../config.js"
+	import { datadetailsRoutes, primaryRoutes, secondaryRoutes, thirdRoutes, turnRoutes } from "../config.js"
 	import { Progress } from "$lib/components/ui/progress";
 	import { onMount } from "svelte";
 	import * as Select from "$lib/components/ui/select/index.js";
@@ -118,11 +118,6 @@
 			<Separator />
 			<!-- 数据集导航栏 -->
 			<Nav {isCollapsed} routes={primaryRoutes} >
-			<!-- {#each primaryRoutes as route}  
-    			<div class:collapsed={isCollapsed} on:click={() => handleRouteClick(route)}>  
-      			<span>{route.title}</span>  
-    			</div>  
-  			{/each}   -->
 			</Nav>
 			<div style="position: absolute;bottom: 0;width: 100%">
 			<!-- QA训练导航栏 -->
@@ -153,51 +148,46 @@
 					<Popover.Trigger asChild let:builder>
 					  <Button builders={[builder]}  size="lg">插入</Button>
 					</Popover.Trigger>
-					<Popover.Content class="w-1/2 h-3/4">
+					<Popover.Content class="w-3/5 h-4/5">
 						<Resizable.PaneGroup direction="horizontal" class="min-h-[200px]  rounded-lg border w-full">
 							<Resizable.Pane defaultSize={25}>
-								<div class="flex  h-full items-center justify-center p-6">
-									<Menubar.Root class="grid grid-col-1">
-										<Menubar.Menu>
-										  <Menubar.Trigger>数据内容</Menubar.Trigger>
-										  <Menubar.Content>
-											<!-- content -->
-										  </Menubar.Content>
-										</Menubar.Menu>
-										<Menubar.Menu>
-											<Menubar.Trigger>数据索引(0)</Menubar.Trigger>
-											<Menubar.Content>
-											  <!-- content -->
-											</Menubar.Content>
-										  </Menubar.Menu>
-										  <Menubar.Menu>
-											<Menubar.Trigger>说明文档</Menubar.Trigger>
-											<Menubar.Content>
-											  <!-- content -->
-											</Menubar.Content>
-										  </Menubar.Menu>
-									  </Menubar.Root>
-								</div>
+								<div class=" flex items-center justify-center border-b-2 h-12 ">linux.md</div>						
+								<Nav {isCollapsed} routes={datadetailsRoutes}/>								
 							</Resizable.Pane>
 							<Resizable.Handle />
 							<Resizable.Pane defaultSize={75}>
 								<Resizable.PaneGroup direction="horizontal">
 								<Resizable.Pane defaultSize={50}>
-									<div class="flex h-full items-center justify-center p-6">
-										<span class="font-semibold">Sidebar</span>
-									</div>
+									<div class="ml-2 mt-2 text-base font-semibold ">导入新数据</div>
+									<div class="grid w-full gap-1.5">
+										<div>
+											<Label for="message" class="ml-3 font-semibold text-sm">主要内容</Label>
+										</div>
+										<div class="flex items-center justify-center mt-2 h-96">
+											<Textarea class=" w-4/5 h-full  "placeholder="Type your message here." id="message" />
+										</div>  
+									</div>	
 								</Resizable.Pane>
 								<Resizable.Handle />
 								<Resizable.Pane defaultSize={50}>
-									<div class="flex h-full items-center justify-center p-6">
-										<span class="font-semibold">Sidebar</span>
-									</div>
+									<div class="grid w-full gap-1.5 mt-8">
+										<div>
+											<Label for="message" class="ml-3 font-semibold text-sm">辅助数据</Label>
+										</div>
+										<div class="flex items-center justify-center mt-2 h-96">
+											<Textarea class=" w-4/5 h-full  "placeholder="Type your message here." id="message" />
+										</div>  
+									</div>	
 								</Resizable.Pane>
 							</Resizable.PaneGroup>
 							</Resizable.Pane>
 							
 						  </Resizable.PaneGroup>
+						  <Button>确认导入</Button>
+							<Button>取消</Button>
+						  
 					</Popover.Content>
+					
 					
 				  </Popover.Root>
 						
