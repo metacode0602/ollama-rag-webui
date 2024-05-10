@@ -2,8 +2,14 @@
     import Ellipsis from "lucide-svelte/icons/ellipsis";
     import * as DropdownMenu from "$lib/components/ui/dropdown-menu";
     import { Button } from "$lib/components/ui/button";
+    import { goto } from '$app/navigation';
    
     export let id: string;
+
+    function jumpDetailFun(){
+      // navigator.clipboard.writeText(id)
+      goto('/dataset/datatasks/datadetails');
+    }
   </script>
    
   <DropdownMenu.Root>
@@ -21,7 +27,7 @@
     <DropdownMenu.Content>
       <DropdownMenu.Group>
        
-        <DropdownMenu.Item on:click={() => navigator.clipboard.writeText(id)}>
+        <DropdownMenu.Item on:click={jumpDetailFun}>
           同步数据
         </DropdownMenu.Item>
         <DropdownMenu.Item>重命名</DropdownMenu.Item>
