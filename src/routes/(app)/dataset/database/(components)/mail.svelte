@@ -52,10 +52,8 @@ const currentDateString = `${year}-${month}-${day}`;
 //----------------------over-----------------------------
 
  
-  function handleClick() {
-   alert('点击事件')
-  }
-
+ 
+  
 	export let accounts: Account[];
 	export let mails: Mail[];
 	export let defaultLayout = [100, 900];
@@ -297,15 +295,14 @@ const currentDateString = `${year}-${month}-${day}`;
 			</header>
 			<div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 p-6">
 				{#each items as item, i (i)}
-				<div on:click={handleClick}>
+				<div>
 				<Card.Root class="w-74 hover:bg-gray-50">
 					
 					<Card.Header class="flex justify-between">
 					  
 						<Card.Title>{item.dataname}</Card.Title>
 					  <Card.Description>{item.datadescription}</Card.Description>
-					
-					
+
 					  <DropdownMenu.Root>
 						<DropdownMenu.Trigger asChild let:builder>
 							<Button
