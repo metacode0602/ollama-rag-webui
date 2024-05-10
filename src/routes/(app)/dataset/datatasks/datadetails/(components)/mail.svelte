@@ -30,7 +30,7 @@
   	import * as Sheet from "$lib/components/ui/sheet";
   	import * as RadioGroup from "$lib/components/ui/radio-group";
   	import * as Popover from "$lib/components/ui/popover/index.js";
-
+	import * as Menubar from "$lib/components/ui/menubar";
 //----------------------over-----------------------------
 
 	export let accounts: Account[];
@@ -153,21 +153,52 @@
 					<Popover.Trigger asChild let:builder>
 					  <Button builders={[builder]}  size="lg">插入</Button>
 					</Popover.Trigger>
-					<Popover.Content class="w-80">
-						<Resizable.PaneGroup direction="horizontal" class="min-h-[200px] max-w-md rounded-lg border">
+					<Popover.Content class="w-1/2 h-3/4">
+						<Resizable.PaneGroup direction="horizontal" class="min-h-[200px]  rounded-lg border w-full">
 							<Resizable.Pane defaultSize={25}>
-								<div class="flex h-full items-center justify-center p-6">
-									<span class="font-semibold">Sidebar</span>
+								<div class="flex  h-full items-center justify-center p-6">
+									<Menubar.Root class="grid grid-col-1">
+										<Menubar.Menu>
+										  <Menubar.Trigger>数据内容</Menubar.Trigger>
+										  <Menubar.Content>
+											<!-- content -->
+										  </Menubar.Content>
+										</Menubar.Menu>
+										<Menubar.Menu>
+											<Menubar.Trigger>数据索引(0)</Menubar.Trigger>
+											<Menubar.Content>
+											  <!-- content -->
+											</Menubar.Content>
+										  </Menubar.Menu>
+										  <Menubar.Menu>
+											<Menubar.Trigger>说明文档</Menubar.Trigger>
+											<Menubar.Content>
+											  <!-- content -->
+											</Menubar.Content>
+										  </Menubar.Menu>
+									  </Menubar.Root>
 								</div>
 							</Resizable.Pane>
 							<Resizable.Handle />
 							<Resizable.Pane defaultSize={75}>
-								<div class="flex h-full items-center justify-center p-6">
-									<span class="font-semibold">Content</span>
-								</div>
+								<Resizable.PaneGroup direction="horizontal">
+								<Resizable.Pane defaultSize={50}>
+									<div class="flex h-full items-center justify-center p-6">
+										<span class="font-semibold">Sidebar</span>
+									</div>
+								</Resizable.Pane>
+								<Resizable.Handle />
+								<Resizable.Pane defaultSize={50}>
+									<div class="flex h-full items-center justify-center p-6">
+										<span class="font-semibold">Sidebar</span>
+									</div>
+								</Resizable.Pane>
+							</Resizable.PaneGroup>
 							</Resizable.Pane>
+							
 						  </Resizable.PaneGroup>
 					</Popover.Content>
+					
 				  </Popover.Root>
 						
 			</header>
