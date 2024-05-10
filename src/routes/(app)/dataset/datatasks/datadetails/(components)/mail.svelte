@@ -15,22 +15,21 @@
 	import * as Select from "$lib/components/ui/select/index.js";
   	import { Label } from "$lib/components/ui/label/index.js";
 //  -----------------------start--------------------------
-import * as Card from "$lib/components/ui/card";
-import * as DropdownMenu from "$lib/components/ui/dropdown-menu";
-import CirclePlus from "lucide-svelte/icons/circle-plus";
-  import Cloud from "lucide-svelte/icons/cloud";
-  import CreditCard from "lucide-svelte/icons/credit-card";
-  import MessageSquare from "lucide-svelte/icons/message-square";
-  import Plus from "lucide-svelte/icons/plus";
-  import Settings from "lucide-svelte/icons/settings";
-  import User from "lucide-svelte/icons/user";
-  import UserPlus from "lucide-svelte/icons/user-plus";
-  import Users from "lucide-svelte/icons/users";
-  import { Ellipsis, Trash2 } from 'lucide-svelte';
-  import * as Sheet from "$lib/components/ui/sheet";
-  import * as RadioGroup from "$lib/components/ui/radio-group";
-  import { createTable, Render, Subscribe, createRender } from 'svelte-headless-table';
-	
+	import * as Card from "$lib/components/ui/card";
+	import * as DropdownMenu from "$lib/components/ui/dropdown-menu";
+	import CirclePlus from "lucide-svelte/icons/circle-plus";
+  	import Cloud from "lucide-svelte/icons/cloud";
+  	import CreditCard from "lucide-svelte/icons/credit-card";
+  	import MessageSquare from "lucide-svelte/icons/message-square";
+  	import Plus from "lucide-svelte/icons/plus";
+  	import Settings from "lucide-svelte/icons/settings";
+  	import User from "lucide-svelte/icons/user";
+  	import UserPlus from "lucide-svelte/icons/user-plus";
+  	import Users from "lucide-svelte/icons/users";
+  	import { Ellipsis, Trash2 } from 'lucide-svelte';
+  	import * as Sheet from "$lib/components/ui/sheet";
+  	import * as RadioGroup from "$lib/components/ui/radio-group";
+  	import * as Popover from "$lib/components/ui/popover/index.js";
 
 //----------------------over-----------------------------
 
@@ -150,9 +149,27 @@ import CirclePlus from "lucide-svelte/icons/circle-plus";
 					placeholder="搜索数据..."
 					type="text"
 				/>
-				<Button size="lg">
-					插入
-				</Button>				
+				<Popover.Root portal={null}>
+					<Popover.Trigger asChild let:builder>
+					  <Button builders={[builder]}  size="lg">插入</Button>
+					</Popover.Trigger>
+					<Popover.Content class="w-80">
+						<Resizable.PaneGroup direction="horizontal" class="min-h-[200px] max-w-md rounded-lg border">
+							<Resizable.Pane defaultSize={25}>
+								<div class="flex h-full items-center justify-center p-6">
+									<span class="font-semibold">Sidebar</span>
+								</div>
+							</Resizable.Pane>
+							<Resizable.Handle />
+							<Resizable.Pane defaultSize={75}>
+								<div class="flex h-full items-center justify-center p-6">
+									<span class="font-semibold">Content</span>
+								</div>
+							</Resizable.Pane>
+						  </Resizable.PaneGroup>
+					</Popover.Content>
+				  </Popover.Root>
+						
 			</header>
 			<!-- 单挑数据详情 -->
 			<div class="grid grid-cols-3 sm:grid-cols-1 lg:grid-cols-3 gap-4 p-4">				
