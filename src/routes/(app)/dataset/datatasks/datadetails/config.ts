@@ -61,3 +61,24 @@ export const turnRoutes: Route[] = [
 		path:"/dataset/database",
 	},
 ]
+
+export const datadetailsRoutes: Route[] = [
+	{
+		title: "数据内容",
+		icon: Icons.CircleAlert,
+		variant: "default",
+		path:"/dataset/datatasks/datadetails",
+	},
+	{
+		title: "数据索引(0)",
+		icon: Icons.CircleAlert,
+		variant: "ghost",
+		path:"/dataset/datatasks/datadetails",
+	},
+	{
+		title: "说明文档",
+		icon: Icons.CircleAlert,
+		variant: "ghost",
+		path:"/dataset/datatasks/datadetails",
+	},
+]

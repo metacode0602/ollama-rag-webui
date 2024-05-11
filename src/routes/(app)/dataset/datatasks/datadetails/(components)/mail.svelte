@@ -9,29 +9,28 @@
 	import { Button } from "$lib/components/ui/button/index.js";
 	
 	import * as Avatar from "$lib/components/ui/avatar/index.js";
-	import { primaryRoutes, secondaryRoutes, thirdRoutes, turnRoutes } from "../config.js"
+	import { datadetailsRoutes, primaryRoutes, secondaryRoutes, thirdRoutes, turnRoutes } from "../config.js"
 	import { Progress } from "$lib/components/ui/progress";
 	import { onMount } from "svelte";
 	import * as Select from "$lib/components/ui/select/index.js";
   	import { Label } from "$lib/components/ui/label/index.js";
 //  -----------------------start--------------------------
-import * as Card from "$lib/components/ui/card";
-import * as DropdownMenu from "$lib/components/ui/dropdown-menu";
-import CirclePlus from "lucide-svelte/icons/circle-plus";
-  import Cloud from "lucide-svelte/icons/cloud";
-  import CreditCard from "lucide-svelte/icons/credit-card";
-  import MessageSquare from "lucide-svelte/icons/message-square";
-  import Plus from "lucide-svelte/icons/plus";
-  import Settings from "lucide-svelte/icons/settings";
-  import User from "lucide-svelte/icons/user";
-  import UserPlus from "lucide-svelte/icons/user-plus";
-  import Users from "lucide-svelte/icons/users";
-  import { Ellipsis, Trash2 } from 'lucide-svelte';
-  import * as Sheet from "$lib/components/ui/sheet";
-  import * as RadioGroup from "$lib/components/ui/radio-group";
-  import { createTable, Render, Subscribe, createRender } from 'svelte-headless-table';
-	
-
+	import * as Card from "$lib/components/ui/card";
+	import * as DropdownMenu from "$lib/components/ui/dropdown-menu";
+	import CirclePlus from "lucide-svelte/icons/circle-plus";
+  	import Cloud from "lucide-svelte/icons/cloud";
+  	import CreditCard from "lucide-svelte/icons/credit-card";
+  	import MessageSquare from "lucide-svelte/icons/message-square";
+  	import Plus from "lucide-svelte/icons/plus";
+  	import Settings from "lucide-svelte/icons/settings";
+  	import User from "lucide-svelte/icons/user";
+  	import UserPlus from "lucide-svelte/icons/user-plus";
+  	import Users from "lucide-svelte/icons/users";
+  	import { Ellipsis, Trash2 } from 'lucide-svelte';
+  	import * as Sheet from "$lib/components/ui/sheet";
+  	import * as RadioGroup from "$lib/components/ui/radio-group";
+  	import * as Popover from "$lib/components/ui/popover/index.js";
+	import * as Menubar from "$lib/components/ui/menubar";
 //----------------------over-----------------------------
 
 	export let accounts: Account[];
@@ -119,11 +118,6 @@ import CirclePlus from "lucide-svelte/icons/circle-plus";
 			<Separator />
 			<!-- 数据集导航栏 -->
 			<Nav {isCollapsed} routes={primaryRoutes} >
-			<!-- {#each primaryRoutes as route}  
-    			<div class:collapsed={isCollapsed} on:click={() => handleRouteClick(route)}>  
-      			<span>{route.title}</span>  
-    			</div>  
-  			{/each}   -->
 			</Nav>
 			<div style="position: absolute;bottom: 0;width: 100%">
 			<!-- QA训练导航栏 -->
@@ -150,9 +144,53 @@ import CirclePlus from "lucide-svelte/icons/circle-plus";
 					placeholder="搜索数据..."
 					type="text"
 				/>
-				<Button size="lg">
-					插入
-				</Button>				
+				<Popover.Root portal={null}>
+					<Popover.Trigger asChild let:builder>
+					  <Button builders={[builder]}  size="lg">插入</Button>
+					</Popover.Trigger>
+					<Popover.Content class="w-3/5 h-4/5">
+						<Resizable.PaneGroup direction="horizontal" class="min-h-[200px]  rounded-lg border w-full">
+							<Resizable.Pane defaultSize={25}>
+								<div class=" flex items-center justify-center border-b-2 h-12 ">linux.md</div>						
+								<Nav {isCollapsed} routes={datadetailsRoutes}/>								
+							</Resizable.Pane>
+							<Resizable.Handle />
+							<Resizable.Pane defaultSize={75}>
+								<Resizable.PaneGroup direction="horizontal">
+								<Resizable.Pane defaultSize={50}>
+									<div class="ml-2 mt-2 text-base font-semibold ">导入新数据</div>
+									<div class="grid w-full gap-1.5">
+										<div>
+											<Label for="message" class="ml-3 font-semibold text-sm">主要内容</Label>
+										</div>
+										<div class="flex items-center justify-center mt-2 h-96">
+											<Textarea class=" w-4/5 h-full  "placeholder="Type your message here." id="message" />
+										</div>  
+									</div>	
+								</Resizable.Pane>
+								<Resizable.Handle />
+								<Resizable.Pane defaultSize={50}>
+									<div class="grid w-full gap-1.5 mt-8">
+										<div>
+											<Label for="message" class="ml-3 font-semibold text-sm">辅助数据</Label>
+										</div>
+										<div class="flex items-center justify-center mt-2 h-96">
+											<Textarea class=" w-4/5 h-full  "placeholder="Type your message here." id="message" />
+										</div>  
+									</div>	
+								</Resizable.Pane>
+							</Resizable.PaneGroup>
+							</Resizable.Pane>
+							
+						  </Resizable.PaneGroup>
+						  <Button>确认导入</Button>
+							<Button>取消</Button>
+						  
+					</Popover.Content>
+					
+					
+				  </Popover.Root>
+						
 			</header>
 			<!-- 单挑数据详情 -->
 			<div class="grid grid-cols-3 sm:grid-cols-1 lg:grid-cols-3 gap-4 p-4">				
