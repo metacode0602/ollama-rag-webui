@@ -69,16 +69,16 @@ export const datadetailsRoutes: Route[] = [
 		variant: "default",
 		path:"/dataset/datatasks/datadetails",
 	},
-	{
-		title: "数据索引(0)",
-		icon: Icons.CircleAlert,
-		variant: "ghost",
-		path:"/dataset/datatasks/datadetails",
-	},
-	{
-		title: "说明文档",
-		icon: Icons.CircleAlert,
-		variant: "ghost",
-		path:"/dataset/datatasks/datadetails",
-	},
+	// {
+	// 	title: "数据索引(0)",
+	// 	icon: Icons.CircleAlert,
+	// 	variant: "ghost",
+	// 	path:"/dataset/datatasks/datadetails",
+	// },
+	// {
+	// 	title: "说明文档",
+	// 	icon: Icons.CircleAlert,
+	// 	variant: "ghost",
+	// 	path:"/dataset/datatasks/datadetails",
+	// },
 ]

@@ -131,7 +131,7 @@
 			<Tabs.Root value="all">
 				<div class="flex items-center justify-between px-4 py-2">
 					<!-- 下拉框 -->
-					<div><AccountSwitcher {isCollapsed} {accounts} /> </div>
+					<div class="w-64"><AccountSwitcher {isCollapsed} {accounts}/> </div>
 
 					<!-- 按钮 -->
 					<Button variant="outline">语言检索</Button>

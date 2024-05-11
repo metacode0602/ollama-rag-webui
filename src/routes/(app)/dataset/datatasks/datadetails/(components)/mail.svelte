@@ -177,14 +177,17 @@
 										<div class="flex items-center justify-center mt-2 h-96">
 											<Textarea class=" w-4/5 h-full  "placeholder="Type your message here." id="message" />
 										</div>  
-									</div>	
+									</div>
+									<div class="flex justify-center">									
+									<Button size="sm" class="mt-2 ">取消</Button>
+									<Button size="sm" class="mt-2 ml-3">确认导入</Button>
+								</div>	
 								</Resizable.Pane>
 							</Resizable.PaneGroup>
 							</Resizable.Pane>
 							
 						  </Resizable.PaneGroup>
-						  <Button>确认导入</Button>
-							<Button>取消</Button>
+						 
 						  
 					</Popover.Content>
 					
@@ -195,7 +198,7 @@
 			<!-- 单挑数据详情 -->
 			<div class="grid grid-cols-3 sm:grid-cols-1 lg:grid-cols-3 gap-4 p-4">				
 				{#each items as item, i (i)}	
-					<div class="w-72">
+					<div class="w-80">
 					<Card.Root>
 						<div class="inline-block ml-1 rounded-lg bg-gray-100 border border-slate-300 text-center text-xs text-slate-400 dark:bg-gray-800 w-12 mt-3">
 							<p>{item.num}</p>

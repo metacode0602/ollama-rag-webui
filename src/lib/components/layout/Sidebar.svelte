@@ -159,7 +159,7 @@
 
 <div
 	bind:this={navElement}
-	class="h-screen max-h-[100dvh] min-h-screen {show
+	class="h-screen max-h-3/4 min-h-screen {show
 		? 'lg:relative w-[260px]'
 		: '-translate-x-[260px] w-[0px]'} bg-gray-50 text-gray-900 dark:bg-gray-950 dark:text-gray-200 text-sm transition fixed z-50 top-0 left-0
         "
@@ -284,7 +284,7 @@
 					</div>
 
 					<div class="flex self-center">
-						<div class=" self-center font-medium text-sm">{$i18n.t('Prompts')}</div>
+						<div class=" self-center font-medium text-sm">{$i18n.t('tools')}</div>
 					</div>
 				</a>
 			</div>
@@ -317,6 +317,39 @@
 
 					<div class="flex self-center">
 						<div class=" self-center font-medium text-sm">{$i18n.t('Documents')}</div>
+					</div>
+				</a>
+			</div>
+
+			<!--------------- Agent--------------- -->
+			<div class="px-2 flex justify-center">
+				<a
+					class="flex-grow flex space-x-3 rounded-xl px-3.5 py-2 hover:bg-gray-200 dark:hover:bg-gray-900 transition"
+					href="/agent"
+					on:click={() => {
+						selectedChatId = null;
+						chatId.set('');
+					}}
+				>
+					<div class="self-center">
+						<svg
+							xmlns="http://www.w3.org/2000/svg"
+							fill="none"
+							viewBox="0 0 24 24"
+							stroke-width="2"
+							stroke="currentColor"
+							class="w-4 h-4"
+						>
+							<path
+								stroke-linecap="round"
+								stroke-linejoin="round"
+								d="m16.862 4.487 1.687-1.688a1.875 1.875 0 1 1 2.652 2.652L6.832 19.82a4.5 4.5 0 0 1-1.897 1.13l-2.685.8.8-2.685a4.5 4.5 0 0 1 1.13-1.897L16.863 4.487Zm0 0L19.5 7.125"
+							/>
+						</svg>
+					</div>
+
+					<div class="flex self-center">
+						<div class=" self-center font-medium text-sm">{$i18n.t('Agent')}</div>
 					</div>
 				</a>
 			</div>

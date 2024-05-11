@@ -321,7 +321,7 @@
 											<DropdownMenu.Group>
 												<DropdownMenu.Item>
 													<User class="mr-2 h-4 w-4" />
-													<span class="text-xs">设为团队可用</span>
+													<span class="text-sm">设为团队可用</span>
 													<DropdownMenu.Shortcut>⇧⌘P</DropdownMenu.Shortcut>
 												</DropdownMenu.Item>
 												<DropdownMenu.Item>
