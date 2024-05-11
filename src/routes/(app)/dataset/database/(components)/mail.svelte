@@ -9,7 +9,8 @@
 	import { Button } from '$lib/components/ui/button/index.js';
 
 	import * as Avatar from '$lib/components/ui/avatar/index.js';
-	import { primaryRoutes, secondaryRoutes, thirdRoutes, turnRoutes } from '../config.js';
+
+	import { Database } from 'lucide-svelte';
 	import { Progress } from '$lib/components/ui/progress';
 	import { onMount } from 'svelte';
 	import * as Select from '$lib/components/ui/select/index.js';
@@ -33,6 +34,7 @@
 	import SettingsForm from './settings-form.svelte';
 	import type { PageData } from '../$types.js';
 
+	import { Bot } from 'lucide-svelte';
 	export let data: PageData;
 
 	// 获取当前日期
@@ -87,108 +89,25 @@
 		return () => clearTimeout(timer);
 	});
 
-	function onLayoutChange(sizes: number[]) {
-		document.cookie = `PaneForge:layout=${JSON.stringify(sizes)}`;
-	}
 
-	function onCollapse() {
-		isCollapsed = true;
-		document.cookie = `PaneForge:collapsed=${true}`;
-	}
-
-	function onExpand() {
-		isCollapsed = false;
-		document.cookie = `PaneForge:collapsed=${false}`;
-	}
 
 	function jumpDataList() {
 		goto('/dataset/datatasks');
 	}
 
-
-	// HTML模板部分
-
 </script>
-<!-- 当屏幕大小小于md时，此div是隐藏的；当屏幕大小达到或超过md时，此div是显示的 -->
-<div class="hidden md:block" style="width:100%">
-	<div style="height: 100%">
-		<!-- 这是一个可调整大小的面板组，其方向是水平的。
-					 当面板组的大小或布局改变时，onLayoutChange函数将被调用。
-					 这个面板组占据全部高度，最大高度为800像素，并且子元素在垂直方向上拉伸。 -->
-		<Resizable.PaneGroup
-			direction="horizontal"
-			{onLayoutChange}
-			class="h-full items-stretch"
-		>
-			<!-- 这是一个可调整大小并可折叠的面板。
-							 默认大小由defaultLayout数组的第一个元素决定。
-							 当面板折叠时，其大小变为navCollapsedSize。
-							 面板的最小和最大尺寸分别为15和20（单位未指定，可能是像素或其他单位）。
-							 当面板折叠时，onCollapse函数将被调用；当面板展开时，onExpand函数将被调用。 -->
-			<Resizable.Pane
-				defaultSize={defaultLayout[0]}
-				collapsedSize={navCollapsedSize}
-				collapsible
-				minSize={12}
-				maxSize={12}
-				{onCollapse}
-				{onExpand}
-				style="position: relative"
-			>
-				<div
-					class={cn(
-					"flex flex-col h-[100px] items-center justify-center",
-					isCollapsed ? "h-[52px]" : "px-2"
-				)}
-				>
-					<!-- 标题 -->
-					<div class="flex items-center">
-						<Avatar.Root>
-							<Avatar.Image src="/" alt="@xxx" />
-							<Avatar.Fallback>MK</Avatar.Fallback>
-						</Avatar.Root>
-						<h1 class="text-lg font-bold mx-2">MarktingGPT</h1>
-					</div>
-					<!-- 通用知识库标签 -->
-					<div
-						class="inline-block rounded-lg bg-gray-100 border border-slate-300 px-4 py-1 text-center text-xs text-slate-400 dark:bg-gray-800 w-[160px] mt-3">
-						<p>通用知识库</p>
-					</div>
-				</div>
-				<Separator />
-				<!-- 数据集导航栏 -->
-				<Nav {isCollapsed} routes={primaryRoutes}>
-					<!-- {#each primaryRoutes as route}
-							<div class:collapsed={isCollapsed} on:click={() => handleRouteClick(route)}>
-								<span>{route.title}</span>
-							</div>
-						{/each}   -->
-				</Nav>
-				<div style="position: absolute;bottom: 0;width: 100%">
-					<!-- QA训练导航栏 -->
-					<Nav {isCollapsed} routes={secondaryRoutes} />
-					<!-- 进度条 -->
-					<Progress {value} max={100} class="w-[80%] mx-5" />
-					<!-- 索引排队导航栏 -->
-					<Nav {isCollapsed} routes={thirdRoutes} />
-					<!-- 进度条 -->
-					<Progress {value} max={100} class="w-[80%] mx-5 mb-5" />
-					<Separator />
-					<!-- 返回知识库导航栏 -->
-					<Nav {isCollapsed} routes={turnRoutes} />
-				</div>
-			</Resizable.Pane>
-			<Resizable.Handle withHandle />
 
-			<Resizable.Pane defaultSize={defaultLayout[0]} minSize={30} maxSize={50}>
-
-				<header class="flex items-center justify-between px-6 py-3 border-b font-medium">
-					<h3 class="font-medium"> 知识库</h3>
-					<Sheet.Root>
-						<Sheet.Trigger>
-							<Button size="sm">
+<div class="w-full">
+	<header class="flex items-center justify-between pt-3 px-4">
+		<div class="flex items-center">
+			<Database class="border-2 h-10 w-10 rounded-md" />
+			<h3 class="ml-2 font-semibold"> 知识库</h3>
+		</div>
+			<Sheet.Root>
+				<Sheet.Trigger>
+					<Button size="sm">
 								新建
-							</Button>
+					</Button>
 						</Sheet.Trigger>
 						<Sheet.Content>
 							<Sheet.Header>
@@ -242,7 +161,7 @@
 
 									<label class="text-sm font-semibold">取个名字</label>
 									<div class="flex justify-between pr-3 mt-2">
-										<Cloud class="border-2 h-10 w-10 rounded-md" />
+										<Database class="border-2 h-10 w-10 rounded-md" />
 
 										<Input id="name" placeholder="知识库名称" class="w-[277px]" />
 
@@ -294,10 +213,10 @@
 					</Sheet.Root>
 
 				</header>
-				<div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 p-6">
+				<div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 p-4 m-4 bg-slate-50 h-5/6 rounded-md">
 					{#each items as item, i (i)}
 						<div>
-							<Card.Root class="w-74 hover:bg-gray-50">
+							<Card.Root class="w-74 hover:bg-gray-200 h-56">
 
 								<Card.Header class="flex justify-between">
 									<div on:click={jumpDataList}>
@@ -378,7 +297,5 @@
 						</div>
 					{/each}
 				</div>
-			</Resizable.Pane>
-		</Resizable.PaneGroup>
-	</div>
+		
 </div>
