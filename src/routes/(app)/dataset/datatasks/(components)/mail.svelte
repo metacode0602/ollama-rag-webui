@@ -34,7 +34,7 @@
 	import * as Drawer from '$lib/components/ui/drawer/index.js';
 	import { FileIcon, Trash2 } from 'lucide-svelte';
 	import FileText from 'lucide-svelte/icons/file-text';
-
+	import * as DropdownMenu from '$lib/components/ui/dropdown-menu/index.js';
 	
 
 	type Payment = {
@@ -42,7 +42,7 @@
 		amount: number;
 		status: '已就绪' | '进行中' | '出错了';
 		updataTime: Date;
-		email: string;
+		name: string;
 		num: number;
 	};
 	// 获取当前日期
@@ -67,7 +67,7 @@
 			id: 'm5gr84i9',
 			amount: 316,
 			status: '已就绪',
-			email: '手动录入',
+			name: '手动录入',
 			updataTime
 		},
 		{
@@ -75,7 +75,7 @@
 			id: 'm5gr84i9',
 			amount: 316,
 			status: '已就绪',
-			email: '通过lasmalndex 释放代理和quuerpieline的力量(含代表 Sider.Al包含创造性工具.',
+			name: '通过lasmalndex 释放代理和quuerpieline的力量(含代表 Sider.Al包含创造性工具.',
 			updataTime
 		},
 		{
@@ -83,7 +83,7 @@
 			id: 'm5gr84i9',
 			amount: 316,
 			status: '出错了',
-			email: '通过lasmalndex 释放代理和quuerpieline的力量(含代表 Sider.Al包含创造性工具.',
+			name: '通过lasmalndex 释放代理和quuerpieline的力量(含代表 Sider.Al包含创造性工具.',
 			updataTime
 		},
 		{
@@ -91,7 +91,7 @@
 			id: 'm5gr84i9',
 			amount: 316,
 			status: '进行中',
-			email: '通过lasmalndex 释放代理和quuerpieline的力量(含代表 Sider.Al包含创造性工具.',
+			name: '通过lasmalndex 释放代理和quuerpieline的力量(含代表 Sider.Al包含创造性工具.',
 			updataTime
 		},
 		{
@@ -99,7 +99,7 @@
 			id: 'm5gr84i9',
 			amount: 316,
 			status: '进行中',
-			email: '通过lasmalndex 释放代理和quuerpieline的力量(含代表 Sider.Al包含创造性工具.',
+			name: '通过lasmalndex 释放代理和quuerpieline的力量(含代表 Sider.Al包含创造性工具.',
 			updataTime
 		},
 		{
@@ -107,7 +107,7 @@
 			id: 'm5gr84i9',
 			amount: 316,
 			status: '进行中',
-			email: '通过lasmalndex 释放代理和quuerpieline的力量(含代表 Sider.Al包含创造性工具.',
+			name: '通过lasmalndex 释放代理和quuerpieline的力量(含代表 Sider.Al包含创造性工具.',
 			updataTime
 		}
 		// ...
@@ -132,14 +132,14 @@
 			header: '#'
 		}),
 		table.column({
-			accessor: 'email',
+			accessor: 'name',
 			header: '名称'
 		}),
 		table.column({
 			accessor: 'amount',
 			header: '数据总量',
 			cell: ({ value }) => {
-				const formatted = new Intl.NumberFormat('en-US', {
+				const formatted = new Intl.NumberFormat({
 					style: 'currency',
 					currency: 'USD'
 				}).format(value);
@@ -317,26 +317,20 @@
 			<Resizable.Pane defaultSize={defaultLayout[0]} minSize={30} maxSize={50}>
 
 				<div>
-
-					<div class="grid justify-items-end py-2">
-
-						<div class="flex mr-4">
-							<div class="grid justify-items-start py-2 font-base w-16 mr-[500px]">
+					<div class="flex justify-between items-center">
+						<div class="flex mr-4 ">
+							<div class="flex pl-2 font-base w-16 ">
 								<p>文件(4)</p>
 							</div>
+						</div>
+
+						<div class="flex  py-2">
 							<Input
 								class="w-48 mr-4"
 								placeholder="搜索数据..."
 								type="text"
 								bind:value={$filterValue}
 							/>
-
-
-							<script lang="ts">
-								import { Button } from '$lib/components/ui/button/index.js';
-								import * as DropdownMenu from '$lib/components/ui/dropdown-menu/index.js';
-							</script>
-							<!-- ------------------------------------------------------------------------------- -->
 
 							<Drawer.Root>
 								<Drawer.Trigger asChild let:builder>
@@ -669,8 +663,9 @@
 							</DropdownMenu.Content>
 							</DropdownMenu.Root> -->
 						</div>
-						<!--------------=============-- Dropdown Menu over---------------------------- -->
 					</div>
+						<!--------------=============-- Dropdown Menu over---------------------------- -->
+					
 					<div class="rounded-md border">
 						<Table.Root {...$tableAttrs}>
 							<Table.Header>
@@ -686,10 +681,10 @@
 												>
 													<Table.Head {...attrs} class="[&:has([role=checkbox])]:pl-3">
 														{#if cell.id === "amount"}
-															<div class="text-right w-24">
+															<div class="text-center w-24">
 																<Render of={cell.render()} />
 															</div>
-														{:else if cell.id === "email"}
+														{:else if cell.id === "name"}
 															<Button variant="ghost" on:click={props.sort.toggle}>
 																<Render of={cell.render()} />
 																<ArrowUpDown class={"ml-2 h-4 w-4"} />
@@ -721,7 +716,7 @@
 													<Table.Cell {...attrs}>
 														<!-- 如果单元格id为"amount"，则渲染一个右对齐且字体加粗的内容 -->
 														{#if cell.id === "amount"}
-															<div class="text-right font-medium">
+															<div class="text-center font-medium">
 																<Render of={cell.render()} />
 															</div>
 															<!-- 如果单元格id为"status"，则渲染一个首字母大写的状态内容 -->
@@ -749,10 +744,10 @@
 						</Table.Root>
 					</div>
 					<div class="flex items-center justify-end space-x-4 py-4">
-						<div class="flex-1 text-sm text-muted-foreground">
-							{Object.keys($selectedDataIds).length} of{" "}
-							{$rows.length} row(s) selected.
+						<div class="flex-1 text-sm text-muted-foreground ml-2">
+							{$rows.length} row(s)
 						</div>
+					
 						<Button
 							variant="outline"
 							size="sm"
@@ -761,12 +756,14 @@
 						</Button
 						>
 						<Button
+							class="mr-2"
 							variant="outline"
 							size="sm"
 							disabled={!$hasNextPage}
 							on:click={() => ($pageIndex = $pageIndex + 1)}>Next
 						</Button
 						>
+						
 					</div>
 				</div>
 

@@ -131,7 +131,7 @@
 			<Tabs.Root value="all">
 				<div class="flex items-center justify-between px-4 py-2">
 					<!-- 下拉框 -->
-					<div class="w-64"><AccountSwitcher {isCollapsed} {accounts}/> </div>
+					<div><AccountSwitcher {isCollapsed} {accounts} /> </div>
 
 					<!-- 按钮 -->
 					<Button variant="outline">语言检索</Button>
@@ -172,7 +172,7 @@
 					<Table.Body>
 						{#each invoices as invoice, i (i)}
 						<Table.Row>
-						  <Table.Cell class="font-medium">{invoice.invoice}</Table.Cell>
+						  <Table.Cell class="font-medium">{invoice.icon}</Table.Cell>
 						  <Table.Cell>{invoice.paymentStatus}</Table.Cell>
 						  <!-- <Table.Cell>{invoice.paymentMethod}</Table.Cell> -->
 						  <Table.Cell class="text-right">{invoice.currentDateString}</Table.Cell>
@@ -228,7 +228,7 @@
 						<Table.Body>
 							{#each intents as intent, i (i)}
 							<Table.Row>
-							  <Table.Cell class="font-medium">{intent.invoice}</Table.Cell>
+							  <Table.Cell class="font-medium">{intent.icon}</Table.Cell>
 							  <Table.Cell>{intent.paymentStatus}</Table.Cell>
 							  <Table.Cell>{intent.totalAmount}</Table.Cell>
 							  <Table.Cell>{intent.resultStatus}</Table.Cell>
