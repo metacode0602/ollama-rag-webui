@@ -57,14 +57,14 @@
 <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 p-4 m-4 bg-slate-50 h-5/6 rounded-md">
     {#each items as item, i (i)}
         <div>
-            <Card.Root class="w-74 hover:bg-gray-200 h-52">
-                <Card.Header class="flex justify-between">
-                    <!-- <div on:click={jumpDataList}> -->
-                    <div>
-                        <Card.Title>{item.dataname}</Card.Title>
-                        <Card.Description style="margin-top: 5px">{item.datatitle}</Card.Description>
-                    </div>
+            <Card.Root class="w-74 hover:bg-gray-200 h-52 overflow-hidden">
+            <div class="flex justify-between">
+                <Card.Header class="h-[80px]">
+                    <!-- <div on:click={jumpDataList}> -->                   
+                        <Card.Title class="text-sm">{item.dataname}</Card.Title>
+                        <Card.Description style="margin-top: 5px" class="text-xs">{item.datatitle}</Card.Description>                  
                 </Card.Header>
+            </div>
                 <!-- <div on:click={jumpDataList}> -->
                 <div>
                     <Card.Content class="flex justify-between">

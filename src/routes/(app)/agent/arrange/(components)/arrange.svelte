@@ -1,3 +1,11 @@
+<script lang="ts" context="module">
+    import { z } from "zod";
+    export const formSchema = z.object({
+      marketing_emails: z.boolean().default(false).optional(),
+      security_emails: z.boolean().default(true)
+    });
+    export type FormSchema = typeof formSchema;
+</script>
 <script lang="ts">
     import * as Resizable from "$lib/components/ui/resizable/index.js";
     import { ScrollArea } from "$lib/components/ui/scroll-area/index.js";
@@ -9,13 +17,16 @@
     import { MessageSquareText } from 'lucide-svelte';
     import { SquareKanban } from 'lucide-svelte';
     import * as Table from "$lib/components/ui/table/index.js";
-	import { datalists, invoices } from "../data";
+	import { datalists, frameworks, invoices, tools } from "../data";
     import { Switch } from "$lib/components/ui/switch";
     import Plus from 'lucide-svelte/icons/plus';
     import { Trash2 } from 'lucide-svelte';
     import { Settings } from 'lucide-svelte';
     import { SquareMenu } from 'lucide-svelte';
     import { Book } from 'lucide-svelte';
+    import * as Select from "$lib/components/ui/select/index.js";
+    import { Bot } from 'lucide-svelte';
+    import { SendHorizontal } from 'lucide-svelte';
 </script>
    
 <div class="w-screen h-screen px-2">
@@ -23,6 +34,13 @@
     <div class="flex items-center">
         <h3 class="ml-2 font-semibold"> 编排</h3>
     </div>
+    <div>
+        <Button size="sm" variant="outline">
+            Agent设置
+        </Button>
+        <Button size="sm" variant="outline">
+            llama3:8b
+        </Button>
     <Sheet.Root>
         <Sheet.Trigger>
             <Button size="sm">
@@ -55,11 +73,12 @@
             <!-- button over -->
         </Sheet.Content>
     </Sheet.Root>
+</div>
 </header>
 <div class=" h-5/6 w-full bg-slate-50 p-4">
     <Resizable.PaneGroup direction="horizontal" class=" w-screen rounded-lg  ">
         <Resizable.Pane defaultSize={50}>
-            <ScrollArea class="h-full w-full rounded-md border">
+            <ScrollArea class="h-full w-full rounded-md ">
                 <div class="grid w-full gap-1.5 p-4 bg-white">
                     <div class="flex items-center ">
                         <SquareKanban />
@@ -68,7 +87,7 @@
                     <Textarea placeholder="Type your message here."class="h-48" />
                 </div>
                 <!-- ----变量------ -->
-                <div class="grid w-full gap-1.5 p-4 bg-white mt-4">
+                <div class="grid w-full gap-1.5 p-4 bg-white mt-4 border rounded-lg">
                     <div class="flex items-center justify-between">
                         <div class="flex items-center">
                             <MessageSquareText />
@@ -106,7 +125,7 @@
                       </Table.Root>
                 </div>
                 <!----------上下文----------->
-                <div class="grid w-full gap-1.5 p-4 bg-white mt-4">
+                <div class="grid w-full gap-1.5 p-4 bg-white mt-4 border rounded-lg">
                     <div class="flex items-center justify-between">
                         <div class="flex items-center">
                             <SquareMenu />
@@ -138,46 +157,191 @@
                 </div>
 
                 <!----------工具----------->
-                <div class="grid w-full gap-1.5 p-4 bg-white mt-4">
+                <div class="grid w-full gap-1.5 p-4 bg-white mt-4 border rounded-lg">
                     <div class="flex items-center justify-between">
                         <div class="flex items-center">
                             <SquareMenu />
-                            <Label for="message"class="font-semibold ml-1">上下文</Label>
+                            <Label for="message"class="font-semibold ml-1">工具</Label>
                         </div>
+                        <div>
+                        <Label class="mb-2 mr-2">
+                            2/2启用
+                        </Label>
                         <Button size="sm" variant="outline">
                             <Plus size="18px"/>
                             <p class="font-semibold text-xs">添加</p>
                         </Button>
                     </div>
+                    </div>
                     <div class="border rounded-lg">
+                        <Table.Root>
+                            <Table.Body>
+                              {#each tools as tool, i (i)}
+                                <Table.Row>
+                                  <Table.Cell class="font-medium w-[200px]">
+                                    <div class="flex font-medium">
+                                        <Book class="mr-4"/>{tool.toolName}
+                                    </div>
+                                </Table.Cell>
+                                <Table.Cell class="text-right">
+                                    <Switch />
+                                </Table.Cell>
+                                </Table.Row>
+                              {/each}
+                            </Table.Body>
+                          </Table.Root>
+                    </div>
+                </div>
+                <!----------对话开场白----------->
+                <div class="grid w-full gap-1.5 p-4 bg-white mt-4 border rounded-lg">
+                    <div class="flex items-center justify-between">
+                        <div class="flex items-center">
+                            <SquareMenu />
+                            <Label for="message"class="font-semibold ml-1">对话开场白</Label>
+                        </div>
+                        <Button size="sm" variant="outline">
+                            <Plus size="18px"/>
+                            <p class="font-semibold text-xs">编辑</p>
+                        </Button>
+                    </div>
+                    <div class="border rounded-lg">
+                        <Textarea placeholder="Type your message here."class="h-60" />
+                    </div>
+                </div>
+                <!---------------------->
+            <div class="grid w-full gap-1.5 p-4 bg-white mt-4 border rounded-lg">
+                <div class="border rounded-lg">
                     <Table.Root>
-                        <Table.Body>
-                          {#each datalists as datalist, i (i)}
+                        <Table.Body>                        
                             <Table.Row>
-                              <Table.Cell class="font-medium w-[135px]">
-                                <div class="flex justify-between font-medium">
-                                    <Book />{datalist.dataName}
+                              <Table.Cell class="font-medium w-[160px]">
+                                <div class="flex justify-between  font-semibold">
+                                    <Book />下一步问题建议
                                 </div>
                             </Table.Cell>
                               <Table.Cell class="text-right">
-                                {datalist.dataAmount}
+                                <Label class="mb-2 mr-2 text-slate-400">回答结束后系统会给出3个建议</Label>
+                                <Switch />
                             </Table.Cell>
-                            </Table.Row>
-                          {/each}
+                            </Table.Row>                       
                         </Table.Body>
                       </Table.Root>
                     </div>
                 </div>
+
+                <!-- ------------------------ -->
+                <div class="grid w-full gap-1.5 p-4 bg-white mt-4 border rounded-lg">
+                    <div class="border rounded-lg">
+                        <Table.Root>
+                            <Table.Body>                        
+                                <Table.Row>
+                                  <Table.Cell class="font-medium w-[160px]">
+                                    <div class="flex font-semibold">
+                                        <Book class="mr-2"/>引用和归属
+                                    </div>
+                                </Table.Cell>
+                                  <Table.Cell class="text-right">
+                                    <Label class="mb-2 mr-2 text-slate-400">回答结束后系统会给出3个建议</Label>
+                                    <Switch />
+                                </Table.Cell>
+                                </Table.Row>                       
+                            </Table.Body>
+                          </Table.Root>
+                        </div>
+                    </div>
+
+                    <!-- ------------------------ -->
+                <div class="grid w-full gap-1.5 p-4 bg-white mt-4 border rounded-lg">
+                    <div class="border rounded-lg ">
+                        <Table.Root>
+                            <Table.Body>                        
+                                <Table.Row>
+                                  <Table.Cell class="font-medium w-[160px]">
+                                    <div class="flex font-semibold">
+                                        <Book class="mr-2"/>标注回复
+                                    </div>
+                                </Table.Cell>
+                                  <Table.Cell class="text-right">
+                                <div class="flex justify-end">
+                                    <Button size="default" variant="outline" class="w-24 mr-2">
+                                        <Plus size="15px"/>
+                                        <p class="font-semibold text-xs">参数设置</p>
+                                    </Button>
+                                    <Button size="sm" variant="outline" class="w-24">
+                                        <Plus size="15px"/>
+                                        <p class="font-semibold text-xs">标注管理</p>
+                                    </Button>
+                                </div>
+                                </Table.Cell>
+                                </Table.Row>                       
+                            </Table.Body>
+                          </Table.Root>
+                        </div>
+                    </div>
+
                 
             </ScrollArea>
         </Resizable.Pane>
        
         <Resizable.Pane defaultSize={50}>
-            <div class="flex items-center justify-center p-6">
-                <span class="font-semibold">One</span>
-              </div>
+            <ScrollArea class="h-full w-full rounded-md ">
+            <div class="grid  gap-1.5 p-4 bg-white mx-2 border rounded-lg">
+                <div class="flex items-center justify-between">
+                    <div class="flex items-center">
+                        <SquareMenu />
+                        <Label for="message"class="font-semibold ml-1">调试与预览</Label>
+                    </div>
+                    <Button size="sm" variant="outline">
+                        <Plus size="18px"/>
+                        <p class="font-semibold text-xs">重新开始</p>
+                    </Button>
+                </div>
+                <div class="border rounded-lg">
+                    <form>
+                        <div class="grid  m-5 items-center gap-4">
+                        <Label class="font-semibold">用户输入</Label>
+                          <div class="flex flex-col space-y-1.5">
+                            <Label for="name" class="font-semibold">你的目的地是哪里?</Label>
+                            <Input id="name" placeholder="你的目的地是哪里?(可选)" />
+                          </div>
+                          <div class="flex flex-col space-y-1.5">
+                            <Label for="name" class="font-semibold">计划旅行多少天?</Label>
+                            <Input id="name" placeholder="计划旅行多少天?(可选)" />
+                          </div>
+                          <div class="flex flex-col space-y-1.5">
+                            <Label for="framework" class="font-semibold">预算大概多少钱</Label>
+                            <Select.Root>
+                              <Select.Trigger id="framework">
+                                <Select.Value placeholder="2000" />
+                              </Select.Trigger>
+                              <Select.Content>
+                                {#each frameworks as framework}
+                                  <Select.Item value={framework.value} label={framework.label}
+                                    >{framework.label}</Select.Item
+                                  >
+                                {/each}
+                              </Select.Content>
+                            </Select.Root>
+                          </div>
+                        </div>
+                      </form>
+                </div>
+                <!-- Agent对话 -->
+                <div class="flex mt-4">
+                    <Bot/>
+                    <div class="border ml-3 rounded-lg w-[480px] h-52 p-4">
+                        <Label class="">
+                            <p class="text-justify ...">欢迎来到个性化服务之旅,由顾问为您护航...</p>
+                        </Label>
+                    </div>
+                </div>
+                <div class="flex  w-[500px] mt-2">
+                    <Input/>
+                    <div class=" flex border-y border-r rounded-r-lg w-12  p-2 "><SendHorizontal/></div>
+                </div>               
+            </div>
+        </ScrollArea>
         </Resizable.Pane>
       </Resizable.PaneGroup>
-</div>
-
+    </div>
 </div>

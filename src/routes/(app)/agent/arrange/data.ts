@@ -26,4 +26,29 @@ export const invoices = [
     }
   ];
 
-  
+  export const tools = [
+    {
+        toolName:"WikipediaSearch"
+    },
+    {
+        toolName:"WebScraper"
+    }
+];
+export const frameworks = [
+    {
+        value: "sveltekit",
+        label: "2000"
+      },
+      {
+        value: "next",
+        label: "3000"
+      },
+      {
+        value: "astro",
+        label: "4000"
+      },
+      {
+        value: "nuxt",
+        label: "5000"
+      }
+];
