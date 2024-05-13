@@ -33,7 +33,7 @@
             <div class="space-y-1.5 mt-2">
                 <!-- 取个名字 -->
                 <div class="mb-4">
-                    <label class="text-sm font-semibold">取个名字</label>
+                    <Label class="text-sm font-semibold">取个名字</Label>
                     <div class=" flex items-center mt-2">
                       <Bot class="border-2 h-10 w-10 rounded-md" />
                      <Input id="name" placeholder="文件夹名称" class="w-[285px] ml-2" />
