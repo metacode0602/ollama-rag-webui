@@ -41,6 +41,7 @@
     import * as Dialog from "$lib/components/ui/dialog";
     import { buttonVariants } from "$lib/components/ui/button/index.js";
     import { Repeat2 } from 'lucide-svelte';
+    import { Search } from 'lucide-svelte';
 </script>
    
 <div class="w-screen h-screen px-2">
@@ -314,13 +315,48 @@
                             <Label for="message"class="font-semibold ml-1">工具</Label>
                         </div>
                         <div>
-                        <Label class="mb-2 mr-2">
+                        <Label class="mb-2 mr-2 " style="position:relative;top:-5px">
                             2/2启用
                         </Label>
-                        <Button size="sm" variant="outline">
+                        <Dialog.Root>
+                            <Dialog.Trigger class={buttonVariants({ variant: "outline" })}
+                              > <Plus size="18px"/>
+                              <p class="font-semibold text-xs">添加</p>
+                              </Dialog.Trigger>
+                            <Dialog.Content class="w-3/4 h-screen">
+
+                                <Resizable.PaneGroup direction="horizontal" class="w-full rounded-lg ">
+                                    <Resizable.Pane defaultSize={50}>
+                                      <div class="flex item-center my-[20px] relative justify-center">
+                                        <Search class="absolute left-2 bottom-2"/>
+                                        <Input class="pl-[40px] absolute; box-sizing: border-box "placeholder="搜索"/>
+                                      </div>
+                                      <div class="bg-slate-400 w-64 h-12"></div>
+                                    </Resizable.Pane>
+                                    <Resizable.Handle />
+                                    <Resizable.Pane defaultSize={50}>
+                                      <Resizable.PaneGroup direction="vertical">
+                                        <Resizable.Pane defaultSize={15}>
+                                          <div class="flex h-full items-center justify-center p-6">
+                                            <span class="font-semibold">Two</span>
+                                          </div>
+                                        </Resizable.Pane>
+                                        <Resizable.Handle />
+                                        <Resizable.Pane defaultSize={85}>
+                                          <div class="flex h-full items-center justify-center p-6">
+                                            <span class="font-semibold">Three</span>
+                                          </div>
+                                        </Resizable.Pane>
+                                      </Resizable.PaneGroup>
+                                    </Resizable.Pane>
+                                  </Resizable.PaneGroup>
+                            </Dialog.Content>
+                          </Dialog.Root>
+
+                        <!-- <Button size="sm" variant="outline">
                             <Plus size="18px"/>
                             <p class="font-semibold text-xs">添加</p>
-                        </Button>
+                        </Button> -->
                     </div>
                     </div>
                     <div class="border rounded-lg">
