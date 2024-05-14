@@ -27,24 +27,119 @@
     import * as Select from "$lib/components/ui/select/index.js";
     import { Bot } from 'lucide-svelte';
     import { SendHorizontal } from 'lucide-svelte';
+    import { LayoutGrid } from 'lucide-svelte';
+    import { PenLine } from 'lucide-svelte';
+    import { Text } from 'lucide-svelte';
+    import { MessageCircleMore } from 'lucide-svelte';
+    import { Globe } from 'lucide-svelte';
+    import { RefreshCw } from 'lucide-svelte';
+    import { ChevronDown } from 'lucide-svelte';
+    import { Settings2 } from 'lucide-svelte';
+    import * as Popover from "$lib/components/ui/popover/index.js";
+    import { Slider } from "$lib/components/ui/slider/index.js";
+    import { Badge } from "$lib/components/ui/badge/index.js";
+    import * as Dialog from "$lib/components/ui/dialog";
 </script>
    
 <div class="w-screen h-screen px-2">
-    <header class="flex items-center justify-between py-3 px-4 ">
+    <header class="flex  justify-between py-3 px-4 ">
     <div class="flex items-center">
         <h3 class="ml-2 font-semibold"> 编排</h3>
     </div>
     <div>
-        <Button size="sm" variant="outline">
+        <Button size="sm" variant="outline"class="w-36 ">
+            <Settings size="18px"/>
             Agent设置
         </Button>
-        <Button size="sm" variant="outline">
-            llama3:8b
-        </Button>
+        <Popover.Root portal={null}>
+            <Popover.Trigger asChild let:builder>
+              <Button builders={[builder]} size="sm" variant="outline" class="w-44 ">
+                <Bot size="18px"/>
+                <p>llama3:8b</p>
+                <div class="w-12 h-6 border rounded-md mx-1">
+                <p>CHAT</p>
+                </div>
+            <Settings2 size="18px"/>
+            </Button>
+            </Popover.Trigger>
+            <Popover.Content class="w-[550px]">
+              <div class="grid gap-4">
+                <div class="flex justify-between items-center space-y-2">
+                  <h4 class="font-semibold leading-none">模型</h4>
+                  <div>
+                    <Button size="sm" variant="outline" class="w-44 ">
+                        <Bot size="18px"/>
+                        <p>llama3:8b</p>
+                        <div class="w-12 h-6 border rounded-md mx-2">
+                        <p>CHAT</p>
+                        </div>
+                        <ChevronDown size="18px"/>
+                    </Button>
+                  </div>
+                </div>
+                <p class="font-semibold">参数</p>
+                <div class="grid gap-2">
+                  <div class="flex justify-between items-center gap-4 my-3">
+                    <div class="flex items-center space-x-2 w-56">
+                        <Label for="airplane-mode">Temperatrue</Label>
+                        <Switch id="airplane-mode" />                       
+                      </div>
+                      <div class="flex justify-between w-full">
+                        <Slider value={[50]} max={100} step={1} class="max-w-[80%]" />
+                        <Badge>0.5</Badge>
+                      </div>                     
+                  </div>
+                  <div class="flex justify-between items-center gap-4 my-3">
+                    <div class="flex items-center space-x-2 w-56">
+                        <Label for="airplane-mode">Top P</Label>
+                        <Switch id="airplane-mode" />
+                      </div>
+                      <div class="flex justify-between w-full">
+                        <Slider value={[50]} max={100} step={1} class="max-w-[80%]" />
+                        <Badge>0.5</Badge>
+                        
+                      </div>
+                  </div>
+                  <div class="flex justify-between items-center gap-4 my-3">
+                    <div class="flex items-center space-x-2 w-56">
+                        <Label for="airplane-mode">Top K</Label>
+                        <Switch id="airplane-mode" />                       
+                      </div>
+                      <div class="flex justify-between w-full">
+                        <Slider value={[50]} max={100} step={1} class="max-w-[80%]" />
+                        <Badge>3</Badge>
+                      </div>
+                  </div>
+                  <div class="flex justify-between items-center gap-4 my-3">
+                    <div class="flex items-center space-x-2 w-56">
+                        <Label for="airplane-mode">Num Predict</Label>
+                        <Switch id="airplane-mode" />                       
+                    </div>
+                    <div class="flex justify-between w-full">
+                        <Slider value={[50]} max={100} step={1} class="max-w-[80%]" />
+                        <Badge>45</Badge>
+                    </div>
+                  </div>
+                  <div class="flex justify-between items-center gap-4 my-3">
+                    <div class="flex items-center space-x-2 w-56">
+                        <Label for="airplane-mode">Mirostat Eta</Label>
+                        <Switch id="airplane-mode" />                       
+                    </div>
+                    <div class="flex justify-between w-full">
+                        <Slider value={[50]} max={100} step={1} class="max-w-[80%]" />
+                        <Badge>45</Badge>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </Popover.Content>
+          </Popover.Root>
+       
     <Sheet.Root>
         <Sheet.Trigger>
-            <Button size="sm">
-                发布
+            <Button size="sm">               
+                <p class="mx-2">发布</p>
+                <ChevronDown size="17px"/>               
             </Button>
         </Sheet.Trigger>
         <Sheet.Content>
@@ -81,7 +176,7 @@
             <ScrollArea class="h-full w-full rounded-md ">
                 <div class="grid w-full gap-1.5 p-4 bg-white">
                     <div class="flex items-center ">
-                        <SquareKanban />
+                        <MessageSquareText />
                         <Label for="message"class="font-semibold ml-1">提示词</Label>
                     </div>
                     <Textarea placeholder="Type your message here."class="h-48" />
@@ -90,7 +185,7 @@
                 <div class="grid w-full gap-1.5 p-4 bg-white mt-4 border rounded-lg">
                     <div class="flex items-center justify-between">
                         <div class="flex items-center">
-                            <MessageSquareText />
+                            <SquareKanban />                           
                             <Label for="message"class="font-semibold ml-1">变量</Label>
                         </div>
                         <Button size="sm" variant="outline">
@@ -160,7 +255,7 @@
                 <div class="grid w-full gap-1.5 p-4 bg-white mt-4 border rounded-lg">
                     <div class="flex items-center justify-between">
                         <div class="flex items-center">
-                            <SquareMenu />
+                            <LayoutGrid />
                             <Label for="message"class="font-semibold ml-1">工具</Label>
                         </div>
                         <div>
@@ -180,7 +275,7 @@
                                 <Table.Row>
                                   <Table.Cell class="font-medium w-[200px]">
                                     <div class="flex font-medium">
-                                        <Book class="mr-4"/>{tool.toolName}
+                                        <Globe class="mr-4"/>{tool.toolName}
                                     </div>
                                 </Table.Cell>
                                 <Table.Cell class="text-right">
@@ -196,11 +291,11 @@
                 <div class="grid w-full gap-1.5 p-4 bg-white mt-4 border rounded-lg">
                     <div class="flex items-center justify-between">
                         <div class="flex items-center">
-                            <SquareMenu />
+                            <MessageSquareText />
                             <Label for="message"class="font-semibold ml-1">对话开场白</Label>
                         </div>
                         <Button size="sm" variant="outline">
-                            <Plus size="18px"/>
+                            <PenLine size="18px"/>
                             <p class="font-semibold text-xs">编辑</p>
                         </Button>
                     </div>
@@ -216,7 +311,7 @@
                             <Table.Row>
                               <Table.Cell class="font-medium w-[160px]">
                                 <div class="flex justify-between  font-semibold">
-                                    <Book />下一步问题建议
+                                    <MessageCircleMore />下一步问题建议
                                 </div>
                             </Table.Cell>
                               <Table.Cell class="text-right">
@@ -237,7 +332,7 @@
                                 <Table.Row>
                                   <Table.Cell class="font-medium w-[160px]">
                                     <div class="flex font-semibold">
-                                        <Book class="mr-2"/>引用和归属
+                                        <Text class="mr-2"/>引用和归属
                                     </div>
                                 </Table.Cell>
                                   <Table.Cell class="text-right">
@@ -258,7 +353,7 @@
                                 <Table.Row>
                                   <Table.Cell class="font-medium w-[160px]">
                                     <div class="flex font-semibold">
-                                        <Book class="mr-2"/>标注回复
+                                        <MessageSquareText class=mr-2/>标注回复
                                     </div>
                                 </Table.Cell>
                                   <Table.Cell class="text-right">
@@ -291,8 +386,8 @@
                         <SquareMenu />
                         <Label for="message"class="font-semibold ml-1">调试与预览</Label>
                     </div>
-                    <Button size="sm" variant="outline">
-                        <Plus size="18px"/>
+                    <Button size="sm" variant="outline" class="mb-2">
+                        <RefreshCw size="18px"/>
                         <p class="font-semibold text-xs">重新开始</p>
                     </Button>
                 </div>
@@ -309,7 +404,7 @@
                             <Input id="name" placeholder="计划旅行多少天?(可选)" />
                           </div>
                           <div class="flex flex-col space-y-1.5">
-                            <Label for="framework" class="font-semibold">预算大概多少钱</Label>
+                            <Label for="framework" class="font-semibold">预算大概多少钱?</Label>
                             <Select.Root>
                               <Select.Trigger id="framework">
                                 <Select.Value placeholder="2000" />
