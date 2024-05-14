@@ -233,100 +233,134 @@
 						<!-- 取个名字 over -->
 						<Textarea placeholder="Type your message here." class="h-48" />
 
-					</div>
-					<!-- button -->
-					<Sheet.Footer>
-						<Sheet.Close asChild let:builder>
-							<Button builders={[builder]} type="submit" class=" mt-6  mx-16 w-64">确认创建</Button>
-						</Sheet.Close>
-					</Sheet.Footer>
-					<!-- button over -->
-				</Sheet.Content>
-			</Sheet.Root>
-		</div>
-	</header>
-	<div class=" h-5/6 w-full bg-white border rounded-lg p-4">
-		<Resizable.PaneGroup direction="horizontal" class=" w-screen rounded-lg  ">
-			<Resizable.Pane defaultSize={50}>
-				<ScrollArea class="h-full w-full rounded-md ">
-					<div class="grid w-full gap-1.5 p-4 bg-white">
-						<div class="flex items-center ">
-							<MessageSquareText />
-							<Label for="message" class="font-semibold ml-1">提示词</Label>
-						</div>
-						<Textarea placeholder="Type your message here." class="h-48" />
-					</div>
-					<!-- ----变量------ -->
-					<div class="grid w-full gap-1.5 p-4 bg-white mt-4 border rounded-lg">
-						<div class="flex items-center justify-between">
-							<div class="flex items-center">
-								<SquareKanban />
-								<Label for="message" class="font-semibold ml-1">变量</Label>
-							</div>
-							<Button size="sm" variant="outline">
-								<Plus size="18px" />
-								<p class="font-semibold text-xs">添加</p>
-							</Button>
-						</div>
-						<Table.Root>
-							<Table.Header>
-								<Table.Row>
-									<Table.Head class="w-[100px] font-semibold text-gray-950">变量KEY</Table.Head>
-									<Table.Head class="font-semibold text-gray-950">字段名称</Table.Head>
-									<Table.Head class="font-semibold text-gray-950">可选</Table.Head>
-									<Table.Head class="text-right font-semibold text-gray-950">操作</Table.Head>
-								</Table.Row>
-							</Table.Header>
-							<Table.Body>
-								{#each invoices as invoice, i (i)}
-									<Table.Row>
-										<Table.Cell class="font-medium w-28">{invoice.invoice}</Table.Cell>
-										<Table.Cell>{invoice.paymentStatus}</Table.Cell>
-										<Table.Cell>
-											<Switch />
-										</Table.Cell>
-										<Table.Cell class="text-justify">
-											<div class="flex justify-end">
-												<Settings size="18px" class="mr-2" />
-												<Trash2 size="18px" />
-											</div>
-										</Table.Cell>
-									</Table.Row>
-								{/each}
-							</Table.Body>
-						</Table.Root>
-					</div>
-					<!----------上下文----------->
-					<div class="grid w-full gap-1.5 p-4 bg-white mt-4 border rounded-lg">
-						<div class="flex items-center justify-between">
-							<div class="flex items-center">
-								<SquareMenu />
-								<Label for="message" class="font-semibold ml-1">上下文</Label>
-							</div>
-							<Button size="sm" variant="outline">
-								<Plus size="18px" />
-								<p class="font-semibold text-xs">添加</p>
-							</Button>
-						</div>
-						<div class="border rounded-lg">
-							<Table.Root>
-								<Table.Body>
-									{#each datalists as datalist, i (i)}
-										<Table.Row>
-											<Table.Cell class="font-medium w-[135px]">
-												<div class="flex justify-between font-medium">
-													<Book />{datalist.dataName}
-												</div>
-											</Table.Cell>
-											<Table.Cell class="text-right">
-												{datalist.dataAmount}
-											</Table.Cell>
-										</Table.Row>
-									{/each}
-								</Table.Body>
-							</Table.Root>
-						</div>
-					</div>
+            </div>
+            <!-- button -->
+            <Sheet.Footer>
+                <Sheet.Close asChild let:builder>
+                    <Button builders={[builder]} type="submit" class=" mt-6  mx-16 w-64">确认创建</Button>
+                </Sheet.Close>
+            </Sheet.Footer>
+            <!-- button over -->
+        </Sheet.Content>
+    </Sheet.Root>
+</div>
+</header>
+<div class=" h-5/6 w-full bg-white border rounded-lg p-4">
+    <Resizable.PaneGroup direction="horizontal" class=" w-screen rounded-lg  ">
+        <Resizable.Pane defaultSize={50}>
+            <ScrollArea class="h-full w-full rounded-md ">
+                <div class="grid w-full gap-1.5 p-4 bg-white">
+                    <div class="flex items-center ">
+                        <MessageSquareText />
+                        <Label for="message"class="font-semibold ml-1">提示词</Label>
+                    </div>
+                    <Textarea placeholder="Type your message here."class="h-48" />
+                </div>
+                <!-- ----变量------ -->
+                <div class="grid w-full gap-1.5 p-4 bg-white mt-4 border rounded-lg">
+                    <div class="flex items-center justify-between">
+                        <div class="flex items-center">
+                            <SquareKanban />                           
+                            <Label for="message"class="font-semibold ml-1">变量</Label>
+                        </div>
+                        <Button size="sm" variant="outline">
+                            <Plus size="18px"/>
+                            <p class="font-semibold text-xs">添加</p>
+                        </Button>
+                    </div>
+                    <Table.Root>
+                        <Table.Header>
+                          <Table.Row>
+                            <Table.Head class="w-[100px] font-semibold text-gray-950">变量KEY</Table.Head>
+                            <Table.Head class="font-semibold text-gray-950">字段名称</Table.Head>
+                            <Table.Head class="font-semibold text-gray-950">可选</Table.Head>
+                            <Table.Head class="text-right font-semibold text-gray-950">操作</Table.Head>
+                          </Table.Row>
+                        </Table.Header>
+                        <Table.Body>
+                          {#each invoices as invoice, i (i)}
+                            <Table.Row>
+                              <Table.Cell class="font-medium w-28">{invoice.invoice}</Table.Cell>
+                              <Table.Cell>{invoice.paymentStatus}</Table.Cell>
+                              <Table.Cell><Switch /></Table.Cell>
+                              <Table.Cell class="text-justify">
+                                <div class="flex justify-end">
+                                    <Settings size="18px" class="mr-2"/>
+                                    <Trash2 size="18px"/>
+                                </div>
+                            </Table.Cell>
+                            </Table.Row>
+                          {/each}
+                        </Table.Body>
+                      </Table.Root>
+                </div>
+                <!----------上下文----------->
+                <div class="grid w-full gap-1.5 p-4 bg-white mt-4 border rounded-lg">
+                    <div class="flex items-center justify-between">
+                        <div class="flex items-center">
+                            <SquareMenu />
+                            <Label for="message"class="font-semibold ml-1">上下文</Label>
+                        </div>
+
+                        <Dialog.Root>
+                            <Dialog.Trigger class={buttonVariants({ variant: "outline" })}
+                              ><Plus size="18px"/>
+                              <p class="font-semibold text-xs">添加</p>
+                              </Dialog.Trigger>
+                            <Dialog.Content class="sm:max-w-[425px]">
+                              <Dialog.Header>
+                                <Dialog.Title class="font-semibold">选择引用的知识库</Dialog.Title>
+                              </Dialog.Header>
+                              <div class="border rounded-lg">
+                                <Table.Root>
+                                    <Table.Body>
+                                      {#each datalists as datalist, i (i)}
+                                        <Table.Row>
+                                          <Table.Cell class="font-medium w-[135px]">
+                                            <div class="flex justify-between font-medium">
+                                                <Book />{datalist.dataName}
+                                            </div>
+                                        </Table.Cell>
+                                          <Table.Cell class="text-right">
+                                            {datalist.dataAmount}
+                                        </Table.Cell>
+                                        </Table.Row>
+                                      {/each}
+                                    </Table.Body>
+                                  </Table.Root>
+                                </div>
+                            <div class="flex justify-between">
+                                <div>
+                                    <Label class="text-xs text-slate-300">1个知识库被选用</Label>
+                                </div>
+                              <div>
+                                <Button type="submit">添加</Button>
+                            </div>
+                        </div>
+                            </Dialog.Content>
+                          </Dialog.Root>
+
+
+                    </div>
+                    <div class="border rounded-lg">
+                    <Table.Root>
+                        <Table.Body>
+                          {#each datalists as datalist, i (i)}
+                            <Table.Row>
+                              <Table.Cell class="font-medium w-[135px]">
+                                <div class="flex justify-between font-medium">
+                                    <Book />{datalist.dataName}
+                                </div>
+                            </Table.Cell>
+                              <Table.Cell class="text-right">
+                                {datalist.dataAmount}
+                            </Table.Cell>
+                            </Table.Row>
+                          {/each}
+                        </Table.Body>
+                      </Table.Root>
+                    </div>
+                </div>
 
 					<!----------工具----------->
 					<div class="grid w-full gap-1.5 p-4 bg-white mt-4 border rounded-lg">
@@ -513,34 +547,61 @@
 						</div>
 					</div>
 
-					<!-- ------------------------ -->
-					<div class="grid w-full gap-1.5 p-4 bg-white mt-4 border rounded-lg">
-						<div class="border rounded-lg ">
-							<Table.Root>
-								<Table.Body>
-									<Table.Row>
-										<Table.Cell class="font-medium w-[160px]">
-											<div class="flex font-semibold">
-												<MessageSquareText class=mr-2/>标注回复
-											</div>
-										</Table.Cell>
-										<Table.Cell class="text-right">
-											<div class="flex justify-end">
-												<Button size="default" variant="outline" class="w-24 mr-2">
-													<Plus size="15px" />
-													<p class="font-semibold text-xs">参数设置</p>
-												</Button>
-												<Button size="default" variant="outline" class="w-24">
-													<Plus size="15px" />
-													<p class="font-semibold text-xs">标注管理</p>
-												</Button>
-											</div>
-										</Table.Cell>
-									</Table.Row>
-								</Table.Body>
-							</Table.Root>
-						</div>
-					</div>
+                    <!-- ------------------------ -->
+                <div class="grid w-full gap-1.5 p-4 bg-white mt-4 border rounded-lg">
+                    <div class="border rounded-lg ">
+                        <Table.Root>
+                            <Table.Body>                        
+                                <Table.Row>
+                                  <Table.Cell class="font-medium w-[160px]">
+                                    <div class="flex font-semibold">
+                                        <MessageSquareText class=mr-2/>标注回复
+                                    </div>
+                                </Table.Cell>
+                                  <Table.Cell class="text-right">
+                                <div class="flex justify-end">
+                                    <Dialog.Root>
+                                        <Dialog.Trigger class={buttonVariants({ variant: "outline" })}
+                                          ><Plus size="15px"/>
+                                          <p class="font-semibold text-xs">参数设置</p>
+                                          </Dialog.Trigger>
+                                        <Dialog.Content class="sm:max-w-[425px]">
+                                          <Dialog.Header>
+                                            <Dialog.Title class="font-semibold">标注回复设置</Dialog.Title>
+                                          </Dialog.Header>
+                                          <div>
+                                            <h3>分数阈值</h3>
+                                            <div class="flex justify-between w-full">
+                                                <Slider value={[50]} max={100} step={1} class="max-w-[90%]" />
+                                                <p>5</p>
+                                              </div>
+                                          </div>
+                                        <div class="flex justify-between">
+                                            <div>
+                                                <Label class="text-xs text-slate-300">1个知识库被选用</Label>
+                                            </div>
+                                          <div>
+                                            <Button type="submit">添加</Button>
+                                        </div>
+                                    </div>
+                                        </Dialog.Content>
+                                      </Dialog.Root>
+
+                                    <!-- <Button size="default" variant="outline" class="w-24 mr-2">
+                                        <Plus size="15px"/>
+                                        <p class="font-semibold text-xs">参数设置</p>
+                                    </Button> -->
+                                    <Button size="default" variant="outline" class="w-24">
+                                        <Plus size="15px"/>
+                                        <p class="font-semibold text-xs">标注管理</p>
+                                    </Button>
+                                </div>
+                                </Table.Cell>
+                                </Table.Row>                       
+                            </Table.Body>
+                          </Table.Root>
+                        </div>
+                    </div>
 
 
 				</ScrollArea>

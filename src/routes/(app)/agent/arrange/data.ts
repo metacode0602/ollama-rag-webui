@@ -23,7 +23,11 @@ export const invoices = [
     {
         dataName:"运营知识库",
         dataAmount:"55,513词 2块文本"
-    }
+    },
+    {
+      dataName:"商户知识库",
+      dataAmount:"0词 0文本"
+  }
   ];
 
   export const tools = [
