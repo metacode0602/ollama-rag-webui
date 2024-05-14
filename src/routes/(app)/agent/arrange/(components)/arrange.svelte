@@ -42,6 +42,9 @@
     import { buttonVariants } from "$lib/components/ui/button/index.js";
     import { Repeat2 } from 'lucide-svelte';
     import { Search } from 'lucide-svelte';
+    import { Checkbox } from "$lib/components/ui/checkbox/index.js";
+    import { SquareUser } from 'lucide-svelte';
+    let checked = false;
 </script>
    
 <div class="w-screen h-screen px-2">
@@ -490,23 +493,41 @@
                                           ><Plus size="15px"/>
                                           <p class="font-semibold text-xs">参数设置</p>
                                           </Dialog.Trigger>
-                                        <Dialog.Content class="sm:max-w-[425px]">
+                                        <Dialog.Content class="sm:max-w-[550px]">
                                           <Dialog.Header>
                                             <Dialog.Title class="font-semibold">标注回复设置</Dialog.Title>
                                           </Dialog.Header>
                                           <div>
-                                            <h3>分数阈值</h3>
-                                            <div class="flex justify-between w-full">
-                                                <Slider value={[50]} max={100} step={1} class="max-w-[90%]" />
-                                                <p>5</p>
-                                              </div>
-                                          </div>
-                                        <div class="flex justify-between">
-                                            <div>
-                                                <Label class="text-xs text-slate-300">1个知识库被选用</Label>
+                                            <p class="text-sm">分数阈值</p>
+                                            <div class="flex justify-between w-full mt-2">
+                                                <Slider value={[50]} max={100} step={1} class="max-w-[100%]" />
                                             </div>
+                                            <div class="flex justify-between my-2">
+                                                <Label class="text-xs text-slate-400">0.8容易匹配</Label>
+                                                <Label class="text-xs text-slate-400">1.0精准匹配</Label>
+                                            </div>
+                                            <Label for="message"class="font-semibold ml-1">Embedding 模型</Label>
+                                            <div class="border rounded-lg mt-2">
+                                                <Table.Root>
+                                                    <Table.Body>
+                                                        <Table.Row>
+                                                          <Table.Cell class="font-medium w-[250px]">
+                                                            <div class="flex items-center space-x-2 font-medium">
+                                                                <Bot /><p>mxbai-embed-large:latest</p>
+                                                            </div>
+                                                        </Table.Cell>
+                                                          <Table.Cell class="text-right">
+                                                            ReAct
+                                                        </Table.Cell>
+                                                        </Table.Row>
+                                                    </Table.Body>
+                                                  </Table.Root>
+                                            </div>
+                                            
+                                          </div>
+                                        <div class="flex justify-end">
                                           <div>
-                                            <Button type="submit">添加</Button>
+                                            <Button type="submit">保存</Button>
                                         </div>
                                     </div>
                                         </Dialog.Content>
@@ -516,10 +537,57 @@
                                         <Plus size="15px"/>
                                         <p class="font-semibold text-xs">参数设置</p>
                                     </Button> -->
-                                    <Button size="default" variant="outline" class="w-24">
+
+                                    <!-- <Button size="default" variant="outline" class="w-24">
                                         <Plus size="15px"/>
                                         <p class="font-semibold text-xs">标注管理</p>
-                                    </Button>
+                                    </Button> -->
+
+                                    <div>
+                                        <Dialog.Root>
+                                            <Dialog.Trigger class={buttonVariants({ variant: "outline"})}
+                                             >
+                                            <Plus size="15px"/>
+                                            <p class="font-semibold text-xs">标注管理</p>
+                                             </Dialog.Trigger>
+                                            <Dialog.Content class="sm:max-w-[550px]">
+                                                <Dialog.Header>
+                                                    <Dialog.Title class="font-semibold">添加标注回复</Dialog.Title>
+                                                  </Dialog.Header>
+                                                  <form class="h-[450px]">
+                                                    <div class="flex flex-col space-y-1.5">
+                                                        <Label for="name" class="font-semibold">提问</Label>
+                                                        <div class="flex justify-between items-center">
+                                                            <SquareUser/>
+                                                            <Input id="name" placeholder="输入问题 "class="w-11/12" />
+                                                        </div>
+                                                      </div>
+                                                      <div class="flex flex-col space-y-1.5 my-4">
+                                                        <Label for="name" class="font-semibold">回复</Label>
+                                                        <div class="flex justify-between items-center">
+                                                            <Bot/>
+                                                            <Input id="name" placeholder="输入问题" class="w-11/12"/>
+                                                        </div>
+                                                      </div>
+                                                  </form>
+                                
+                                                  <div class="flex justify-between">
+                                                    <div class="flex items-center space-x-2">
+                                                        <Checkbox id="terms" bind:checked aria-labelledby="terms-label" />
+                                                        <Label
+                                                          id="terms-label"
+                                                          for="terms"
+                                                          class="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
+                                                        >
+                                                          添加下一个标注回复
+                                                        </Label>
+                                                      </div>
+                                                    <Button type="submit">保存</Button>
+                                                </div>
+                                                </Dialog.Content>
+                                              </Dialog.Root>
+                                    </div>
+
                                 </div>
                                 </Table.Cell>
                                 </Table.Row>                       
