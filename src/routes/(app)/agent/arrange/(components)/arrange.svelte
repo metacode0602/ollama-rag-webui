@@ -39,6 +39,8 @@
     import { Slider } from "$lib/components/ui/slider/index.js";
     import { Badge } from "$lib/components/ui/badge/index.js";
     import * as Dialog from "$lib/components/ui/dialog";
+    import { buttonVariants } from "$lib/components/ui/button/index.js";
+    import { Repeat2 } from 'lucide-svelte';
 </script>
    
 <div class="w-screen h-screen px-2">
@@ -47,13 +49,66 @@
         <h3 class="ml-2 font-semibold"> 编排</h3>
     </div>
     <div>
-        <Button size="sm" variant="outline"class="w-36 ">
-            <Settings size="18px"/>
-            Agent设置
-        </Button>
+        <Dialog.Root>
+            <Dialog.Trigger class={buttonVariants({ variant: "outline"})}
+             >
+             <Settings size="18px"/>
+             Agent设置
+             </Dialog.Trigger>
+            <Dialog.Content class="sm:max-w-[450px]">
+                <Dialog.Header>
+                    <Dialog.Title class="font-semibold">Agent设置</Dialog.Title>
+                  </Dialog.Header>
+                  <div class="border rounded-lg">
+                    <Table.Root>
+                        <Table.Body>
+                            <Table.Row>
+                              <Table.Cell class="font-medium w-[200px]">
+                                <div class="flex items-center space-x-2 font-medium">
+                                    <Book /><p>Agent Modle</p>
+                                </div>
+                            </Table.Cell>
+                              <Table.Cell class="text-right">
+                                ReAct
+                            </Table.Cell>
+                            </Table.Row>
+                        </Table.Body>
+                      </Table.Root>
+                    </div>
+
+                    <div class="border rounded-lg">
+                        <Table.Root>
+                            <Table.Body>
+                                <Table.Row>
+                                  <Table.Cell class="font-medium w-[150px]">
+                                    <div class="flex items-center space-x-2  font-medium">
+                                        <Repeat2 /><p>最大迭代次数</p>
+                                    </div>
+                                </Table.Cell>
+                                  <Table.Cell>
+                                    <div class="flex justify-between w-full">
+                                        <Slider value={[50]} max={100} step={1} class="max-w-[90%]" />
+                                        <p>5</p>
+                                      </div>
+                                </Table.Cell>
+                                </Table.Row>
+                            </Table.Body>
+                          </Table.Root>
+                        </div>
+
+                        <div>
+                            <Textarea placeholder="Type your message here." class="h-64"/>
+                        </div>
+                    
+                  <Dialog.Footer>
+                    <Button type="submit">保存</Button>
+                  </Dialog.Footer>
+                </Dialog.Content>
+              </Dialog.Root>
+        
         <Popover.Root portal={null}>
             <Popover.Trigger asChild let:builder>
-              <Button builders={[builder]} size="sm" variant="outline" class="w-44 ">
+              <Button builders={[builder]} variant="outline" class="w-44 ">
                 <Bot size="18px"/>
                 <p>llama3:8b</p>
                 <div class="w-12 h-6 border rounded-md mx-1">
@@ -137,7 +192,7 @@
        
     <Sheet.Root>
         <Sheet.Trigger>
-            <Button size="sm">               
+            <Button size="sm" style="position:relative;top:-5px">               
                 <p class="mx-2">发布</p>
                 <ChevronDown size="17px"/>               
             </Button>
@@ -170,7 +225,7 @@
     </Sheet.Root>
 </div>
 </header>
-<div class=" h-5/6 w-full bg-slate-50 p-4">
+<div class=" h-5/6 w-full bg-white border rounded-lg p-4">
     <Resizable.PaneGroup direction="horizontal" class=" w-screen rounded-lg  ">
         <Resizable.Pane defaultSize={50}>
             <ScrollArea class="h-full w-full rounded-md ">
@@ -362,7 +417,7 @@
                                         <Plus size="15px"/>
                                         <p class="font-semibold text-xs">参数设置</p>
                                     </Button>
-                                    <Button size="sm" variant="outline" class="w-24">
+                                    <Button size="default" variant="outline" class="w-24">
                                         <Plus size="15px"/>
                                         <p class="font-semibold text-xs">标注管理</p>
                                     </Button>
