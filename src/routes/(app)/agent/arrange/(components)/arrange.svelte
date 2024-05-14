@@ -282,10 +282,46 @@
                             <SquareMenu />
                             <Label for="message"class="font-semibold ml-1">上下文</Label>
                         </div>
-                        <Button size="sm" variant="outline">
-                            <Plus size="18px"/>
-                            <p class="font-semibold text-xs">添加</p>
-                        </Button>
+
+                        <Dialog.Root>
+                            <Dialog.Trigger class={buttonVariants({ variant: "outline" })}
+                              ><Plus size="18px"/>
+                              <p class="font-semibold text-xs">添加</p>
+                              </Dialog.Trigger>
+                            <Dialog.Content class="sm:max-w-[425px]">
+                              <Dialog.Header>
+                                <Dialog.Title class="font-semibold">选择引用的知识库</Dialog.Title>
+                              </Dialog.Header>
+                              <div class="border rounded-lg">
+                                <Table.Root>
+                                    <Table.Body>
+                                      {#each datalists as datalist, i (i)}
+                                        <Table.Row>
+                                          <Table.Cell class="font-medium w-[135px]">
+                                            <div class="flex justify-between font-medium">
+                                                <Book />{datalist.dataName}
+                                            </div>
+                                        </Table.Cell>
+                                          <Table.Cell class="text-right">
+                                            {datalist.dataAmount}
+                                        </Table.Cell>
+                                        </Table.Row>
+                                      {/each}
+                                    </Table.Body>
+                                  </Table.Root>
+                                </div>
+                            <div class="flex justify-between">
+                                <div>
+                                    <Label class="text-xs text-slate-300">1个知识库被选用</Label>
+                                </div>
+                              <div>
+                                <Button type="submit">添加</Button>
+                            </div>
+                        </div>
+                            </Dialog.Content>
+                          </Dialog.Root>
+
+                       
                     </div>
                     <div class="border rounded-lg">
                     <Table.Root>
@@ -449,10 +485,37 @@
                                 </Table.Cell>
                                   <Table.Cell class="text-right">
                                 <div class="flex justify-end">
-                                    <Button size="default" variant="outline" class="w-24 mr-2">
+                                    <Dialog.Root>
+                                        <Dialog.Trigger class={buttonVariants({ variant: "outline" })}
+                                          ><Plus size="15px"/>
+                                          <p class="font-semibold text-xs">参数设置</p>
+                                          </Dialog.Trigger>
+                                        <Dialog.Content class="sm:max-w-[425px]">
+                                          <Dialog.Header>
+                                            <Dialog.Title class="font-semibold">标注回复设置</Dialog.Title>
+                                          </Dialog.Header>
+                                          <div>
+                                            <h3>分数阈值</h3>
+                                            <div class="flex justify-between w-full">
+                                                <Slider value={[50]} max={100} step={1} class="max-w-[90%]" />
+                                                <p>5</p>
+                                              </div>
+                                          </div>
+                                        <div class="flex justify-between">
+                                            <div>
+                                                <Label class="text-xs text-slate-300">1个知识库被选用</Label>
+                                            </div>
+                                          <div>
+                                            <Button type="submit">添加</Button>
+                                        </div>
+                                    </div>
+                                        </Dialog.Content>
+                                      </Dialog.Root>
+                                      
+                                    <!-- <Button size="default" variant="outline" class="w-24 mr-2">
                                         <Plus size="15px"/>
                                         <p class="font-semibold text-xs">参数设置</p>
-                                    </Button>
+                                    </Button> -->
                                     <Button size="default" variant="outline" class="w-24">
                                         <Plus size="15px"/>
                                         <p class="font-semibold text-xs">标注管理</p>

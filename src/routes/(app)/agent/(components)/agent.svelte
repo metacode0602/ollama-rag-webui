@@ -10,6 +10,11 @@
 	import { items } from '../data';
     import Plus from 'lucide-svelte/icons/plus';
     import { Textarea } from "$lib/components/ui/textarea/index.js";
+    import { goto } from '$app/navigation';
+
+    function jumpArrange(){
+        goto('/agent/arrange');
+    }
 </script>
 
 <div>
@@ -56,7 +61,7 @@
 
 <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 p-4 m-4 bg-slate-50 h-5/6 rounded-md">
     {#each items as item, i (i)}
-        <div>
+        <div on:click={jumpArrange}>
             <Card.Root class="w-74 hover:bg-gray-200 h-52 overflow-hidden">
             <div class="flex justify-between">
                 <Card.Header class="h-[80px]">
