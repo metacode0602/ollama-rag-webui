@@ -140,13 +140,13 @@
 			<header class="flex items-center justify-between px-6 py-3 border-b font-medium">
 				<h3 class="font-medium w-48">Linux.md(23组)</h3>
 				<Input
-					class="w-56 ml-[450px]"
+					class="w-60 ml-[380px]"					
 					placeholder="搜索数据..."
 					type="text"
 				/>
 				<Popover.Root portal={null}>
 					<Popover.Trigger asChild let:builder>
-					  <Button builders={[builder]}  size="lg">插入</Button>
+					  <Button builders={[builder]}  size="sm">插入</Button>
 					</Popover.Trigger>
 					<Popover.Content class="w-3/5 h-4/5">
 						<Resizable.PaneGroup direction="horizontal" class="min-h-[200px]  rounded-lg border w-full">
@@ -198,7 +198,7 @@
 			<!-- 单挑数据详情 -->
 			<div class="grid grid-cols-3 sm:grid-cols-1 lg:grid-cols-3 gap-4 p-4">				
 				{#each items as item, i (i)}	
-					<div class="w-80">
+					<div class="w-72">
 					<Card.Root>
 						<div class="inline-block ml-1 rounded-lg bg-gray-100 border border-slate-300 text-center text-xs text-slate-400 dark:bg-gray-800 w-12 mt-3">
 							<p>{item.num}</p>
