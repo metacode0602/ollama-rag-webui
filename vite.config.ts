@@ -1,6 +1,7 @@
 import { sveltekit } from '@sveltejs/kit/vite';
 import { defineConfig } from 'vitest/config';
 
+const target_api = "http://172.30.1.130:8080"
 export default defineConfig({
 	plugins: [sveltekit()],
 	test: {
@@ -10,21 +11,26 @@ export default defineConfig({
 		APP_VERSION: JSON.stringify(process.env.npm_package_version)
 	},	
 	server: {
+        host: '0.0.0.0',
+	    fs: {
+	      // Allow serving files from one level up to the project root
+	      allow: ['./static'],
+	    },		
 		proxy: {
 		 '/dev-api': {
-		   target: 'http://172.30.1.130:8080', // 目标后端服务地址
+		   target: target_api, // 目标后端服务地址
 		   changeOrigin: true, // 是否改变请求源
 		   rewrite: (path) => path.replace(/^\/dev-api/, ''), // 重写请求路径
 		},
 		'/c/dev-api': {
-			target: 'http://172.30.1.130:8080', // 目标后端服务地址
+			target: target_api, // 目标后端服务地址
 			changeOrigin: true, // 是否改变请求源
 			rewrite: (path) => {
 				return path.replace(/^\/c\/dev-api/, '')
 			} // 重写请求路径
 		 },			
 		'/api': {
-			target: 'http://172.30.1.130:8080', // 目标后端服务地址
+			target: target_api, // 目标后端服务地址
 			changeOrigin: true, // 是否改变请求源
 			rewrite: (path) => path.replace(/^\/api/, ''), // 重写请求路径
 		 },
