@@ -3,7 +3,7 @@ import type { Icon } from "lucide-svelte";
 import Vercel from "./(components)/icons/vercel.svelte";
 import ICloud from "./(components)/icons/icloud.svelte";
 import Gmail from "./(components)/icons/gmail.svelte";
-import History from "lucide-svelte";
+
 export const mails = [
 	{
 		id: "6c84fb90-12c4-11e1-840d-7b25c5ee775a",
@@ -303,25 +303,25 @@ const day = String(currentDate.getDate()).padStart(2, '0');
 const currentDateString = `${year}-${month}-${day}`;  
 export const invoices = [
     {
-	  icon: "History",
+	//   icon: "History",
       paymentStatus: "[语义检索]Racing car aprays burning fuel into crowed.",
       totalAmount: "$250.00",
       currentDateString // 这里设置为当前年月日 
     },
     {
-	  icon: "History",
+	//   icon: "History",
       paymentStatus: "[语义检索]Racing car aprays burning fuel into crowed.",
       totalAmount: "$150.00",
       currentDateString
     },
     {
-	  icon: "History",
+	//   icon: "History",
       paymentStatus: "[语义检索]Racing car aprays burning fuel into crowed.",
       totalAmount: "$350.00",
       currentDateString
     }, 
     {
-	  icon: "History",
+	//   icon: "History",
       paymentStatus: "[语义检索]Racing car aprays burning fuel into crowed.",
       totalAmount: "$300.00",
       currentDateString

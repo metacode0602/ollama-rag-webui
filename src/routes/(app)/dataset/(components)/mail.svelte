@@ -228,7 +228,7 @@
 						<Table.Body>
 							{#each intents as intent, i (i)}
 							<Table.Row>
-							  <Table.Cell class="font-medium">{intent.icon}</Table.Cell>
+							  <!-- <Table.Cell class="font-medium">{intent.icon}</Table.Cell> -->
 							  <Table.Cell>{intent.paymentStatus}</Table.Cell>
 							  <Table.Cell>{intent.totalAmount}</Table.Cell>
 							  <Table.Cell>{intent.resultStatus}</Table.Cell>
