@@ -1,7 +1,7 @@
 import { sveltekit } from '@sveltejs/kit/vite';
 import { defineConfig } from 'vitest/config';
 
-const target_api = "http://172.30.1.130:8080"
+const target_api = "http://localhost:8080"
 export default defineConfig({
 	plugins: [sveltekit()],
 	test: {
