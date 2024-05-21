@@ -45,6 +45,7 @@
     import { Search } from 'lucide-svelte';
     import { Checkbox } from "$lib/components/ui/checkbox/index.js";
     import { SquareUser } from 'lucide-svelte';
+    import { goto } from '$app/navigation';
     let checked = false;
 	
 
@@ -52,6 +53,10 @@
 	let tabIndex = 0;
 	let toolsList = ['维基百科', 'stab lity', '雅虎财经'];
 	let sidebarToolsIdx = 0;
+
+  function annotateList(){
+      goto('/agent/arrange/list');
+  }
 
 	function tabSwitch(idx) {
 		tabIndex = idx;
@@ -614,13 +619,15 @@
                                         <p class="font-semibold text-xs">参数设置</p>
                                     </Button> -->
 
-                                    <!-- <Button size="default" variant="outline" class="w-24">
-                                        <Plus size="15px"/>
-                                        <p class="font-semibold text-xs">标注管理</p>
-                                    </Button> -->
+                                   
 
                                     <div>
-                                        <Dialog.Root>
+                                       <Button size="default" variant="outline" class="w-24" on:click={annotateList}>
+                                        <Plus size="15px"/>
+                                        <p class="font-semibold text-xs">标注管理</p>
+                                      </Button>
+
+                                        <!-- <Dialog.Root>
                                             <Dialog.Trigger class={buttonVariants({ variant: "outline"})}
                                              >
                                             <Plus size="15px"/>
@@ -661,7 +668,7 @@
                                                     <Button type="submit">保存</Button>
                                                 </div>
                                                 </Dialog.Content>
-                                              </Dialog.Root>
+                                              </Dialog.Root> -->
                                     </div>
 
                                 </div>
@@ -676,9 +683,9 @@
 				</ScrollArea>
 			</Resizable.Pane>
 
-			<Resizable.Pane defaultSize={50}>
+			<Resizable.Pane defaultSize={50} >
 				<ScrollArea class="h-full w-full rounded-md ">
-					<div class="grid  gap-1.5 p-4 bg-white mx-2 border rounded-lg">
+					<div class="grid  gap-1.5 p-4 bg-white mx-2 border rounded-lg relative">
 						<div class="flex items-center justify-between">
 							<div class="flex items-center">
 								<SquareMenu />
@@ -720,15 +727,15 @@
 							</form>
 						</div>
 						<!-- Agent对话 -->
-						<div class="flex mt-4">
+						<div class="flex mt-4 mb-10">
 							<Bot />
-							<div class="border ml-3 rounded-lg w-[480px] h-52 p-4">
+							<div class="border ml-3 rounded-lg w-[480px] h-52 p-4 ">
 								<Label class="">
 									<p class="text-justify ...">欢迎来到个性化服务之旅,由顾问为您护航...</p>
 								</Label>
 							</div>
 						</div>
-						<div class="flex  w-[500px] mt-2">
+						<div class="flex  w-[500px] mt-2  fixed bottom-14 right-10">
 							<Input />
 							<div class=" flex border-y border-r rounded-r-lg w-12  p-2 ">
 								<SendHorizontal />

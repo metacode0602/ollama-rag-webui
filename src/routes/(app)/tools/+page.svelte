@@ -1,8 +1,7 @@
 <script>
-
 	import Tools from "./(components)/tools.svelte";
-
 </script>
-import
 
-<Tools/>
+<div style="width: 100%">
+	<Tools/>
+</div>
