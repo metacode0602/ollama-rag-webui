@@ -8,6 +8,20 @@
 	import { page } from '$app/stores';
 	import { user, chats, settings, showSettings, chatId, tags } from '$lib/stores';
 	import { onMount, getContext } from 'svelte';
+  import * as Tooltip from "$lib/components/ui/tooltip/index.js";
+  import File from "lucide-svelte/icons/file";
+  import Home from "lucide-svelte/icons/home";
+  import LineChart from "lucide-svelte/icons/line-chart";
+  import ListFilter from "lucide-svelte/icons/list-filter";
+  import Ellipsis from "lucide-svelte/icons/ellipsis";
+  import Package from "lucide-svelte/icons/package";
+  import Package2 from "lucide-svelte/icons/package-2";
+  import PanelLeft from "lucide-svelte/icons/panel-left";
+  import CirclePlus from "lucide-svelte/icons/circle-plus";
+  import Search from "lucide-svelte/icons/search";
+  import Settings from "lucide-svelte/icons/settings";
+  import ShoppingCart from "lucide-svelte/icons/shopping-cart";
+  import UsersRound from "lucide-svelte/icons/users-round";
 
 	const i18n = getContext('i18n');
 
@@ -23,7 +37,7 @@
 	import { toast } from 'svelte-sonner';
 	import { fade, slide } from 'svelte/transition';
 	import { WEBUI_BASE_URL } from '$lib/constants';
-	import Tooltip from '../common/Tooltip.svelte';
+	import Tooltips from '../common/Tooltip.svelte';
 	import ChatMenu from './Sidebar/ChatMenu.svelte';
 	import ShareChatModal from '../chat/ShareChatModal.svelte';
 	import ArchiveBox from '../icons/ArchiveBox.svelte';
@@ -164,6 +178,105 @@
 		: 'w-[0px] -translate-x-[260px]'} fixed left-0 top-0 z-50 bg-gray-50 text-sm text-gray-900 transition dark:bg-gray-950 dark:text-gray-200
         "
 >
+
+	<aside class="fixed inset-y-0 left-0 z-10 hidden w-14 flex-col border-r bg-background sm:flex">
+		<nav class="flex flex-col items-center gap-4 px-2 py-4">
+			<a
+				href="##"
+				class="group flex h-9 w-9 shrink-0 items-center justify-center gap-2 rounded-full bg-primary text-lg font-semibold text-primary-foreground md:h-8 md:w-8 md:text-base"
+			>
+				<Package2 class="h-4 w-4 transition-all group-hover:scale-110" />
+				<span class="sr-only">Acme Inc</span>
+			</a>
+			<Tooltip.Root>
+				<Tooltip.Trigger asChild let:builder>
+					<a
+						href="##"
+						class="flex h-9 w-9 items-center justify-center rounded-lg text-muted-foreground transition-colors hover:text-foreground md:h-8 md:w-8"
+						use:builder.action
+						{...builder}
+					>
+						<Home class="h-5 w-5" />
+						<span class="sr-only">Dashboard</span>
+					</a>
+				</Tooltip.Trigger>
+				<Tooltip.Content side="right">Dashboard</Tooltip.Content>
+			</Tooltip.Root>
+			<Tooltip.Root>
+				<Tooltip.Trigger asChild let:builder>
+					<a
+						href="##"
+						class="flex h-9 w-9 items-center justify-center rounded-lg transition-colors hover:text-foreground md:h-8 md:w-8"
+						use:builder.action
+						{...builder}
+					>
+						<ShoppingCart class="h-5 w-5" />
+						<span class="sr-only">Orders</span>
+					</a>
+				</Tooltip.Trigger>
+				<Tooltip.Content side="right">Orders</Tooltip.Content>
+			</Tooltip.Root>
+			<Tooltip.Root>
+				<Tooltip.Trigger asChild let:builder>
+					<a
+						href="##"
+						class="flex h-9 w-9 items-center justify-center rounded-lg bg-accent text-accent-foreground transition-colors hover:text-foreground md:h-8 md:w-8"
+						use:builder.action
+						{...builder}
+					>
+						<Package class="h-5 w-5" />
+						<span class="sr-only">Products</span>
+					</a>
+				</Tooltip.Trigger>
+				<Tooltip.Content side="right">Products</Tooltip.Content>
+			</Tooltip.Root>
+			<Tooltip.Root>
+				<Tooltip.Trigger asChild let:builder>
+					<a
+						href="##"
+						class="flex h-9 w-9 items-center justify-center rounded-lg text-muted-foreground transition-colors hover:text-foreground md:h-8 md:w-8"
+						use:builder.action
+						{...builder}
+					>
+						<UsersRound class="h-5 w-5" />
+						<span class="sr-only">Customers</span>
+					</a>
+				</Tooltip.Trigger>
+				<Tooltip.Content side="right">Customers</Tooltip.Content>
+			</Tooltip.Root>
+			<Tooltip.Root>
+				<Tooltip.Trigger asChild let:builder>
+					<a
+						href="##"
+						class="flex h-9 w-9 items-center justify-center rounded-lg text-muted-foreground transition-colors hover:text-foreground md:h-8 md:w-8"
+						use:builder.action
+						{...builder}
+					>
+						<ListFilter class="h-5 w-5" />
+						<span class="sr-only">Analytics</span>
+					</a>
+				</Tooltip.Trigger>
+				<Tooltip.Content side="right">Analytics</Tooltip.Content>
+			</Tooltip.Root>
+		</nav>
+		<nav class="mt-auto flex flex-col items-center gap-4 px-2 py-4">
+			<Tooltip.Root>
+				<Tooltip.Trigger asChild let:builder>
+					<a
+						href="##"
+						class="flex h-9 w-9 items-center justify-center rounded-lg text-muted-foreground transition-colors hover:text-foreground md:h-8 md:w-8"
+						use:builder.action
+						{...builder}
+					>
+						<Settings class="h-5 w-5" />
+						<span class="sr-only">Settings</span>
+					</a>
+				</Tooltip.Trigger>
+				<Tooltip.Content side="right">Settings</Tooltip.Content>
+			</Tooltip.Root>
+		</nav>
+	</aside>
+
 	<!-- 最左侧导航栏 -->
 	<div
 		class="my-auto flex h-screen max-h-[100dvh] w-[220px] flex-col justify-between py-2.5 {show
@@ -191,11 +304,7 @@
 				<div class="flex self-center">
 					<!-- 图标 -->
 					<div class="mr-1.5 self-center">
-						<img
-							src="/favicon.png"
-							class=" size-6 -translate-x-1.5 rounded-full"
-							alt="logo"
-						/>
+						<img src="/favicon.png" class=" size-6 -translate-x-1.5 rounded-full" alt="logo" />
 					</div>
 
 					<!-- 文本 -->
@@ -385,7 +494,7 @@
 					</div>
 				</a>
 			</div>
-			
+
 			<!-- Images Search -->
 			<div class="mb-1 flex justify-center px-2">
 				<a
@@ -417,7 +526,7 @@
 						<div class=" self-center text-sm font-medium">{$i18n.t('Images Search')}</div>
 					</div>
 				</a>
-			</div>				
+			</div>
 		{/if}
 
 		<div class="relative flex flex-1 flex-col overflow-y-auto">
@@ -711,7 +820,7 @@
 										</button>
 									</ChatMenu>
 
-									<Tooltip content="Archive">
+									<Tooltips content="Archive">
 										<button
 											aria-label="Archive"
 											class=" self-center transition dark:hover:text-white"
@@ -721,7 +830,7 @@
 										>
 											<ArchiveBox />
 										</button>
-									</Tooltip>
+									</Tooltips>
 								</div>
 							{/if}
 						</div>
@@ -901,7 +1010,7 @@
 		id="sidebar-handle"
 		class="fixed left-0 top-[50dvh] -translate-y-1/2 translate-x-[255px] rotate-0 transition-transform md:translate-x-[260px]"
 	>
-		<Tooltip
+		<Tooltips
 			placement="right"
 			content={`${show ? $i18n.t('Close') : $i18n.t('Open')} ${$i18n.t('sidebar')}`}
 			touch={false}
@@ -931,6 +1040,6 @@
 					</div>
 				</span>
 			</button>
-		</Tooltip>
+		</Tooltips>
 	</div>
 </div>
