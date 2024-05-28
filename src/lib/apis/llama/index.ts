@@ -257,6 +257,43 @@ export const queryDoc = async (
 	return res;
 };
 
+
+
+export const queryImages = async (
+	token: string,
+	query: string,
+	k: number | null = null
+) => {
+	let error = null;
+
+	const res = await fetch(`${LLAMA_API_BASE_URL}/query/img`, {
+		method: 'POST',
+		headers: {
+			Accept: 'application/json',
+			'Content-Type': 'application/json',
+			authorization: `Bearer ${token}`
+		},
+		body: JSON.stringify({
+			query: query,
+			k: k
+		})
+	})
+		.then(async (res) => {
+			if (!res.ok) throw await res.json();
+			return res.json();
+		})
+		.catch((err) => {
+			error = err.detail;
+			return null;
+		});
+
+	if (error) {
+		throw error;
+	}
+
+	return res;
+};
+
 export const queryCollection = async (
 	token: string,
 	collection_names: string,
