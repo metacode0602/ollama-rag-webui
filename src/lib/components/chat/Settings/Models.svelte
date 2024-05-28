@@ -175,7 +175,7 @@
 
 					const notification = new Notification($WEBUI_NAME, {
 						body: $i18n.t(`Model '{{modelName}}' has been successfully downloaded.`, { modelName }),
-						icon: `${WEBUI_BASE_URL}/static/favicon.png`
+						icon: `/favicon.png`
 					});
 
 					models.set(await getModels());

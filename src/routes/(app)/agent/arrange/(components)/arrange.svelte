@@ -18,7 +18,7 @@
     import { MessageSquareText } from 'lucide-svelte';
     import { SquareKanban } from 'lucide-svelte';
     import * as Table from "$lib/components/ui/table/index.js";
-	import { datalists, frameworks, invoices, tools } from "../data";
+	  import { datalists, frameworks, invoices, tools } from "../data";
     import { Switch } from "$lib/components/ui/switch";
     import Plus from 'lucide-svelte/icons/plus';
     import { Trash2 } from 'lucide-svelte';

@@ -159,23 +159,23 @@
 
 <div
 	bind:this={navElement}
-	class="h-screen max-h-3/4 min-h-screen {show
-		? 'lg:relative w-[260px]'
-		: '-translate-x-[260px] w-[0px]'} bg-gray-50 text-gray-900 dark:bg-gray-950 dark:text-gray-200 text-sm transition fixed z-50 top-0 left-0
+	class="max-h-3/4 h-screen min-h-screen {show
+		? 'w-[260px] lg:relative'
+		: 'w-[0px] -translate-x-[260px]'} fixed left-0 top-0 z-50 bg-gray-50 text-sm text-gray-900 transition dark:bg-gray-950 dark:text-gray-200
         "
 >
 	<!-- 最左侧导航栏 -->
 	<div
-		class="py-2.5 my-auto flex flex-col justify-between h-screen max-h-[100dvh] w-[220px] {show
+		class="my-auto flex h-screen max-h-[100dvh] w-[220px] flex-col justify-between py-2.5 {show
 			? ''
 			: 'invisible'}"
 	>
-	<!-- 导航栏内部的按钮或链接容器 -->  
-		<div class="px-2 flex justify-center space-x-2 ">
-			<!-- 一个链接，点击时触发一系列动作 --> 
+		<!-- 导航栏内部的按钮或链接容器 -->
+		<div class="flex justify-center space-x-2 px-2">
+			<!-- 一个链接，点击时触发一系列动作 -->
 			<a
 				id="sidebar-new-chat-button"
-				class="flex-grow flex justify-between rounded-xl px-4 py-2 hover:bg-gray-200 dark:hover:bg-gray-900 transition"
+				class="flex flex-grow justify-between rounded-xl px-4 py-2 transition hover:bg-gray-200 dark:hover:bg-gray-900"
 				href="/"
 				on:click={async () => {
 					selectedChatId = null;
@@ -187,28 +187,28 @@
 					}, 0);
 				}}
 			>
-			<!-- 按钮的左侧部分，包含一个图标和文本 --> 
+				<!-- 按钮的左侧部分，包含一个图标和文本 -->
 				<div class="flex self-center">
-					<!-- 图标 --> 
-					<div class="self-center mr-1.5">
+					<!-- 图标 -->
+					<div class="mr-1.5 self-center">
 						<img
-							src="{WEBUI_BASE_URL}/static/favicon.png"
+							src="/favicon.png"
 							class=" size-6 -translate-x-1.5 rounded-full"
 							alt="logo"
 						/>
 					</div>
 
-					<!-- 文本 -->  
-					<div class=" self-center font-medium text-sm">{$i18n.t('New Chat')}</div>
+					<!-- 文本 -->
+					<div class=" self-center text-sm font-medium">{$i18n.t('New Chat')}</div>
 				</div>
 
-				<!-- 按钮的右侧部分，包含一个向右的箭头图标 -->  
+				<!-- 按钮的右侧部分，包含一个向右的箭头图标 -->
 				<div class="self-center">
 					<svg
 						xmlns="http://www.w3.org/2000/svg"
 						viewBox="0 0 20 20"
 						fill="currentColor"
-						class="w-4 h-4"
+						class="h-4 w-4"
 					>
 						<path
 							d="M5.433 13.917l1.262-3.155A4 4 0 017.58 9.42l6.92-6.918a2.121 2.121 0 013 3l-6.92 6.918c-.383.383-.84.685-1.343.886l-3.154 1.262a.5.5 0 01-.65-.65z"
@@ -223,12 +223,11 @@
 
 		<!-- 判断当前用户的角色是否为管理员 -->
 		{#if $user?.role === 'admin'}
-		<!-- 一个居中对齐的div，上边距为0.5单位，包含了一个链接 -->  
-			<div class="px-2 flex justify-center mt-0.5">
+			<!-- 一个居中对齐的div，上边距为0.5单位，包含了一个链接 -->
+			<div class="mt-0.5 flex justify-center px-2">
 				<a
-					class="flex-grow flex space-x-3 rounded-xl px-3.5 py-2 hover:bg-gray-200 dark:hover:bg-gray-900 transition"
+					class="flex flex-grow space-x-3 rounded-xl px-3.5 py-2 transition hover:bg-gray-200 dark:hover:bg-gray-900"
 					href="/modelfiles"
-					
 					on:click={() => {
 						selectedChatId = null;
 						chatId.set('');
@@ -241,7 +240,7 @@
 							viewBox="0 0 24 24"
 							stroke-width="2"
 							stroke="currentColor"
-							class="w-4 h-4"
+							class="h-4 w-4"
 						>
 							<path
 								stroke-linecap="round"
@@ -252,14 +251,14 @@
 					</div>
 
 					<div class="flex self-center">
-						<div class=" self-center font-medium text-sm">{$i18n.t('Modelfiles')}</div>
+						<div class=" self-center text-sm font-medium">{$i18n.t('Modelfiles')}</div>
 					</div>
 				</a>
 			</div>
 
-			<div class="px-2 flex justify-center">
+			<div class="flex justify-center px-2">
 				<a
-					class="flex-grow flex space-x-3 rounded-xl px-3.5 py-2 hover:bg-gray-200 dark:hover:bg-gray-900 transition"
+					class="flex flex-grow space-x-3 rounded-xl px-3.5 py-2 transition hover:bg-gray-200 dark:hover:bg-gray-900"
 					href="/tools"
 					on:click={() => {
 						selectedChatId = null;
@@ -273,7 +272,7 @@
 							viewBox="0 0 24 24"
 							stroke-width="2"
 							stroke="currentColor"
-							class="w-4 h-4"
+							class="h-4 w-4"
 						>
 							<path
 								stroke-linecap="round"
@@ -284,14 +283,14 @@
 					</div>
 
 					<div class="flex self-center">
-						<div class=" self-center font-medium text-sm">{$i18n.t('tools')}</div>
+						<div class=" self-center text-sm font-medium">{$i18n.t('tools')}</div>
 					</div>
 				</a>
 			</div>
 
-			<div class="px-2 flex justify-center mb-1">
+			<div class="mb-1 flex justify-center px-2">
 				<a
-					class="flex-grow flex space-x-3 rounded-xl px-3.5 py-2 hover:bg-gray-200 dark:hover:bg-gray-900 transition"
+					class="flex flex-grow space-x-3 rounded-xl px-3.5 py-2 transition hover:bg-gray-200 dark:hover:bg-gray-900"
 					href="/dataset/database"
 					on:click={() => {
 						selectedChatId = null;
@@ -305,7 +304,7 @@
 							viewBox="0 0 24 24"
 							stroke-width="2"
 							stroke="currentColor"
-							class="w-4 h-4"
+							class="h-4 w-4"
 						>
 							<path
 								stroke-linecap="round"
@@ -316,15 +315,15 @@
 					</div>
 
 					<div class="flex self-center">
-						<div class=" self-center font-medium text-sm">{$i18n.t('Documents')}</div>
+						<div class=" self-center text-sm font-medium">{$i18n.t('Documents')}</div>
 					</div>
 				</a>
 			</div>
 
 			<!--------------- Agent--------------- -->
-			<div class="px-2 flex justify-center">
+			<div class="flex justify-center px-2">
 				<a
-					class="flex-grow flex space-x-3 rounded-xl px-3.5 py-2 hover:bg-gray-200 dark:hover:bg-gray-900 transition"
+					class="flex flex-grow space-x-3 rounded-xl px-3.5 py-2 transition hover:bg-gray-200 dark:hover:bg-gray-900"
 					href="/agent"
 					on:click={() => {
 						selectedChatId = null;
@@ -338,7 +337,7 @@
 							viewBox="0 0 24 24"
 							stroke-width="2"
 							stroke="currentColor"
-							class="w-4 h-4"
+							class="h-4 w-4"
 						>
 							<path
 								stroke-linecap="round"
@@ -349,18 +348,84 @@
 					</div>
 
 					<div class="flex self-center">
-						<div class=" self-center font-medium text-sm">{$i18n.t('Agent')}</div>
+						<div class=" self-center text-sm font-medium">{$i18n.t('Agent')}</div>
 					</div>
 				</a>
 			</div>
+
+			<!-- Music -->
+			<div class="mb-1 flex justify-center px-2">
+				<a
+					class="flex flex-grow space-x-3 rounded-xl px-3.5 py-2 transition hover:bg-gray-200 dark:hover:bg-gray-900"
+					href="/music"
+					on:click={() => {
+						selectedChatId = null;
+						chatId.set('');
+					}}
+				>
+					<div class="self-center">
+						<svg
+							xmlns="http://www.w3.org/2000/svg"
+							fill="none"
+							viewBox="0 0 24 24"
+							stroke-width="2"
+							stroke="currentColor"
+							class="h-4 w-4"
+						>
+							<path
+								stroke-linecap="round"
+								stroke-linejoin="round"
+								d="M15.75 17.25v3.375c0 .621-.504 1.125-1.125 1.125h-9.75a1.125 1.125 0 0 1-1.125-1.125V7.875c0-.621.504-1.125 1.125-1.125H6.75a9.06 9.06 0 0 1 1.5.124m7.5 10.376h3.375c.621 0 1.125-.504 1.125-1.125V11.25c0-4.46-3.243-8.161-7.5-8.876a9.06 9.06 0 0 0-1.5-.124H9.375c-.621 0-1.125.504-1.125 1.125v3.5m7.5 10.375H9.375a1.125 1.125 0 0 1-1.125-1.125v-9.25m12 6.625v-1.875a3.375 3.375 0 0 0-3.375-3.375h-1.5a1.125 1.125 0 0 1-1.125-1.125v-1.5a3.375 3.375 0 0 0-3.375-3.375H9.75"
+							/>
+						</svg>
+					</div>
+
+					<div class="flex self-center">
+						<div class=" self-center text-sm font-medium">{$i18n.t('Music')}</div>
+					</div>
+				</a>
+			</div>
+			
+			<!-- Images Search -->
+			<div class="mb-1 flex justify-center px-2">
+				<a
+					class="flex flex-grow space-x-3 rounded-xl px-3.5 py-2 transition hover:bg-gray-200 dark:hover:bg-gray-900"
+					href="/images"
+					on:click={() => {
+						selectedChatId = null;
+						chatId.set('');
+					}}
+				>
+					<div class="self-center">
+						<svg
+							xmlns="http://www.w3.org/2000/svg"
+							fill="none"
+							viewBox="0 0 24 24"
+							stroke-width="2"
+							stroke="currentColor"
+							class="h-4 w-4"
+						>
+							<path
+								stroke-linecap="round"
+								stroke-linejoin="round"
+								d="M15.75 17.25v3.375c0 .621-.504 1.125-1.125 1.125h-9.75a1.125 1.125 0 0 1-1.125-1.125V7.875c0-.621.504-1.125 1.125-1.125H6.75a9.06 9.06 0 0 1 1.5.124m7.5 10.376h3.375c.621 0 1.125-.504 1.125-1.125V11.25c0-4.46-3.243-8.161-7.5-8.876a9.06 9.06 0 0 0-1.5-.124H9.375c-.621 0-1.125.504-1.125 1.125v3.5m7.5 10.375H9.375a1.125 1.125 0 0 1-1.125-1.125v-9.25m12 6.625v-1.875a3.375 3.375 0 0 0-3.375-3.375h-1.5a1.125 1.125 0 0 1-1.125-1.125v-1.5a3.375 3.375 0 0 0-3.375-3.375H9.75"
+							/>
+						</svg>
+					</div>
+
+					<div class="flex self-center">
+						<div class=" self-center text-sm font-medium">{$i18n.t('Images Search')}</div>
+					</div>
+				</a>
+			</div>				
 		{/if}
 
-		<div class="relative flex flex-col flex-1 overflow-y-auto">
+		<div class="relative flex flex-1 flex-col overflow-y-auto">
 			{#if !($settings.saveChatHistory ?? true)}
-				<div class="absolute z-40 w-full h-full bg-gray-50/90 dark:bg-black/90 flex justify-center">
-					<div class=" text-left px-5 py-2">
+				<div class="absolute z-40 flex h-full w-full justify-center bg-gray-50/90 dark:bg-black/90">
+					<div class=" px-5 py-2 text-left">
 						<div class=" font-medium">{$i18n.t('Chat History is off for this browser.')}</div>
-						<div class="text-xs mt-2">
+						<div class="mt-2 text-xs">
 							{$i18n.t(
 								"When history is turned off, new chats on this browser won't appear in your history on any of your devices."
 							)}
@@ -371,7 +436,7 @@
 
 						<div class="mt-3">
 							<button
-								class="flex justify-center items-center space-x-1.5 px-3 py-2.5 rounded-lg text-xs bg-gray-200 hover:bg-gray-300 transition text-gray-800 font-medium w-full"
+								class="flex w-full items-center justify-center space-x-1.5 rounded-lg bg-gray-200 px-3 py-2.5 text-xs font-medium text-gray-800 transition hover:bg-gray-300"
 								type="button"
 								on:click={() => {
 									saveSettings({
@@ -383,7 +448,7 @@
 									xmlns="http://www.w3.org/2000/svg"
 									viewBox="0 0 16 16"
 									fill="currentColor"
-									class="w-3 h-3"
+									class="h-3 w-3"
 								>
 									<path
 										fill-rule="evenodd"
@@ -399,14 +464,14 @@
 				</div>
 			{/if}
 
-			<div class="px-2 mt-1 mb-2 flex justify-center space-x-2">
+			<div class="mb-2 mt-1 flex justify-center space-x-2 px-2">
 				<div class="flex w-full" id="chat-search">
-					<div class="self-center pl-3 py-2 rounded-l-xl bg-white dark:bg-gray-950">
+					<div class="self-center rounded-l-xl bg-white py-2 pl-3 dark:bg-gray-950">
 						<svg
 							xmlns="http://www.w3.org/2000/svg"
 							viewBox="0 0 20 20"
 							fill="currentColor"
-							class="w-4 h-4"
+							class="h-4 w-4"
 						>
 							<path
 								fill-rule="evenodd"
@@ -417,7 +482,7 @@
 					</div>
 
 					<input
-						class="w-full rounded-r-xl py-1.5 pl-2.5 pr-4 text-sm dark:text-gray-300 dark:bg-gray-950 outline-none"
+						class="w-full rounded-r-xl py-1.5 pl-2.5 pr-4 text-sm outline-none dark:bg-gray-950 dark:text-gray-300"
 						placeholder={$i18n.t('Search')}
 						bind:value={search}
 						on:focus={() => {
@@ -428,9 +493,9 @@
 			</div>
 
 			{#if $tags.length > 0}
-				<div class="px-2.5 mt-0.5 mb-2 flex gap-1 flex-wrap">
+				<div class="mb-2 mt-0.5 flex flex-wrap gap-1 px-2.5">
 					<button
-						class="px-2.5 text-xs font-medium bg-gray-100 dark:bg-gray-900 dark:hover:bg-gray-800 transition rounded-full"
+						class="rounded-full bg-gray-100 px-2.5 text-xs font-medium transition dark:bg-gray-900 dark:hover:bg-gray-800"
 						on:click={async () => {
 							await chats.set(await getChatList(localStorage.token));
 						}}
@@ -439,7 +504,7 @@
 					</button>
 					{#each $tags as tag}
 						<button
-							class="px-2.5 text-xs font-medium bg-gray-100 dark:bg-gray-900 dark:hover:bg-gray-800 transition rounded-full"
+							class="rounded-full bg-gray-100 px-2.5 text-xs font-medium transition dark:bg-gray-900 dark:hover:bg-gray-800"
 							on:click={async () => {
 								let chatIds = await getChatListByTagName(localStorage.token, tag.name);
 								if (chatIds.length === 0) {
@@ -455,7 +520,7 @@
 				</div>
 			{/if}
 
-			<div class="pl-2 my-2 flex-1 flex flex-col space-y-1 overflow-y-auto">
+			<div class="my-2 flex flex-1 flex-col space-y-1 overflow-y-auto pl-2">
 				{#each $chats.filter((chat) => {
 					if (search === '') {
 						return true;
@@ -475,28 +540,28 @@
 						return title.includes(query) || contentMatches;
 					}
 				}) as chat, i}
-					<div class=" w-full pr-2 relative group">
+					<div class=" group relative w-full pr-2">
 						{#if chatTitleEditId === chat.id}
 							<div
-								class=" w-full flex justify-between rounded-xl px-3 py-2 {chat.id === $chatId ||
+								class=" flex w-full justify-between rounded-xl px-3 py-2 {chat.id === $chatId ||
 								chat.id === chatTitleEditId ||
 								chat.id === chatDeleteId
 									? 'bg-gray-300 dark:bg-gray-900'
 									: chat.id === selectedChatId
-									? 'bg-gray-100 dark:bg-gray-950'
-									: 'group-hover:bg-gray-100 dark:group-hover:bg-gray-950'}  whitespace-nowrap text-ellipsis"
+										? 'bg-gray-100 dark:bg-gray-950'
+										: 'group-hover:bg-gray-100 dark:group-hover:bg-gray-950'}  text-ellipsis whitespace-nowrap"
 							>
-								<input bind:value={chatTitle} class=" bg-transparent w-full outline-none mr-10" />
+								<input bind:value={chatTitle} class=" mr-10 w-full bg-transparent outline-none" />
 							</div>
 						{:else}
 							<a
-								class=" w-full flex justify-between rounded-xl px-3 py-2 {chat.id === $chatId ||
+								class=" flex w-full justify-between rounded-xl px-3 py-2 {chat.id === $chatId ||
 								chat.id === chatTitleEditId ||
 								chat.id === chatDeleteId
 									? 'bg-gray-300 dark:bg-gray-900'
 									: chat.id === selectedChatId
-									? 'bg-gray-100 dark:bg-gray-950'
-									: ' group-hover:bg-gray-100 dark:group-hover:bg-gray-950'}  whitespace-nowrap text-ellipsis"
+										? 'bg-gray-100 dark:bg-gray-950'
+										: ' group-hover:bg-gray-100 dark:group-hover:bg-gray-950'}  text-ellipsis whitespace-nowrap"
 								href="/c/{chat.id}"
 								on:click={() => {
 									selectedChatId = chat.id;
@@ -506,8 +571,8 @@
 								}}
 								draggable="false"
 							>
-								<div class=" flex self-center flex-1 w-full">
-									<div class=" text-left self-center overflow-hidden w-full h-[20px]">
+								<div class=" flex w-full flex-1 self-center">
+									<div class=" h-[20px] w-full self-center overflow-hidden text-left">
 										{chat.title}
 									</div>
 								</div>
@@ -520,16 +585,16 @@
 							{chat.id === $chatId || chat.id === chatTitleEditId || chat.id === chatDeleteId
 								? 'from-gray-300 dark:from-gray-900'
 								: chat.id === selectedChatId
-								? 'from-gray-100 dark:from-gray-950'
-								: 'invisible group-hover:visible from-gray-100 dark:from-gray-950'}
-								absolute right-[10px] top-[10px] pr-2 pl-5 bg-gradient-to-l from-80%
+									? 'from-gray-100 dark:from-gray-950'
+									: 'invisible from-gray-100 group-hover:visible dark:from-gray-950'}
+								absolute right-[10px] top-[10px] bg-gradient-to-l from-80% to-transparent pl-5
 								
-								  to-transparent"
+								  pr-2"
 						>
 							{#if chatTitleEditId === chat.id}
-								<div class="flex self-center space-x-1.5 z-10">
+								<div class="z-10 flex space-x-1.5 self-center">
 									<button
-										class=" self-center dark:hover:text-white transition"
+										class=" self-center transition dark:hover:text-white"
 										on:click={() => {
 											editChatTitle(chat.id, chatTitle);
 											chatTitleEditId = null;
@@ -540,7 +605,7 @@
 											xmlns="http://www.w3.org/2000/svg"
 											viewBox="0 0 20 20"
 											fill="currentColor"
-											class="w-4 h-4"
+											class="h-4 w-4"
 										>
 											<path
 												fill-rule="evenodd"
@@ -550,7 +615,7 @@
 										</svg>
 									</button>
 									<button
-										class=" self-center dark:hover:text-white transition"
+										class=" self-center transition dark:hover:text-white"
 										on:click={() => {
 											chatTitleEditId = null;
 											chatTitle = '';
@@ -560,7 +625,7 @@
 											xmlns="http://www.w3.org/2000/svg"
 											viewBox="0 0 20 20"
 											fill="currentColor"
-											class="w-4 h-4"
+											class="h-4 w-4"
 										>
 											<path
 												d="M6.28 5.22a.75.75 0 00-1.06 1.06L8.94 10l-3.72 3.72a.75.75 0 101.06 1.06L10 11.06l3.72 3.72a.75.75 0 101.06-1.06L11.06 10l3.72-3.72a.75.75 0 00-1.06-1.06L10 8.94 6.28 5.22z"
@@ -569,9 +634,9 @@
 									</button>
 								</div>
 							{:else if chatDeleteId === chat.id}
-								<div class="flex self-center space-x-1.5 z-10">
+								<div class="z-10 flex space-x-1.5 self-center">
 									<button
-										class=" self-center dark:hover:text-white transition"
+										class=" self-center transition dark:hover:text-white"
 										on:click={() => {
 											deleteChat(chat.id);
 										}}
@@ -580,7 +645,7 @@
 											xmlns="http://www.w3.org/2000/svg"
 											viewBox="0 0 20 20"
 											fill="currentColor"
-											class="w-4 h-4"
+											class="h-4 w-4"
 										>
 											<path
 												fill-rule="evenodd"
@@ -590,7 +655,7 @@
 										</svg>
 									</button>
 									<button
-										class=" self-center dark:hover:text-white transition"
+										class=" self-center transition dark:hover:text-white"
 										on:click={() => {
 											chatDeleteId = null;
 										}}
@@ -599,7 +664,7 @@
 											xmlns="http://www.w3.org/2000/svg"
 											viewBox="0 0 20 20"
 											fill="currentColor"
-											class="w-4 h-4"
+											class="h-4 w-4"
 										>
 											<path
 												d="M6.28 5.22a.75.75 0 00-1.06 1.06L8.94 10l-3.72 3.72a.75.75 0 101.06 1.06L10 11.06l3.72 3.72a.75.75 0 101.06-1.06L11.06 10l3.72-3.72a.75.75 0 00-1.06-1.06L10 8.94 6.28 5.22z"
@@ -608,7 +673,7 @@
 									</button>
 								</div>
 							{:else}
-								<div class="flex self-center space-x-1 z-10">
+								<div class="z-10 flex space-x-1 self-center">
 									<ChatMenu
 										chatId={chat.id}
 										shareHandler={() => {
@@ -628,7 +693,7 @@
 									>
 										<button
 											aria-label="Chat Menu"
-											class=" self-center dark:hover:text-white transition"
+											class=" self-center transition dark:hover:text-white"
 											on:click={() => {
 												selectedChatId = chat.id;
 											}}
@@ -637,7 +702,7 @@
 												xmlns="http://www.w3.org/2000/svg"
 												viewBox="0 0 16 16"
 												fill="currentColor"
-												class="w-4 h-4"
+												class="h-4 w-4"
 											>
 												<path
 													d="M2 8a1.5 1.5 0 1 1 3 0 1.5 1.5 0 0 1-3 0ZM6.5 8a1.5 1.5 0 1 1 3 0 1.5 1.5 0 0 1-3 0ZM12.5 6.5a1.5 1.5 0 1 0 0 3 1.5 1.5 0 0 0 0-3Z"
@@ -649,7 +714,7 @@
 									<Tooltip content="Archive">
 										<button
 											aria-label="Archive"
-											class=" self-center dark:hover:text-white transition"
+											class=" self-center transition dark:hover:text-white"
 											on:click={() => {
 												archiveChatHandler(chat.id);
 											}}
@@ -671,15 +736,15 @@
 			<div class="flex flex-col">
 				{#if $user !== undefined}
 					<button
-						class=" flex rounded-xl py-3 px-3.5 w-full hover:bg-gray-200 dark:hover:bg-gray-900 transition"
+						class=" flex w-full rounded-xl px-3.5 py-3 transition hover:bg-gray-200 dark:hover:bg-gray-900"
 						on:click={() => {
 							showDropdown = !showDropdown;
 						}}
 					>
-						<div class=" self-center mr-3">
+						<div class=" mr-3 self-center">
 							<img
 								src={$user.profile_image_url}
-								class=" max-w-[30px] object-cover rounded-full"
+								class=" max-w-[30px] rounded-full object-cover"
 								alt="User profile"
 							/>
 						</div>
@@ -689,26 +754,26 @@
 					{#if showDropdown}
 						<div
 							id="dropdownDots"
-							class="absolute z-40 bottom-[70px] rounded-lg shadow w-[240px] bg-white dark:bg-gray-900"
+							class="absolute bottom-[70px] z-40 w-[240px] rounded-lg bg-white shadow dark:bg-gray-900"
 							transition:fade|slide={{ duration: 100 }}
 						>
-							<div class="p-1 py-2 w-full">
+							<div class="w-full p-1 py-2">
 								{#if $user.role === 'admin'}
 									<button
-										class="flex rounded-md py-2.5 px-3.5 w-full hover:bg-gray-100 dark:hover:bg-gray-800 transition"
+										class="flex w-full rounded-md px-3.5 py-2.5 transition hover:bg-gray-100 dark:hover:bg-gray-800"
 										on:click={() => {
 											goto('/admin');
 											showDropdown = false;
 										}}
 									>
-										<div class=" self-center mr-3">
+										<div class=" mr-3 self-center">
 											<svg
 												xmlns="http://www.w3.org/2000/svg"
 												fill="none"
 												viewBox="0 0 24 24"
 												stroke-width="1.5"
 												stroke="currentColor"
-												class="w-5 h-5"
+												class="h-5 w-5"
 											>
 												<path
 													stroke-linecap="round"
@@ -721,20 +786,20 @@
 									</button>
 
 									<button
-										class="flex rounded-md py-2.5 px-3.5 w-full hover:bg-gray-100 dark:hover:bg-gray-800 transition"
+										class="flex w-full rounded-md px-3.5 py-2.5 transition hover:bg-gray-100 dark:hover:bg-gray-800"
 										on:click={() => {
 											goto('/playground');
 											showDropdown = false;
 										}}
 									>
-										<div class=" self-center mr-3">
+										<div class=" mr-3 self-center">
 											<svg
 												xmlns="http://www.w3.org/2000/svg"
 												fill="none"
 												viewBox="0 0 24 24"
 												stroke-width="1.5"
 												stroke="currentColor"
-												class="w-5 h-5"
+												class="h-5 w-5"
 											>
 												<path
 													stroke-linecap="round"
@@ -748,33 +813,33 @@
 								{/if}
 
 								<button
-									class="flex rounded-md py-2.5 px-3.5 w-full hover:bg-gray-100 dark:hover:bg-gray-800 transition"
+									class="flex w-full rounded-md px-3.5 py-2.5 transition hover:bg-gray-100 dark:hover:bg-gray-800"
 									on:click={() => {
 										showArchivedChatsModal = true;
 										showDropdown = false;
 									}}
 								>
-									<div class=" self-center mr-3">
+									<div class=" mr-3 self-center">
 										<ArchiveBox className="size-5" strokeWidth="1.5" />
 									</div>
 									<div class=" self-center font-medium">{$i18n.t('Archived Chats')}</div>
 								</button>
 
 								<button
-									class="flex rounded-md py-2.5 px-3.5 w-full hover:bg-gray-100 dark:hover:bg-gray-800 transition"
+									class="flex w-full rounded-md px-3.5 py-2.5 transition hover:bg-gray-100 dark:hover:bg-gray-800"
 									on:click={async () => {
 										await showSettings.set(true);
 										showDropdown = false;
 									}}
 								>
-									<div class=" self-center mr-3">
+									<div class=" mr-3 self-center">
 										<svg
 											xmlns="http://www.w3.org/2000/svg"
 											fill="none"
 											viewBox="0 0 24 24"
 											stroke-width="1.5"
 											stroke="currentColor"
-											class="w-5 h-5"
+											class="h-5 w-5"
 										>
 											<path
 												stroke-linecap="round"
@@ -792,23 +857,23 @@
 								</button>
 							</div>
 
-							<hr class=" dark:border-gray-800 m-0 p-0" />
+							<hr class=" m-0 p-0 dark:border-gray-800" />
 
-							<div class="p-1 py-2 w-full">
+							<div class="w-full p-1 py-2">
 								<button
-									class="flex rounded-md py-2.5 px-3.5 w-full hover:bg-gray-100 dark:hover:bg-gray-800 transition"
+									class="flex w-full rounded-md px-3.5 py-2.5 transition hover:bg-gray-100 dark:hover:bg-gray-800"
 									on:click={() => {
 										localStorage.removeItem('token');
 										location.href = '/auth';
 										showDropdown = false;
 									}}
 								>
-									<div class=" self-center mr-3">
+									<div class=" mr-3 self-center">
 										<svg
 											xmlns="http://www.w3.org/2000/svg"
 											viewBox="0 0 20 20"
 											fill="currentColor"
-											class="w-5 h-5"
+											class="h-5 w-5"
 										>
 											<path
 												fill-rule="evenodd"
@@ -834,7 +899,7 @@
 
 	<div
 		id="sidebar-handle"
-		class="fixed left-0 top-[50dvh] -translate-y-1/2 transition-transform translate-x-[255px] md:translate-x-[260px] rotate-0"
+		class="fixed left-0 top-[50dvh] -translate-y-1/2 translate-x-[255px] rotate-0 transition-transform md:translate-x-[260px]"
 	>
 		<Tooltip
 			placement="right"
@@ -849,16 +914,16 @@
 				}}
 				><span class="" data-state="closed"
 					><div
-						class="flex h-[72px] w-8 items-center justify-center opacity-50 group-hover:opacity-100 transition"
+						class="flex h-[72px] w-8 items-center justify-center opacity-50 transition group-hover:opacity-100"
 					>
 						<div class="flex h-6 w-6 flex-col items-center">
 							<div
-								class="h-3 w-1 rounded-full bg-[#0f0f0f] dark:bg-white rotate-0 translate-y-[0.15rem] {show
+								class="h-3 w-1 translate-y-[0.15rem] rotate-0 rounded-full bg-[#0f0f0f] dark:bg-white {show
 									? 'group-hover:rotate-[15deg]'
 									: 'group-hover:rotate-[-15deg]'}"
 							/>
 							<div
-								class="h-3 w-1 rounded-full bg-[#0f0f0f] dark:bg-white rotate-0 translate-y-[-0.15rem] {show
+								class="h-3 w-1 translate-y-[-0.15rem] rotate-0 rounded-full bg-[#0f0f0f] dark:bg-white {show
 									? 'group-hover:rotate-[-15deg]'
 									: 'group-hover:rotate-[15deg]'}"
 							/>

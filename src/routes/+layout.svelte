@@ -68,7 +68,7 @@
 
 <svelte:head>
 	<title>{$WEBUI_NAME}</title>
-	<link rel="icon" href="{WEBUI_BASE_URL}/static/favicon.png" />
+	<link rel="icon" href="/favicon.png" />
 
 	<link rel="stylesheet" type="text/css" href="/themes/rosepine.css" />
 	<link rel="stylesheet" type="text/css" href="/themes/rosepine-dawn.css" />

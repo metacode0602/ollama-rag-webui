@@ -22,6 +22,7 @@ npx shadcn-svelte@latest init
 ## 增加一个组件
 npx shadcn-svelte@latest add button
 
+npx shadcn-svelte@latest add context-menu
 ```
 
 ## Developing
