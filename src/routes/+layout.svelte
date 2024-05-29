@@ -12,7 +12,6 @@
 	import 'tippy.js/dist/tippy.css';
 	import '../app-tw.pcss';
 	
-	import { WEBUI_BASE_URL } from '$lib/constants';
 	import i18n, { initI18n } from '$lib/i18n';
 
 	setContext('i18n', i18n);
@@ -73,6 +72,8 @@
 	<link rel="stylesheet" type="text/css" href="/themes/rosepine.css" />
 	<link rel="stylesheet" type="text/css" href="/themes/rosepine-dawn.css" />
 </svelte:head>
+
+<div>This is layout.svelet</div>
 
 {#if loaded}
 	<slot />

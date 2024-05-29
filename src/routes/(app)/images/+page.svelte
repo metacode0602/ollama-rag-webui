@@ -2,6 +2,8 @@
 	import { toast } from 'svelte-sonner';
 	import fileSaver from 'file-saver';
 	const { saveAs } = fileSaver;
+	import { Button } from "$lib/components/ui/button/index.js";
+	import PlusCircled from "svelte-radix/PlusCircled.svelte";
 
 	import { onMount, getContext } from 'svelte';
 	import { WEBUI_NAME, documents } from '$lib/stores';
@@ -12,12 +14,18 @@
 	import { transformFileName } from '$lib/utils';
 
 	import Checkbox from '$lib/components/common/Checkbox.svelte';
-  import * as Avatar from "$lib/components/ui/avatar";
-
+	import * as Avatar from '$lib/components/ui/avatar';
+	import AddDocModal from '$lib/components/documents/AddDocModal.svelte';
 	import EditDocModal from '$lib/components/documents/EditDocModal.svelte';
 	import AddFilesPlaceholder from '$lib/components/AddFilesPlaceholder.svelte';
 	import SettingsModal from '$lib/components/documents/SettingsModal.svelte';
-	import AddDocModal from '$lib/components/documents/AddDocModal.svelte';
+	import AddURLModel from './components/AddURLModel.svelte';
+	import { Separator } from '$lib/components/ui/separator/index.js';
+	import * as Tabs from '$lib/components/ui/tabs/index.js';
+	import { ScrollArea } from '$lib/components/ui/scroll-area/index.js';
+	import { AlbumArtwork, PodcastEmptyPlaceholder, Sidebar } from './components/index.js';
+	import { listenNowAlbums, madeForYouAlbums } from './data/albums.js';
+	import { playlists } from './data/playlists.js';
 
 	const i18n = getContext('i18n');
 
@@ -33,7 +41,7 @@
 	let showEditDocModal = false;
 	let selectedDoc;
 	let selectedTag = '';
-
+	let showAddUrlModal: Boolean = false; //是否显示导入URL对话框
 	let dragged = false;
 	// 定义一个异步函数 deleteDoc，它接受一个文件名作为参数，并尝试删除该文件
 	// 它使用 localStorage.token 作为认证信息
@@ -90,6 +98,11 @@
 		// 更新本地存储的文档列表
 		await documents.set(res);
 	};
+
+	// 显示导入新的图片URL的对话框
+	const onBtnImportUrlClick = async() => {
+		showAddUrlModal = !showAddUrlModal;
+	}
 
 	// 当有东西被拖动到 dropZone 上时，阻止默认行为，并设置 dragged 为 true
 	const onDragOver = (e) => {
@@ -224,13 +237,14 @@
 
 <SettingsModal bind:show={showSettingsModal} />
 
+<AddURLModel bind:show={showAddUrlModal} />
+
 <div class="flex max-h-[100dvh] min-h-screen w-full justify-center dark:text-white">
 	<div class=" flex w-full flex-col justify-between overflow-y-auto">
-		<div class="mx-auto my-10 w-full max-w-2xl px-3 md:px-0">
+		<div class="mx-auto my-10 w-full max-w-2xl px-3 md:px-0">	
 			<div class="mb-6">
 				<div class="flex items-center justify-between">
 					<div class=" self-center text-2xl font-semibold">{$i18n.t('Images Search')}</div>
-
 					<div>
 						<button
 							class="flex items-center space-x-1 rounded-xl bg-gray-50 px-3 py-1.5 transition hover:bg-gray-100 dark:bg-gray-800 dark:hover:bg-gray-700"
@@ -264,26 +278,26 @@
 			<div class=" flex w-full space-x-2">
 				<div class="flex flex-1">
 					<!-- <div class=" ml-1 mr-3 self-center">
-						<svg
-							xmlns="http://www.w3.org/2000/svg"
-							viewBox="0 0 20 20"
-							fill="currentColor"
-							class="h-4 w-4"
-						>
-							<path
-								fill-rule="evenodd"
-								d="M9 3.5a5.5 5.5 0 100 11 5.5 5.5 0 000-11zM2 9a7 7 0 1112.452 4.391l3.328 3.329a.75.75 0 11-1.06 1.06l-3.329-3.328A7 7 0 012 9z"
-								clip-rule="evenodd"
-							/>
-						</svg>
-					</div> -->
+											<svg
+													xmlns="http://www.w3.org/2000/svg"
+													viewBox="0 0 20 20"
+													fill="currentColor"
+													class="h-4 w-4"
+											>
+													<path
+															fill-rule="evenodd"
+															d="M9 3.5a5.5 5.5 0 100 11 5.5 5.5 0 000-11zM2 9a7 7 0 1112.452 4.391l3.328 3.329a.75.75 0 11-1.06 1.06l-3.329-3.328A7 7 0 012 9z"
+															clip-rule="evenodd"
+													/>
+											</svg>
+									</div> -->
 					<input
 						class=" w-full rounded-r-xl bg-transparent py-1 pr-4 text-sm outline-none"
 						bind:value={query}
 						placeholder={$i18n.t('Search Images')}
 					/>
 				</div>
-				
+
 				<div class=" flex flex-1 items-center justify-end">
 					<button
 						class=" flex items-center space-x-1 rounded-xl border border-gray-200 px-2 py-2 text-sm font-medium transition hover:bg-gray-100 dark:border-0 dark:border-gray-600 dark:bg-gray-800 dark:hover:bg-gray-700"
@@ -298,10 +312,10 @@
 							class="h-4 w-4"
 						>
 							<path
-							fill-rule="evenodd"
-							d="M9 3.5a5.5 5.5 0 100 11 5.5 5.5 0 000-11zM2 9a7 7 0 1112.452 4.391l3.328 3.329a.75.75 0 11-1.06 1.06l-3.329-3.328A7 7 0 012 9z"
-							clip-rule="evenodd"
-							/>						
+								fill-rule="evenodd"
+								d="M9 3.5a5.5 5.5 0 100 11 5.5 5.5 0 000-11zM2 9a7 7 0 1112.452 4.391l3.328 3.329a.75.75 0 11-1.06 1.06l-3.329-3.328A7 7 0 012 9z"
+								clip-rule="evenodd"
+							/>
 						</svg>
 					</button>
 				</div>
@@ -342,7 +356,7 @@
 								<Avatar.Fallback>+</Avatar.Fallback>
 							</Avatar.Root>
 						</div>
-						<div class="z-50 text-center text-2xl font-semibold dark:text-white">						
+						<div class="z-50 text-center text-2xl font-semibold dark:text-white">
 							{$i18n.t('Add Files')}
 						</div>
 
@@ -352,7 +366,14 @@
 					</div>
 				</div>
 			</div>
-
+			<div class="ml-auto mr-4">
+				<Button on:click={() => {
+					onBtnImportUrlClick();
+				}}>
+					<PlusCircled class="mr-2 h-4 w-4" />
+					Add music
+				</Button>
+			</div>
 			<hr class=" my-2.5 dark:border-gray-700" />
 
 			{#if tags.length > 0}
@@ -408,14 +429,14 @@
 
 							<div class="flex gap-1">
 								<!-- <button
-									class="px-2 py-0.5 space-x-1 flex h-fit items-center rounded-full transition bg-gray-50 hover:bg-gray-100 dark:bg-gray-800 dark:text-white"
-									on:click={async () => {
-										selectedTag = '';
-										// await chats.set(await getChatListByTagName(localStorage.token, tag.name));
-									}}
-								>
-									<div class=" text-xs font-medium self-center line-clamp-1">{$i18n.t('add tags')}</div>
-								</button> -->
+																	class="px-2 py-0.5 space-x-1 flex h-fit items-center rounded-full transition bg-gray-50 hover:bg-gray-100 dark:bg-gray-800 dark:text-white"
+																	on:click={async () => {
+																			selectedTag = '';
+																			// await chats.set(await getChatListByTagName(localStorage.token, tag.name));
+																	}}
+															>
+																	<div class=" text-xs font-medium self-center line-clamp-1">{$i18n.t('add tags')}</div>
+															</button> -->
 
 								<button
 									class="flex h-fit items-center space-x-1 rounded-full bg-gray-50 px-2 py-0.5 transition hover:bg-gray-100 dark:bg-gray-800 dark:text-white"
@@ -542,26 +563,26 @@
 							</button>
 
 							<!-- <button
-						class="self-center w-fit text-sm px-2 py-2 border dark:border-gray-600 rounded-xl"
-						type="button"
-						on:click={() => {
-							console.log('download file');
-						}}
-					>
-						<svg
-							xmlns="http://www.w3.org/2000/svg"
-							viewBox="0 0 16 16"
-							fill="currentColor"
-							class="w-4 h-4"
-						>
-							<path
-								d="M8.75 2.75a.75.75 0 0 0-1.5 0v5.69L5.03 6.22a.75.75 0 0 0-1.06 1.06l3.5 3.5a.75.75 0 0 0 1.06 0l3.5-3.5a.75.75 0 0 0-1.06-1.06L8.75 8.44V2.75Z"
-							/>
-							<path
-								d="M3.5 9.75a.75.75 0 0 0-1.5 0v1.5A2.75 2.75 0 0 0 4.75 14h6.5A2.75 2.75 0 0 0 14 11.25v-1.5a.75.75 0 0 0-1.5 0v1.5c0 .69-.56 1.25-1.25 1.25h-6.5c-.69 0-1.25-.56-1.25-1.25v-1.5Z"
-							/>
-						</svg>
-					</button> -->
+											class="self-center w-fit text-sm px-2 py-2 border dark:border-gray-600 rounded-xl"
+											type="button"
+											on:click={() => {
+													console.log('download file');
+											}}
+									>
+											<svg
+													xmlns="http://www.w3.org/2000/svg"
+													viewBox="0 0 16 16"
+													fill="currentColor"
+													class="w-4 h-4"
+											>
+													<path
+															d="M8.75 2.75a.75.75 0 0 0-1.5 0v5.69L5.03 6.22a.75.75 0 0 0-1.06 1.06l3.5 3.5a.75.75 0 0 0 1.06 0l3.5-3.5a.75.75 0 0 0-1.06-1.06L8.75 8.44V2.75Z"
+													/>
+													<path
+															d="M3.5 9.75a.75.75 0 0 0-1.5 0v1.5A2.75 2.75 0 0 0 4.75 14h6.5A2.75 2.75 0 0 0 14 11.25v-1.5a.75.75 0 0 0-1.5 0v1.5c0 .69-.56 1.25-1.25 1.25h-6.5c-.69 0-1.25-.56-1.25-1.25v-1.5Z"
+													/>
+											</svg>
+									</button> -->
 
 							<button
 								class="w-fit self-center rounded-xl px-2 py-2 text-sm hover:bg-black/5 dark:text-gray-300 dark:hover:bg-white/5 dark:hover:text-white"
@@ -681,6 +702,25 @@
 					</button>
 				</div>
 			</div>
+		</div>
+
+		<!-- 图片搜索结果 -->
+		<div class="mx-auto my-10 w-full max-w-2xl px-3 md:px-0">
+			<div class="relative">
+				<ScrollArea orientation="both">
+					<div class="flex space-x-4 pb-4">
+						{#each listenNowAlbums as album}
+							<AlbumArtwork
+								{album}
+								class="w-[250px]"
+								aspectRatio="portrait"
+								width={250}
+								height={330}
+							/>
+						{/each}
+					</div>
+				</ScrollArea>
+			</div>			
 		</div>
 	</div>
 </div>
