@@ -1,16 +1,12 @@
 <script lang="ts">
-	import { invoices, type Account, type Mail, intents, items } from './data.js';
+	import { items } from './data.js';
 	import { cn } from '$lib/utils';
 	import { Input } from '$lib/components/ui/input';
-	import * as Resizable from '$lib/components/ui/resizable';
-	import { Separator } from '$lib/components/ui/select';
-	import { Textarea } from '$lib/components/ui/textarea/index.js';
 	import { Button } from '$lib/components/ui/button/index.js';
 
 	import * as Avatar from '$lib/components/ui/avatar/index.js';
 
 	import { Database } from 'lucide-svelte';
-	import { Progress } from '$lib/components/ui/progress';
 	import { onMount } from 'svelte';
 	import * as Select from '$lib/components/ui/select/index.js';
 	import { Label } from '$lib/components/ui/label/index.js';
@@ -19,18 +15,14 @@
 	import * as Card from '$lib/components/ui/card';
 	import * as DropdownMenu from '$lib/components/ui/dropdown-menu';
 	import CirclePlus from 'lucide-svelte/icons/circle-plus';
-	import Cloud from 'lucide-svelte/icons/cloud';
 	import CreditCard from 'lucide-svelte/icons/credit-card';
 	import MessageSquare from 'lucide-svelte/icons/message-square';
 	import Plus from 'lucide-svelte/icons/plus';
-	import Settings from 'lucide-svelte/icons/settings';
 	import User from 'lucide-svelte/icons/user';
 	import UserPlus from 'lucide-svelte/icons/user-plus';
-	import Users from 'lucide-svelte/icons/users';
 	import { Ellipsis, Trash2 } from 'lucide-svelte';
 	import * as Sheet from '$lib/components/ui/sheet';
 	import * as RadioGroup from '$lib/components/ui/radio-group';
-	import SettingsForm from './components/settings-form.svelte';
 	import type { PageData } from '../$types.js';
 
 	import { Bot } from 'lucide-svelte';
@@ -53,11 +45,11 @@
 
 	//----------------------over-----------------------------
 
-	export let accounts: Account[];
-	export let mails: Mail[];
-	export let defaultLayout = [100, 900];
+	// export let accounts: Account[];
+	// export let mails: Mail[];
+	// export let defaultLayout = [100, 900];
 	export let defaultCollapsed = false;
-	export let navCollapsedSize: number;
+	// export let navCollapsedSize: number;
 
 	export const frameworks = [
 		{
@@ -87,6 +79,7 @@
 	});
 
 	function jumpDataList() {
+		console.warn("jumpDatalist")
 		goto('/dataset/datatasks');
 	}
 </script>
@@ -189,11 +182,18 @@
 		</Sheet.Root>
 	</header>
 	<div
-		class="m-4 grid h-5/6 grid-cols-1 gap-6 rounded-md bg-slate-50 p-4 sm:grid-cols-2 lg:grid-cols-3"
+		class="m-4 grid h-5/6 grid-cols-1 gap-6 rounded-md sm:grid-cols-2 lg:grid-cols-3"
 	>
 		{#each items as item, i (i)}
-			<div>
-				<Card.Root class="w-74 h-56 hover:bg-gray-200">
+
+				<a href="/knowlege/dataset"
+				class={cn(
+					"items-start rounded-lg border text-left text-sm transition-all hover:bg-accent"
+				)}
+				
+			>				
+				<Card.Root class="w-74 h-56 hover:bg-gray-200" 	on:click={jumpDataList}			
+				>
 					<Card.Header class="flex justify-between" on:click={jumpDataList}>
 						<div>
 							<Card.Title >{item.dataname}</Card.Title>
@@ -258,20 +258,18 @@
 						</DropdownMenu.Root>
 					</Card.Header>
 					<div>
-						<Card.Content class="flex justify-between" on:click={jumpDataList}>
+						<Card.Content class="flex justify-between">
 							<p class="text-sm">{item.datatitle}</p>
 							<p class="text-xs">{currentDateString}</p>
 						</Card.Content>
 						<Card.Footer class="flex justify-end">
-							<div
-								class="mt-3 inline-block w-24 rounded-lg border border-slate-300 bg-gray-100 px-4 py-1 text-center text-xs text-slate-400 dark:bg-gray-800"
-							>
+							<div class="mt-3 inline-block w-24 rounded-lg border border-slate-300 bg-gray-100 px-4 py-1 text-center text-xs text-slate-400 dark:bg-gray-800">
 								<p>{item.directory}</p>
 							</div>
 						</Card.Footer>
 					</div>
 				</Card.Root>
-			</div>
+			</a>
 		{/each}
 	</div>
 </div>
