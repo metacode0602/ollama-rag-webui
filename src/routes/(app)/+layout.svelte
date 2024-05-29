@@ -307,13 +307,14 @@
 			</div>
 		{/if}
 
-		<div
-			class=" text-gray-700 dark:text-gray-100 bg-white dark:bg-gray-900 min-h-screen overflow-auto flex flex-row"
-		>
+		<div class="flex min-h-screen w-full flex-col bg-muted/40">
 			<Sidebar />
 			<SettingsModal bind:show={$showSettings} />
 			<ChangelogModal bind:show={$showChangelog} />
-			<slot />
+			<div class="flex flex-col sm:gap-4 sm:py-4 sm:pl-14">
+				<slot />
+			</div>
+			
 		</div>
 	</div>
 {/if}
