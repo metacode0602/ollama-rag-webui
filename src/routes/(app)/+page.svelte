@@ -843,7 +843,6 @@
 	</title>
 </svelte:head>
 
-<div> THis page .svelete in (app) page.</div>
 <div class="h-screen max-h-[100dvh] w-full flex flex-col">
 	<Navbar
 		{title}

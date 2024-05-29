@@ -73,8 +73,6 @@
 	<link rel="stylesheet" type="text/css" href="/themes/rosepine-dawn.css" />
 </svelte:head>
 
-<div>This is layout.svelet</div>
-
 {#if loaded}
 	<slot />
 {/if}
