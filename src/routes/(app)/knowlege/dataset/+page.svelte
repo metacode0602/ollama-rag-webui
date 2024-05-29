@@ -1,7 +1,7 @@
 <script lang="ts">
 	import { invoices, type Account, type Mail, intents} from "../data.js";
-	import AccountSwitcher from "./account-switcher.svelte";
-	import Nav from "./nav.svelte";
+	import AccountSwitcher from "./components/account-switcher.svelte";
+	import Nav from "./components/nav.svelte";
 	import { cn } from "$lib/utils";
 	import * as Resizable from "$lib/components/ui/resizable";
 	import { Separator } from "$lib/components/ui/select";

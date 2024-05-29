@@ -1,5 +1,5 @@
 <script lang="ts">
-	import type { Account } from "../data.js";
+	import type { Account } from "../../data.js";
 	import * as Select from "$lib/components/ui/select/index.js";
 	import { cn } from "$lib/utils";
 

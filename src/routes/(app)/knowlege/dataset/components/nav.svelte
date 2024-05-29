@@ -1,5 +1,5 @@
 <script lang="ts">
-	import type { Route } from "./config.js";
+	import type { Route } from "../config.js";
 	import { Button } from "$lib/components/ui/button/index.js";
 	import { cn } from "$lib/utils";
 	import * as Tooltip from "$lib/components/ui/tooltip/index.js";

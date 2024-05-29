@@ -1,8 +1,8 @@
 <script lang="ts">
 	import { DateFormatter, getDayOfWeek, getLocalTimeZone, now } from "@internationalized/date";
 
-	import type { Mail } from "../data.js";
-	import * as Icons from "./icons.js";
+	import type { Mail } from "../../data.js";
+	import * as Icons from "../icons.js";
 	import * as Avatar from "$lib/components/ui/avatar/index.js";
 	import { Button, buttonVariants } from "$lib/components/ui/button/index.js";
 	import { Calendar } from "$lib/components/ui/calendar/index.js";
