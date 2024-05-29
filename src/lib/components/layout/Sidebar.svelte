@@ -169,7 +169,7 @@
 <div
 	bind:this={navElement}
 	class="max-h-3/4 h-screen min-h-screen {show
-		? 'w-[160px] lg:relative'
+		? 'w-[120px] lg:relative'
 		: 'w-[0px] -translate-x-[260px]'} fixed left-0 top-0 z-50 bg-gray-50 text-sm text-gray-900 transition dark:bg-gray-950 dark:text-gray-200
         "
 >
