@@ -15,9 +15,6 @@
 	import { Button } from "$lib/components/ui/button/index.js";
 	import * as Card from "$lib/components/ui/card/index.js";
 	import * as Tabs from "$lib/components/ui/tabs/index.js";
-	// import DatePickerWithRange from "$lib/components/example/date-picker-with-range.svelte";
-	// import DashboardLight from "$lib/img/examples/dashboard-light.png";
-	// import DashboardDark from "$lib/img/examples/dashboard-dark.png";
 </script>
 
 <div class="hidden flex-col md:flex">

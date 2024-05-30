@@ -1,18 +1,8 @@
 <script lang="ts">
+	import { page } from '$app/stores';
 	import { cn } from '$lib/utils';
-	// import { Input } from "$lib/components/ui/input";
-	import * as Resizable from '$lib/components/ui/resizable';
-	import { Separator } from '$lib/components/ui/select';
-	// import { Textarea } from '$lib/components/ui/textarea/index.js';
-	// import { Button } from "$lib/components/ui/button/index.js";
 	import * as Card from '$lib/components/ui/card/index.js';
-	import * as Avatar from '$lib/components/ui/avatar/index.js';
-	// import { primaryRoutes, secondaryRoutes, thirdRoutes, turnRoutes } from '../config.js';
-	import { Progress } from '$lib/components/ui/progress';
 	import { onMount } from 'svelte';
-	// import * as Select from '$lib/components/ui/select/index.js';
-	// import { Label } from '$lib/components/ui/label/index.js';
-	//  ----------------------------datatable--start------------------------
 	import { createTable, Render, Subscribe, createRender } from 'svelte-headless-table';
 	import {
 		addPagination,
@@ -23,7 +13,6 @@
 	} from 'svelte-headless-table/plugins';
 	import { readable } from 'svelte/store';
 	import ArrowUpDown from 'lucide-svelte/icons/arrow-up-down';
-	// import ChevronDown from 'lucide-svelte/icons/chevron-down';
 	import * as Table from '$lib/components/ui/table';
 	import DataTableActions from './data-table-actions.svelte';
 	import { Button } from '$lib/components/ui/button';
@@ -32,7 +21,7 @@
 	import * as Drawer from '$lib/components/ui/drawer/index.js';
 	import { FileIcon, Trash2 } from 'lucide-svelte';
 	import FileText from 'lucide-svelte/icons/file-text';
-	import * as DropdownMenu from '$lib/components/ui/dropdown-menu/index.js';
+	import PlusCircled from "svelte-radix/PlusCircled.svelte";
 
 	type Payment = {
 		id: string;
@@ -42,18 +31,16 @@
 		name: string;
 		num: number;
 	};
+	let knowledgeId = $page.params.id;
+
 	// 获取当前日期
 	const currentDate = new Date();
-
 	// 获取年份
 	const year = currentDate.getFullYear();
-
 	// 获取月份（注意：月份是从0开始的，所以需要+1）
 	const month = String(currentDate.getMonth() + 1).padStart(2, '0');
-
 	// 获取日期
 	const day = String(currentDate.getDate()).padStart(2, '0');
-
 	// 将年月日拼接成字符串
 	const updataTime = `${year}-${month}-${day}`;
 
@@ -202,9 +189,8 @@
 	// 因为webstorm编译器中代码报错无法提交先注释
 	// export let accounts: Account[];
 	// export let mails: Mail[];
-	export let defaultLayout = [100, 900];
+	// export let defaultLayout = [100, 900];
 	export let defaultCollapsed = false;
-
 	let isCollapsed = defaultCollapsed;
 	// 进度条
 	let value = 13;
@@ -212,22 +198,6 @@
 		const timer = setTimeout(() => (value = 66), 500);
 		return () => clearTimeout(timer);
 	});
-
-	function onLayoutChange(sizes: number[]) {
-		document.cookie = `PaneForge:layout=${JSON.stringify(sizes)}`;
-	}
-
-	function onCollapse() {
-		isCollapsed = true;
-		document.cookie = `PaneForge:collapsed=${true}`;
-	}
-
-	function onExpand() {
-		isCollapsed = false;
-		document.cookie = `PaneForge:collapsed=${false}`;
-	}
-
-	// HTML模板部分
 </script>
 
 <div class="col-span-3 lg:col-span-4 lg:border-l">
@@ -242,6 +212,10 @@
 
 			<div class="flex py-2">
 				<Input class="mr-4 w-48" placeholder="搜索数据..." type="text" bind:value={$filterValue} />
+				<Button href="/knowledge/{knowledgeId}/create">
+					<PlusCircled class="mr-2 h-4 w-4" />
+					新建/导入
+				</Button>
 
 				<Drawer.Root>
 					<Drawer.Trigger asChild let:builder>

@@ -311,7 +311,7 @@
 			<Sidebar />
 			<SettingsModal bind:show={$showSettings} />
 			<ChangelogModal bind:show={$showChangelog} />
-			<div class="flex flex-col sm:gap-4 sm:py-4 sm:pl-14">
+			<div class="flex flex-col sm:gap-4 sm:pl-14">
 				<slot />
 			</div>
 			

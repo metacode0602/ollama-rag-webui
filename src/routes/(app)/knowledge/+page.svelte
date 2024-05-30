@@ -173,13 +173,15 @@
 	</header>
 	<div class="m-4 grid h-5/6 grid-cols-1 gap-6 rounded-md sm:grid-cols-2 lg:grid-cols-3">
 		{#each items as item, i (i)}
-			<a href="/knowledge/{item.id}/dataset" class={cn('items-start rounded-lg border text-left text-sm transition-all hover:bg-accent')}
+			<a
+				href="/knowledge/{item.id}/dataset"
+				class={cn('items-start rounded-lg border text-left text-sm transition-all hover:bg-accent')}
 			>
-				<Card.Root class="w-74 h-56 hover:bg-gray-200">
+				<Card.Root class="w-74 h-56 hover:bg-gray-400">
 					<Card.Header class="flex justify-between">
 						<div>
 							<Card.Title>{item.dataname}</Card.Title>
-							<Card.Description style="margin-top: 5px">{item.datadescription}</Card.Description>
+							<Card.Description class="mt-2">{item.datadescription}</Card.Description>
 						</div>
 						<DropdownMenu.Root>
 							<DropdownMenu.Trigger asChild let:builder>
