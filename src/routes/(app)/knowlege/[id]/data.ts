@@ -1,8 +1,8 @@
 import type { ComponentType } from "svelte";
 import type { Icon } from "lucide-svelte";
 import Vercel from "$lib/components/icons/vercel.svelte";
-import ICloud from "$lib/components/icons/icloud.svelte";
 import Gmail from "$lib/components/icons/gmail.svelte";
+import ICloud from "$lib/components/icons/icloud.svelte";
 
 export const mails = [
 	{
@@ -257,31 +257,27 @@ export const invoices = [
     }
   ];
 
-  export type items = {	
-	id: string,
-	dataname: string
-	directory:string
-	datadescription:string
-	datatitle: string		   
+  export type items = {			
+	dataname: string;
+	directory:string;
+	datadescription:string;
+	datatitle: string;			   
 };
 
 export const items = [
 {
-	id: "12312",
 	dataname: "运营知识库",
 	directory:"知识库目录",
 	datadescription:"这个文件夹还没有介绍",
 	datatitle: "通用知识库",
 },
 {
-	id: "123222",
 	dataname: "运营知识库",
 	directory:"知识库目录",
 	datadescription:"这个文件夹还没有介绍",
 	datatitle: "通用知识库",
 },
 {
-	id: "1231221",
 	dataname: "运营知识库",
 	directory:"知识库目录",
 	datadescription:"这个文件夹还没有介绍",

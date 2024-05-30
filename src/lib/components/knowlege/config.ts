@@ -1,9 +1,10 @@
 import type { Icon } from "lucide-svelte";
 import type { ComponentType } from "svelte";
-import * as Icons from "./icons.js";
+import * as Icons from "$lib/components/icons/icons.js";
 
 export type Route = {
 	title: string;
+	label: string;
 	icon: ComponentType<Icon>;
 	variant: "default" | "ghost";
 	path:string;
@@ -14,22 +15,25 @@ export const primaryRoutes: Route[] = [
 	{
 		title: "数据集",
 		icon: Icons.Inbox,
+		label: "9",
 		variant: "ghost",
-		path:"/dataset/datatasks"
+		path:"/knowlege/12312/dataset"
 		
 	},
 	{
 		title: "搜索测试",
 		icon: Icons.File,
+		label: "21",
 		variant: "default",
-		path:"/dataset"
+		path:"/knowlege/12312/testing"
 		
 	},
 	{
 		title: "配置",
+		label: "91",
 		icon: Icons.Send,
 		variant: "ghost",
-		path:"/dataset/datasetting"
+		path:"/knowlege/12312/setting"
 		
 		
 	},

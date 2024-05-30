@@ -1,6 +1,6 @@
 import type { Icon } from "lucide-svelte";
 import type { ComponentType } from "svelte";
-import * as Icons from "./icons.js";
+import * as Icons from "$lib/components/icons/icons.js";
 
 export type Route = {
 	title: string;

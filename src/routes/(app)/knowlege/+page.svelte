@@ -4,8 +4,6 @@
 	import { Input } from '$lib/components/ui/input';
 	import { Button } from '$lib/components/ui/button/index.js';
 
-	import * as Avatar from '$lib/components/ui/avatar/index.js';
-
 	import { Database } from 'lucide-svelte';
 	import { onMount } from 'svelte';
 	import * as Select from '$lib/components/ui/select/index.js';
@@ -24,8 +22,6 @@
 	import * as Sheet from '$lib/components/ui/sheet';
 	import * as RadioGroup from '$lib/components/ui/radio-group';
 	import type { PageData } from '../$types.js';
-
-	import { Bot } from 'lucide-svelte';
 	export let data: PageData;
 
 	// 获取当前日期
@@ -77,11 +73,6 @@
 		const timer = setTimeout(() => (value = 66), 500);
 		return () => clearTimeout(timer);
 	});
-
-	function jumpDataList() {
-		console.warn("jumpDatalist")
-		goto('/dataset/datatasks');
-	}
 </script>
 
 <div class="w-full">
@@ -130,10 +121,9 @@
 					</RadioGroup.Root>
 					<!-- 取个名字 -->
 					<div>
-						<label class="text-sm font-semibold">取个名字</label>
+						<span class="text-sm font-semibold">取个名字</span>
 						<div class="mt-2 flex justify-between pr-3">
 							<Database class="h-10 w-10 rounded-md border-2" />
-
 							<Input id="name" placeholder="知识库名称" class="w-[277px]" />
 						</div>
 					</div>
@@ -181,22 +171,14 @@
 			</Sheet.Content>
 		</Sheet.Root>
 	</header>
-	<div
-		class="m-4 grid h-5/6 grid-cols-1 gap-6 rounded-md sm:grid-cols-2 lg:grid-cols-3"
-	>
+	<div class="m-4 grid h-5/6 grid-cols-1 gap-6 rounded-md sm:grid-cols-2 lg:grid-cols-3">
 		{#each items as item, i (i)}
-
-				<a href="/knowlege/dataset"
-				class={cn(
-					"items-start rounded-lg border text-left text-sm transition-all hover:bg-accent"
-				)}
-				
-			>				
-				<Card.Root class="w-74 h-56 hover:bg-gray-200" 	on:click={jumpDataList}			
-				>
-					<Card.Header class="flex justify-between" on:click={jumpDataList}>
+			<a href="/knowlege/{item.id}/dataset" class={cn('items-start rounded-lg border text-left text-sm transition-all hover:bg-accent')}
+			>
+				<Card.Root class="w-74 h-56 hover:bg-gray-200">
+					<Card.Header class="flex justify-between">
 						<div>
-							<Card.Title >{item.dataname}</Card.Title>
+							<Card.Title>{item.dataname}</Card.Title>
 							<Card.Description style="margin-top: 5px">{item.datadescription}</Card.Description>
 						</div>
 						<DropdownMenu.Root>
@@ -263,7 +245,9 @@
 							<p class="text-xs">{currentDateString}</p>
 						</Card.Content>
 						<Card.Footer class="flex justify-end">
-							<div class="mt-3 inline-block w-24 rounded-lg border border-slate-300 bg-gray-100 px-4 py-1 text-center text-xs text-slate-400 dark:bg-gray-800">
+							<div
+								class="mt-3 inline-block w-24 rounded-lg border border-slate-300 bg-gray-100 px-4 py-1 text-center text-xs text-slate-400 dark:bg-gray-800"
+							>
 								<p>{item.directory}</p>
 							</div>
 						</Card.Footer>
