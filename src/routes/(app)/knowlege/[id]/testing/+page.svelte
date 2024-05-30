@@ -42,7 +42,7 @@
 </script>
 
 	<Resizable.Handle withHandle />
-	<Resizable.Pane defaultSize={defaultLayout[1]} minSize={30}>
+	<Resizable.Pane defaultSize={defaultLayout[1]}>
 		<Tabs.Root value="all">
 			<div class="flex items-center justify-between px-4 py-2">
 				<!-- 下拉框 -->

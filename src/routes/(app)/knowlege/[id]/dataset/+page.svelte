@@ -204,7 +204,6 @@
 	// export let mails: Mail[];
 	export let defaultLayout = [100, 900];
 	export let defaultCollapsed = false;
-	export let navCollapsedSize: number;
 
 	let isCollapsed = defaultCollapsed;
 	// 进度条

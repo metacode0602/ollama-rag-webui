@@ -15,9 +15,9 @@
 
 	// export let accounts: Account[];
 	// export let mails: Mail[];
-	export let defaultLayout = [200, 440, 655];
+	// export let defaultLayout = [200, 440, 655];
 	export let defaultCollapsed = false;
-	export let navCollapsedSize: number;
+	// export let navCollapsedSize: number;
 
 
 	let turnRoutes: Route[] = [{
@@ -98,11 +98,10 @@
            面板的最小和最大尺寸分别为15和20（单位未指定，可能是像素或其他单位）。  
            当面板折叠时，onCollapse函数将被调用；当面板展开时，onExpand函数将被调用。 -->
 			<Resizable.Pane
-				defaultSize={100}
-				collapsedSize={navCollapsedSize}
+				defaultSize={140}
 				collapsible
-				minSize={10}
-				maxSize={10}
+				minSize={15}
+				maxSize={15}
 				{onCollapse}
 				{onExpand}
 				style="position: relative"
