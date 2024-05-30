@@ -230,8 +230,8 @@
 	// HTML模板部分
 </script>
 
-<!------------------ datatabel ---------------------------->
-<Resizable.Pane defaultSize={defaultLayout[0]} minSize={30} maxSize={50}>
+<div class="col-span-3 lg:col-span-4 lg:border-l">
+	<div class="h-full px-4 py-6 lg:px-8">
 	<div>
 		<div class="flex items-center justify-between">
 			<div class="mr-4 flex">
@@ -680,4 +680,6 @@
 			</Button>
 		</div>
 	</div>
-</Resizable.Pane>
+
+	</div>
+</div>

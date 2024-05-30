@@ -202,7 +202,7 @@
 		<Tooltip.Root>
 			<Tooltip.Trigger asChild let:builder>
 				<a
-					href="/knowlege"
+					href="/knowledge"
 					class="flex h-9 w-9 items-center justify-center rounded-lg transition-colors hover:text-foreground md:h-8 md:w-8"
 					use:builder.action
 					{...builder}
