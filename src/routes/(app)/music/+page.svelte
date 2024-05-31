@@ -7,6 +7,9 @@
 	import { Separator } from '$lib/components/ui/separator/index.js';
 	import * as Tabs from '$lib/components/ui/tabs/index.js';
 	import { ScrollArea } from '$lib/components/ui/scroll-area/index.js';
+	import CreateImgModel from './(components)/create-img-model.svelte';
+
+	let openCreateImgModel: boolean = false;
 </script>
 
 <div class="col-span-3 lg:col-span-4 lg:border-l">
@@ -19,7 +22,7 @@
 					<Tabs.Trigger value="live" disabled>视频</Tabs.Trigger>
 				</Tabs.List>
 				<div class="ml-auto mr-4">
-					<Button>
+					<Button on:click={() => (openCreateImgModel = true)}>
 						<PlusCircled class="mr-2 h-4 w-4" />
 						上传图片
 					</Button>
@@ -83,5 +86,7 @@
 				<PodcastEmptyPlaceholder />
 			</Tabs.Content>
 		</Tabs.Root>
+
+		<CreateImgModel bind:open={openCreateImgModel} />
 	</div>
 </div>

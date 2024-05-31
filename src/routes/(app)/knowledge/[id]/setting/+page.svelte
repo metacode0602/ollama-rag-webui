@@ -8,7 +8,7 @@
 	import { onMount } from 'svelte';
 	import * as Select from '$lib/components/ui/select/index.js';
 	import { Label } from '$lib/components/ui/label/index.js';
-
+	import * as RadioGroup from '$lib/components/ui/radio-group/index.js';
 	// export let accounts: Account[];
 	// export let mails: Mail[];
 	export let defaultLayout = [100, 900];
@@ -94,7 +94,7 @@
 							<label for="dataId" class="w-[110px] text-sm font-bold"> 单挑数据上线 </label>
 							<label for="dataId" class="text-xs">5000</label>
 						</div>
-	
+
 						<div class="flex items-center space-y-1.5">
 							<Label for="framework" class="mr-6 w-[100px] text-sm font-bold">文件处理模型</Label>
 							<Select.Root>
@@ -115,23 +115,32 @@
 							<Label for="name" class="mr-8 w-[50px] text-sm font-bold">介绍</Label>
 							<Textarea placeholder="暂无介绍" class="ml-10 h-24 w-96" />
 						</div>
-	
+
 						<!-- 使用权限 -->
 						<div class="flex items-center space-y-1.5">
 							<Label for="name" class="mr-10 w-[80px] text-sm font-bold">使用权限</Label>
-							<Card.Root class="mr-4 flex h-14  w-48 items-center">
-								<div class="p-3">
-									<p class="text-xs font-semibold">私有</p>
-									<p class="text-xs">仅自己可用</p>
-								</div>
-							</Card.Root>
-	
-							<Card.Root class="flex h-14 w-48 items-center">
-								<div class="p-3">
-									<p class="text-xs font-semibold">团队</p>
-									<p class="text-xs">团队所有可用</p>
-								</div>
-							</Card.Root>
+							<RadioGroup.Root value="card" class="grid grid-cols-3 gap-4">
+								<Label
+									for="card"
+									class="flex flex-col items-center justify-between rounded-md border-2 border-muted bg-popover p-4 hover:bg-accent hover:text-accent-foreground [&:has([data-state=checked])]:border-primary"
+								>
+									<RadioGroup.Item value="card" id="card" class="sr-only" aria-label="Card" />
+									<div class="p-3">
+										<p class="text-lg font-semibold">私有</p>
+										<p class="text-xs">仅自己可用</p>
+									</div>
+								</Label>
+								<Label
+									for="paypal"
+									class="flex flex-col items-center justify-between rounded-md border-2 border-muted bg-popover p-4 hover:bg-accent hover:text-accent-foreground [&:has([data-state=checked])]:border-primary"
+								>
+									<RadioGroup.Item value="paypal" id="paypal" class="sr-only" aria-label="Paypal" />
+									<div class="p-3">
+										<p class="text-lg font-semibold">团队</p>
+										<p class="text-xs">团队所有可用</p>
+									</div>
+								</Label>
+							</RadioGroup.Root>
 						</div>
 					</div>
 				</form>
@@ -139,7 +148,7 @@
 			<Card.Footer class="flex justify-start">
 				<Button class="mx-32">更新信息</Button>
 			</Card.Footer>
-		</Card.Root>		
+		</Card.Root>
 	</div>
 </div>
 
