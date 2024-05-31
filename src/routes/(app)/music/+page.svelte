@@ -1,41 +1,35 @@
 <script lang="ts">
-	import PlusCircled from "svelte-radix/PlusCircled.svelte";
-	import { AlbumArtwork, Menu, PodcastEmptyPlaceholder, Sidebar } from "./(components)/index.js";
-	import { playlists } from "./(data)/playlists.js";
-	import { listenNowAlbums, madeForYouAlbums } from "./(data)/albums.js";
-	import { Button } from "$lib/components/ui/button/index.js";
-	import { Separator } from "$lib/components/ui/separator/index.js";
-	import * as Tabs from "$lib/components/ui/tabs/index.js";
-	import { ScrollArea } from "$lib/components/ui/scroll-area/index.js";
-
+	import PlusCircled from 'svelte-radix/PlusCircled.svelte';
+	import { AlbumArtwork, Menu, PodcastEmptyPlaceholder, Sidebar } from './(components)/index.js';
+	import { playlists } from './(data)/playlists.js';
+	import { listenNowAlbums, madeForYouAlbums } from './(data)/albums.js';
+	import { Button } from '$lib/components/ui/button/index.js';
+	import { Separator } from '$lib/components/ui/separator/index.js';
+	import * as Tabs from '$lib/components/ui/tabs/index.js';
+	import { ScrollArea } from '$lib/components/ui/scroll-area/index.js';
 </script>
+
 <div class="col-span-3 lg:col-span-4 lg:border-l">
 	<div class="h-full px-4 py-6 lg:px-8">
 		<Tabs.Root value="music" class="h-full space-y-6">
 			<div class="space-between flex items-center">
 				<Tabs.List>
-					<Tabs.Trigger value="music" class="relative">
-						Music
-					</Tabs.Trigger>
-					<Tabs.Trigger value="podcasts">Podcasts</Tabs.Trigger>
-					<Tabs.Trigger value="live" disabled>Live</Tabs.Trigger>
+					<Tabs.Trigger value="music" class="relative">图片</Tabs.Trigger>
+					<Tabs.Trigger value="podcasts">音频</Tabs.Trigger>
+					<Tabs.Trigger value="live" disabled>视频</Tabs.Trigger>
 				</Tabs.List>
 				<div class="ml-auto mr-4">
 					<Button>
 						<PlusCircled class="mr-2 h-4 w-4" />
-						Add music
+						上传图片
 					</Button>
 				</div>
 			</div>
 			<Tabs.Content value="music" class="border-none p-0 outline-none">
 				<div class="flex items-center justify-between">
 					<div class="space-y-1">
-						<h2 class="text-2xl font-semibold tracking-tight">
-							Listen Now
-						</h2>
-						<p class="text-sm text-muted-foreground">
-							Top picks for you. Updated daily.
-						</p>
+						<h2 class="text-2xl font-semibold tracking-tight">Listen Now</h2>
+						<p class="text-sm text-muted-foreground">Top picks for you. Updated daily.</p>
 					</div>
 				</div>
 				<Separator class="my-4" />
@@ -55,12 +49,8 @@
 					</ScrollArea>
 				</div>
 				<div class="mt-6 space-y-1">
-					<h2 class="text-2xl font-semibold tracking-tight">
-						Made for You
-					</h2>
-					<p class="text-sm text-muted-foreground">
-						Your personal playlists. Updated daily.
-					</p>
+					<h2 class="text-2xl font-semibold tracking-tight">Made for You</h2>
+					<p class="text-sm text-muted-foreground">Your personal playlists. Updated daily.</p>
 				</div>
 				<Separator class="my-4" />
 				<div class="relative">
@@ -85,12 +75,8 @@
 			>
 				<div class="flex items-center justify-between">
 					<div class="space-y-1">
-						<h2 class="text-2xl font-semibold tracking-tight">
-							New Episodes
-						</h2>
-						<p class="text-sm text-muted-foreground">
-							Your favorite podcasts. Updated daily.
-						</p>
+						<h2 class="text-2xl font-semibold tracking-tight">New Episodes</h2>
+						<p class="text-sm text-muted-foreground">Your favorite podcasts. Updated daily.</p>
 					</div>
 				</div>
 				<Separator class="my-4" />

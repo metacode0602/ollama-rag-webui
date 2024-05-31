@@ -1,6 +1,21 @@
 {
-    "i18n-ally.localesPaths": [
-        "src/lib/i18n",
-        "src/lib/i18n/locales"
-    ]
+	"i18n-ally.localesPaths": [
+		"src/lib/i18n",
+		"src/lib/i18n/locales"
+	],
+	"prettier.useTabs": true,
+	"prettier.tabWidth": 2,
+	"prettier.printWidth": 80,
+	"prettier.singleQuote": true,
+	"prettier.bracketSpacing": true,
+	"editor.formatOnSave": true,
+	"editor.formatOnPaste": true,
+	"editor.formatOnType": true,
+	"files.trimTrailingWhitespace": true,
+	"[json]": {
+		"editor.defaultFormatter": "esbenp.prettier-vscode"
+	},
+	"[svelte]": {
+		"editor.defaultFormatter": "svelte.svelte-vscode"
+	}
 }

@@ -62,7 +62,7 @@
 		"js-sha256": "^0.11.0",
 		"jspdf": "^2.5.1",
 		"katex": "^0.16.10",
-		"lucide-svelte": "^0.379.0",
+		"lucide-svelte": "^0.381.0",
 		"marked": "^12.0.2",
 		"mdsx": "^0.0.5",
 		"paneforge": "^0.0.4",
